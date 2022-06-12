@@ -107,6 +107,7 @@ class ConfirmBooking extends Component {
         const result = await axios.post(global.config.apiUrl+"booking/success", data);
     }
     async payNow(){
+        let bookingId=this.state.item.bookingId;
         const options = {
             key: "rzp_test_8KHr7ine3uj7uk", // Enter the Key ID generated from the Dashboard
             amount: this.state.bookingAmount*100,
@@ -122,7 +123,7 @@ class ConfirmBooking extends Component {
                     razorpaySignature: response.razorpay_signature,
                     rawResponce:response
                 };
-                console.log("payment Responce=="+JSON.stringify(response));
+                console.log("payment Responce=="+JSON.stringify(response)+"bookingId==="+this.state.item.bookingId+"-====bookingId=="+bookingId);
                 const result = await axios.post(global.config.apiUrl+"booking/success", data);
                 window.location.href="/ThankYou/"+this.state.item.bookingId;
                 alert(result.data.msg);
