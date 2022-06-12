@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import Card from 'react-bootstrap/Card'
-import { Button,Table } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 
-import Form from 'react-bootstrap/Form'
+//import Form from 'react-bootstrap/Form'
 import  Header  from "../Header";
 import  Footer  from "../Footer";
-import { Link } from 'react-router-dom'
-import { useHistory } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+//import { Link } from 'react-router-dom'
+//import { useHistory } from 'react-router-dom';
+//import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import ClipLoader from "react-spinners/ClipLoader";
 class BookingDetails extends Component {
@@ -39,7 +39,7 @@ class BookingDetails extends Component {
           console.log("+++response=="+response)
           const data = await response.json();
           console.log("Data="+JSON.stringify(data));
-          if(data.code==200){
+          if(data.code===200){
               this.setState({item:data.data[0]});
               this.setState({pickupDate:data.data[0].pickupDate});
               this.setState({returnDate:data.data[0].returnDate})

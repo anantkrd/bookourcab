@@ -152,7 +152,7 @@ class ReadyToGo extends Component {
                                                     {
                                                        this.state.item.map((object, i) =>{
                                                            return <tr> 
-                                                                <td><Link variant="success" style={{padding: "4px",fontSize: 12, textAlign: "center"}} to={{ pathname: `/BookingDetails/${object.bookingId}`}} >{object.bookingId}</Link></td>
+                                                                <td><Link variant="success" style={{padding: "4px",fontSize: 12, textAlign: "center"}} to={{ pathname: `/BookingDetails/${object.orderId}`}} >{object.orderId}</Link></td>
                                                                 <td>{object.userName}({object.mobileNo})</td>
                                                                 <td>{object.pickup}</td>
                                                                 <td>{object.destination}</td>

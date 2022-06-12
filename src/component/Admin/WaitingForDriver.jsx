@@ -152,7 +152,7 @@ class WaitingForDriver extends Component {
                                                     {
                                                        this.state.item.map((object, i) =>{
                                                            return <tr> 
-                                                                <td><Link variant="success" style={{padding: "4px",fontSize: 12, textAlign: "center"}} to={{ pathname: `/BookingDetails/${object.bookingId}`}} >{object.bookingId}</Link></td>
+                                                                <td><Link variant="success" style={{padding: "4px",fontSize: 12, textAlign: "center"}} to={{ pathname: `/BookingDetails/${object.orderId}`}} >{object.orderId}</Link></td>
                                                                 <td>{object.userName}({object.mobileNo})</td>
                                                                 <td>{object.pickup}</td>
                                                                 <td>{object.destination}</td>
@@ -181,20 +181,7 @@ class WaitingForDriver extends Component {
                                                                 <td>{object.finalAmount}</td>
                                                                 <td>{object.paid}</td>
                                                                 <td>
-                                                                    {object.agentPrice>0?<div className="row" style={{color:"red",fontSize:14}}>
-                                                                        {object.agentPrice}
-                                                                        <div className="col-12">
-                                                                            <Button style={{float:'right'}} variant="primary" type="button" onClick={this.showPopup.bind(this,object)}>
-                                                                                Update
-                                                                            </Button>
-                                                                        </div>
-                                                                    </div>:<div className="row" style={{color:"red",fontSize:14}}>
-                                                                        <div className="col-12">
-                                                                            <Button style={{float:'right'}} variant="primary" type="button" onClick={this.showPopup.bind(this,object)}>
-                                                                                Add Amount
-                                                                            </Button>
-                                                                        </div>
-                                                                    </div>}
+                                                                    {object.agentPrice}
                                                                 </td>
                                                             </tr>;
                                                         })

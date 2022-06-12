@@ -34,13 +34,13 @@ class AdminHome extends Component {
           //const response = await fetch('http://localhost:3001/booking/getCabs?originObj='+originObj+'&destinationObj='+destinationObj, { headers });
           //console.log("urlData=="+urlData)
           const response = await fetch(global.config.apiUrl+'admin/get_booking_admin?'+urlData, { headers });
-          //console.log("+++response=="+response)
+          console.log("+++response=="+response)
           const data = await response.json();
-          //console.log("Data="+JSON.stringify(data));
-          if(data.code===200){
+          console.log("Data="+JSON.stringify(data));
+          if(data.code==200){
               this.setState({item:data.data});
           }else{
-              if(data.code===200){
+              if(data.code==200){
                 this.setState({error:'Session expired'});
               }
               this.setState({error:'some internal error please try later'})
@@ -84,14 +84,14 @@ class AdminHome extends Component {
          // console.log("+++response=="+response)
           const data = await response.json();
           //console.log("Data="+JSON.stringify(data));
-          if(data.code===200){
+          if(data.code==200){
               //this.setState({item:data.data});
               const currentState = this.state.show;
               console.log("val=="+currentState+"***");
               this.setState({show:!currentState});
               this.getBooking(this.state.userId);
           }else{
-              if(data.code===200){
+              if(data.code==200){
                 this.setState({error:'Session expired'});
               }
               this.setState({error:'some internal error please try later'})

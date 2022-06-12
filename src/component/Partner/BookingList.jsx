@@ -107,6 +107,7 @@ class BookingList extends Component {
         
     }
     async payNow(advance,paymentid,currency){
+        let bookingId=this.state.item.bookingId;
         const options = {
             key: "rzp_test_8KHr7ine3uj7uk", // Enter the Key ID generated from the Dashboard
             amount: advance,
@@ -123,7 +124,7 @@ class BookingList extends Component {
                 };
                 //console.log("payment Responce=="+JSON.stringify(response));
                 const result = await axios.post(global.config.apiUrl+"agent/success", data);
-                window.location.href="/ThankYou/"+this.state.item.bookingId;
+                window.location.href="/ThankYou/"+bookingId;
                 alert(result.data.msg);
             },
             prefill: {
