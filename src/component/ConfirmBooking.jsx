@@ -125,7 +125,7 @@ class ConfirmBooking extends Component {
                 };
                 console.log("payment Responce=="+JSON.stringify(response)+"-====bookingId=="+bookingId);
                 const result = await axios.post(global.config.apiUrl+"booking/success", data);
-                window.location.href="/ThankYou/"+this.state.item.bookingId;
+                window.location.href="/ThankYou/"+bookingId;
                 alert(result.data.msg);
             },
             prefill: {
