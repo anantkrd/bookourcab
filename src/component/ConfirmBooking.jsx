@@ -123,7 +123,7 @@ class ConfirmBooking extends Component {
                     razorpaySignature: response.razorpay_signature,
                     rawResponce:response
                 };
-                console.log("payment Responce=="+JSON.stringify(response)+"bookingId==="+this.state.item.bookingId+"-====bookingId=="+bookingId);
+                console.log("payment Responce=="+JSON.stringify(response)+"-====bookingId=="+bookingId);
                 const result = await axios.post(global.config.apiUrl+"booking/success", data);
                 window.location.href="/ThankYou/"+this.state.item.bookingId;
                 alert(result.data.msg);
