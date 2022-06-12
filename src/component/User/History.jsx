@@ -40,7 +40,7 @@ class History extends Component {
           let urlData="&userId="+userId;
           //const response = await fetch('http://localhost:3001/booking/getCabs?originObj='+originObj+'&destinationObj='+destinationObj, { headers });
           //console.log("urlData=="+urlData+"==headers="+JSON.stringify(headers));
-          const response = await fetch('http://localhost:3001/user/get_user_booking?'+urlData, { headers });
+          const response = await fetch(global.config.apiUrl+'user/get_user_booking?'+urlData, { headers });
 
           //console.log("+++response=="+response)
           const data = await response.json();

@@ -40,7 +40,7 @@ class AddDriver extends Component {
           let urlData="&userId="+userId+"&pageId="+pageNo;
           //const response = await fetch('http://localhost:3001/booking/getCabs?originObj='+originObj+'&destinationObj='+destinationObj, { headers });
           console.log("urlData=="+urlData)
-          const response = await fetch('http://localhost:3001/agent/get_drivers?'+urlData, { headers });
+          const response = await fetch(global.config.apiUrl+'agent/get_drivers?'+urlData, { headers });
           //console.log("+++response=="+JSON.stringify(response))
           const dataRes = await response.json();
           console.log("Data="+JSON.stringify(dataRes));
@@ -77,7 +77,7 @@ class AddDriver extends Component {
         };
         //console.log("payment Responce=="+JSON.stringify(response));
 
-        const result = await axios.post("http://localhost:3001/agent/add_driver", data,{ headers });
+        const result = await axios.post(global.config.apiUrl+"agent/add_driver", data,{ headers });
 
 
           console.log("+++response=="+JSON.stringify(result))

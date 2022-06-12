@@ -37,7 +37,7 @@ class WaitingForAgent extends Component {
           let urlData="&userId="+userId;
           //const response = await fetch('http://localhost:3001/booking/getCabs?originObj='+originObj+'&destinationObj='+destinationObj, { headers });
           console.log("urlData=="+urlData)
-          const response = await fetch('http://localhost:3001/admin/get_waiting_agent_bookings?'+urlData, { headers });
+          const response = await fetch(global.config.apiUrl+'admin/get_waiting_agent_bookings?'+urlData, { headers });
           console.log("+++response=="+response)
           const data = await response.json();
           console.log("Data="+JSON.stringify(data));
@@ -84,7 +84,7 @@ class WaitingForAgent extends Component {
           let urlData="&amount="+this.state.agentAmont+"&bookingId="+this.state.bookingId;
           //const response = await fetch('http://localhost:3001/booking/getCabs?originObj='+originObj+'&destinationObj='+destinationObj, { headers });
           console.log("urlData=="+urlData)
-          const response = await fetch('http://localhost:3001/user/update_agent_amount?'+urlData, { headers });
+          const response = await fetch(global.config.apiUrl+'user/update_agent_amount?'+urlData, { headers });
           console.log("+++response=="+response)
           const data = await response.json();
           console.log("Data="+JSON.stringify(data));

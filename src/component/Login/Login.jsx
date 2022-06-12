@@ -76,7 +76,7 @@ class Login extends Component {
         const headers = { 'Content-Type': 'application/json' }  
           //const response = await fetch('http://localhost:3001/booking/getCabs?originObj='+originObj+'&destinationObj='+destinationObj, { headers });
           console.log("urlData=="+urlData)
-          const response = await fetch('http://localhost:3001/user/verify_otp?'+urlData, { headers });
+          const response = await fetch(global.config.apiUrl+'user/verify_otp?'+urlData, { headers });
           console.log("+++response=="+response)
           const data = await response.json();
           console.log("Data="+JSON.stringify(data));

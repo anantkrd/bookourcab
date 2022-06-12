@@ -35,7 +35,7 @@ class PendingBookingList extends Component {
           let urlData="&userId="+userId+"&pageId="+pageNo;
           //const response = await fetch('http://localhost:3001/booking/getCabs?originObj='+originObj+'&destinationObj='+destinationObj, { headers });
           //console.log("urlData=="+urlData)
-          const response = await fetch('http://localhost:3001/agent/get_my_bookings?'+urlData, { headers });
+          const response = await fetch(global.config.apiUrl+'agent/get_my_bookings?'+urlData, { headers });
           //console.log("+++response=="+JSON.stringify(response))
           const dataRes = await response.json();
           //console.log("Data="+JSON.stringify(dataRes));
@@ -83,9 +83,8 @@ class PendingBookingList extends Component {
         let token=localStorage.getItem("token");
         const headers = {'Authorization':`Bearer ${token}`} ;
           let urlData="&driverMobile="+this.state.driverMobile;
-          //const response = await fetch('http://localhost:3001/booking/getCabs?originObj='+originObj+'&destinationObj='+destinationObj, { headers });
           //console.log("urlData=="+urlData)
-          const response = await fetch('http://localhost:3001/agent/search_driver?'+urlData, { headers });
+          const response = await fetch(global.config.apiUrl+'agent/search_driver?'+urlData, { headers });
           //console.log("+++response=="+JSON.stringify(response))
           const dataRes = await response.json();
           //console.log("Data="+JSON.stringify(dataRes));
@@ -105,9 +104,8 @@ class PendingBookingList extends Component {
         let token=localStorage.getItem("token");
         const headers = {'Authorization':`Bearer ${token}`} ;
           let urlData="&carno="+this.state.carNo;
-          //const response = await fetch('http://localhost:3001/booking/getCabs?originObj='+originObj+'&destinationObj='+destinationObj, { headers });
           //console.log("urlData=="+urlData)
-          const response = await fetch('http://localhost:3001/agent/search_car?'+urlData, { headers });
+          const response = await fetch(global.config.apiUrl+'agent/search_car?'+urlData, { headers });
           //console.log("+++response=="+JSON.stringify(response))
           const dataRes = await response.json();
           //console.log("Data="+JSON.stringify(dataRes));
@@ -135,7 +133,7 @@ class PendingBookingList extends Component {
             bookingId:this.state.bookingId,
             contactNo:this.state.email
         };
-        const result = await axios.post("http://localhost:3001/agent/assign_booking_driver", data,{ headers });
+        const result = await axios.post(global.config.apiUrl+"agent/assign_booking_driver", data,{ headers });
         //console.log("+++response=="+JSON.stringify(result));        
         if(result.data.code==200){            
             this.setState({error:result.data.msg});
@@ -162,7 +160,7 @@ class PendingBookingList extends Component {
             bookingId:this.state.bookingId
         };
         
-        const result = await axios.post("http://localhost:3001/agent/assign_booking_car", data,{ headers });
+        const result = await axios.post(global.config.apiUrl+"agent/assign_booking_car", data,{ headers });
         //console.log("+++response=="+JSON.stringify(result));        
         if(result.data.code==200){            
             this.setState({error:result.data.msg});

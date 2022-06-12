@@ -36,7 +36,7 @@ class BookingList extends Component {
           let urlData="&userId="+userId+"&pageId="+pageNo;
           //const response = await fetch('http://localhost:3001/booking/getCabs?originObj='+originObj+'&destinationObj='+destinationObj, { headers });
           //console.log("urlData=="+urlData)
-          const response = await fetch('http://localhost:3001/agent/get_booking_agent?'+urlData, { headers });
+          const response = await fetch(global.config.apiUrl+'agent/get_booking_agent?'+urlData, { headers });
           //console.log("+++response=="+JSON.stringify(response))
           const dataRes = await response.json();
           //console.log("Data="+JSON.stringify(dataRes));
@@ -90,7 +90,7 @@ class BookingList extends Component {
             userAmount:userAmount
 
         };
-        const resultpay = await axios.post("http://localhost:3001/agent/payment",dataPay);
+        const resultpay = await axios.post(global.config.apiUrl+"agent/payment",dataPay);
         
         if (!resultpay) {
             alert("Server error. Are you online?");
@@ -122,7 +122,7 @@ class BookingList extends Component {
                     rawResponce:response
                 };
                 //console.log("payment Responce=="+JSON.stringify(response));
-                const result = await axios.post("http://localhost:3001/agent/success", data);
+                const result = await axios.post(global.config.apiUrl+"agent/success", data);
                 window.location.href="/ThankYou/"+this.state.item.bookingId;
                 alert(result.data.msg);
             },

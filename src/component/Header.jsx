@@ -103,7 +103,6 @@ class Header extends Component {
         this.setState({error:''});
         let urlData="&mobileNo="+this.state.mobileNo+"&otp="+this.state.otp;
         const headers = { 'Content-Type': 'application/json' }  
-          //const response = await fetch('http://localhost:3001/booking/getCabs?originObj='+originObj+'&destinationObj='+destinationObj, { headers });
           //console.log("urlData=="+urlData);
           let url="https://c77b3hr0m0.execute-api.ap-south-1.amazonaws.com/v1/prayag-verifyOtp?mobileNo="+this.state.mobileNo+"&otp="+this.state.otp;
           const response = await fetch(global.config.apiUrl+'user/verify_otp?'+urlData, { headers });

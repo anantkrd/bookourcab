@@ -59,7 +59,7 @@ class Search extends Component {
         const headers = { 'Content-Type': 'application/json'}  
           let urlData="&pickupCity="+pickupCity+"&destinationCity="+destinationCity+"&pickdateTime="+pickdateTime+"&returnDateTime="+returnDateTime+"&mobileNo="+mobileNo+"&originObj="+originObj+"&destinationObj="+destinationObj;
           //const response = await fetch('http://localhost:3001/booking/getCabs?originObj='+originObj+'&destinationObj='+destinationObj, { headers });
-          const response = await fetch('http://localhost:3001/booking/getCabs?'+urlData, { headers });
+          const response = await fetch(global.config.apiUrl+'booking/getCabs?'+urlData, { headers });
           const data = await response.json();
           console.log("Data="+JSON.stringify(data));
           this.setState({cabsList:data.data});

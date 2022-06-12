@@ -80,7 +80,7 @@ class ConfirmBooking extends Component {
             bookingId: this.state.item.bookingId,
             mobileNo: this.state.item.mobileNo,
         };
-        const resultpay = await axios.post("http://localhost:3001/booking/payment",dataPay);
+        const resultpay = await axios.post(global.config.apiUrl+"booking/payment",dataPay);
         
         if (!resultpay) {
             alert("Server error. Are you online?");
@@ -104,7 +104,7 @@ class ConfirmBooking extends Component {
             rawResponce:''
         };
         console.log("payment Responce=="+JSON.stringify(data));
-        const result = await axios.post("http://localhost:3001/booking/success", data);
+        const result = await axios.post(global.config.apiUrl+"booking/success", data);
     }
     async payNow(){
         const options = {
@@ -123,7 +123,7 @@ class ConfirmBooking extends Component {
                     rawResponce:response
                 };
                 console.log("payment Responce=="+JSON.stringify(response));
-                const result = await axios.post("http://localhost:3001/booking/success", data);
+                const result = await axios.post(global.config.apiUrl+"booking/success", data);
                 window.location.href="/ThankYou/"+this.state.item.bookingId;
                 alert(result.data.msg);
             },
@@ -158,7 +158,7 @@ class ConfirmBooking extends Component {
           let urlData="&fname="+this.state.firstName+"&lname="+this.state.lastName+"&email="+this.state.email+"&cabId="+this.state.item.id+"&pickup="+this.state.item.pickupCity+"&destination="+this.state.item.destinationCity+"&pickupDate="+this.state.item.pickupDate+"&returnDate="+returnDate+"&isReturn="+isReturn+"&pickupLat="+this.state.item.originlat+"&pickupLong="+this.state.item.originlng+"&destinationLat="+this.state.item.destinationlat+"&destinationLong="+this.state.item.destinationlng+"&distance="+this.state.item.distance+"&journyTime="+this.state.item.journyTime+"&cabType="+this.state.item.cabType+"&ac="+this.state.item.ac+"&bags="+this.state.item.bags+"&cars="+this.state.item.cars+"&capacity="+this.state.item.capacity+"&note="+this.state.item.note+"&rate="+this.state.item.rate+"&amount="+this.state.item.amount+"&discountAmount="+this.state.item.discountAmount+"&finalAmount="+this.state.item.finalAmount+"&mobileNo="+this.state.item.mobileNo+"&bookingId="+this.state.item.bookingId+"&payment_orderId="+this.state.payment_orderId;
           //const response = await fetch('http://localhost:3001/booking/getCabs?originObj='+originObj+'&destinationObj='+destinationObj, { headers });
           console.log("urlData=="+urlData)
-          const response = await fetch('http://localhost:3001/booking/book_cab?'+urlData, { headers });
+          const response = await fetch(global.config.apiUrl+'booking/book_cab?'+urlData, { headers });
           console.log("+++response=="+response)
           const data = await response.json();
           console.log("Data="+JSON.stringify(data));

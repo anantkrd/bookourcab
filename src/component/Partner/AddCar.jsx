@@ -38,7 +38,7 @@ class AddCar extends Component {
         let pageNo=this.state.pageNo+1;
         const headers = {'Authorization':`Bearer ${token}`} ;
           let urlData="&userId="+userId+"&pageId="+pageNo;
-          const response = await fetch('http://localhost:3001/agent/get_cars?'+urlData, { headers });
+          const response = await fetch(global.config.apiUrl+'agent/get_cars?'+urlData, { headers });
           //console.log("+++response=="+JSON.stringify(response))
           const dataRes = await response.json();
           //console.log("Data="+JSON.stringify(dataRes));
@@ -61,7 +61,7 @@ class AddCar extends Component {
           let urlData="&userId="+this.state.userId+"&carModelNo="+this.state.carModelName+"&carNo="+this.state.carNo+"&carType="+this.state.carType+"&rcBook="+this.state.rcBook;
           //const response = await fetch('http://localhost:3001/booking/getCabs?originObj='+originObj+'&destinationObj='+destinationObj, { headers });
           //console.log("urlData=="+urlData)
-          const response = await fetch('http://localhost:3001/agent/add_car?'+urlData, { headers });
+          const response = await fetch(global.config.apiUrl+'agent/add_car?'+urlData, { headers });
           //console.log("+++response=="+JSON.stringify(response))
           const dataRes = await response.json();
          // console.log("Data="+JSON.stringify(dataRes));

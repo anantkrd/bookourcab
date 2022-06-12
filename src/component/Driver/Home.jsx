@@ -30,7 +30,7 @@ class Home extends Component {
           let urlData="&userId="+userId+"&pageId="+pageNo;
           //const response = await fetch('http://localhost:3001/booking/getCabs?originObj='+originObj+'&destinationObj='+destinationObj, { headers });
           //console.log("urlData=="+urlData)
-          const response = await fetch('http://localhost:3001/driver/get_my_trip?'+urlData, { headers });
+          const response = await fetch(global.config.apiUrl+'driver/get_my_trip?'+urlData, { headers });
           //console.log("+++response=="+JSON.stringify(response))
           const dataRes = await response.json();
           console.log("Data="+JSON.stringify(dataRes));

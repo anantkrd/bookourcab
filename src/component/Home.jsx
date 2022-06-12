@@ -5,6 +5,7 @@ import Slider from './Slider';
 import  Header  from "./Header";
 import  Footer  from "./Footer";
 
+import './../config';
 import { Link } from 'react-router-dom'
 import { useHistory } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'

@@ -35,7 +35,7 @@ class SearchLog extends Component {
           let urlData="&userId="+userId;
           //const response = await fetch('http://localhost:3001/booking/getCabs?originObj='+originObj+'&destinationObj='+destinationObj, { headers });
           console.log("urlData=="+urlData)
-          const response = await fetch('http://localhost:3001/user/get_search_log?'+urlData, { headers });
+          const response = await fetch(global.config.apiUrl+'user/get_search_log?'+urlData, { headers });
           console.log("+++response=="+response)
           const data = await response.json();
           console.log("Data="+JSON.stringify(data));

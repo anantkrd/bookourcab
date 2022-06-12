@@ -35,9 +35,8 @@ class Completed extends Component {
         let token=localStorage.getItem("token");
         const headers = {'Authorization':`Bearer ${token}`} ;
           let urlData="&userId="+userId+"&pageId=1";
-          //const response = await fetch('http://localhost:3001/booking/getCabs?originObj='+originObj+'&destinationObj='+destinationObj, { headers });
           console.log("urlData=="+urlData)
-          const response = await fetch('http://localhost:3001/admin/get_completed_bookings?'+urlData, { headers });
+          const response = await fetch(global.config.apiUrl+'admin/get_completed_bookings?'+urlData, { headers });
           console.log("+++response=="+response)
           const data = await response.json();
           console.log("Data="+JSON.stringify(data));
@@ -84,7 +83,7 @@ class Completed extends Component {
           let urlData="&amount="+this.state.agentAmont+"&bookingId="+this.state.bookingId;
           //const response = await fetch('http://localhost:3001/booking/getCabs?originObj='+originObj+'&destinationObj='+destinationObj, { headers });
           console.log("urlData=="+urlData)
-          const response = await fetch('http://localhost:3001/user/update_agent_amount?'+urlData, { headers });
+          const response = await fetch(global.config.apiUrl+'user/update_agent_amount?'+urlData, { headers });
           console.log("+++response=="+response)
           const data = await response.json();
           console.log("Data="+JSON.stringify(data));

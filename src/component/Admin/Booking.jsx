@@ -33,9 +33,8 @@ class Booking extends Component {
         let pageNo=this.state.pageNo+1;
         const headers = {'Authorization':`Bearer ${token}`} ;
           let urlData="&userId="+userId+"&pageId="+pageNo;
-          //const response = await fetch('http://localhost:3001/booking/getCabs?originObj='+originObj+'&destinationObj='+destinationObj, { headers });
           console.log("urlData=="+urlData)
-          const response = await fetch('http://localhost:3001/user/get_booking?'+urlData, { headers });
+          const response = await fetch(global.config.apiUrl+'user/get_booking?'+urlData, { headers });
           console.log("+++response=="+response)
           const data = await response.json();
           console.log("Data="+JSON.stringify(data));

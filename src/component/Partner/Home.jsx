@@ -59,7 +59,7 @@ class Home extends Component {
                 'Access-Control-Allow-Origin':'*'
             }
         }
-          const response = await fetch('http://localhost:3001/user/send_otp?'+urlData, { headers });
+          const response = await fetch(global.config.apiUrl+'user/send_otp?'+urlData, { headers });
           
           const data = await response.json();
           console.log("Data="+JSON.stringify(data));
@@ -77,7 +77,7 @@ class Home extends Component {
         let urlData="&mobileNo="+this.state.mobileNo+"&otp="+this.state.otp;
         const headers = { 'Content-Type': 'application/json' }  
         //  let url="https://c77b3hr0m0.execute-api.ap-south-1.amazonaws.com/v1/prayag-verifyOtp?mobileNo="+this.state.mobileNo+"&otp="+this.state.otp;
-          const response = await fetch('http://localhost:3001/user/verify_otp?'+urlData, { headers });
+          const response = await fetch(global.config.apiUrl+'user/verify_otp?'+urlData, { headers });
           //let result = await axios.get(url);
          // console.log("+++response=="+JSON.stringify(response));
           const result = await response.json();
@@ -128,7 +128,7 @@ class Home extends Component {
         let urlData="&mobileNo="+this.state.userMobileNo+"&fname="+this.state.firstName+"&lname="+this.state.lastName+"&email="+this.state.email+"&type=agent";
         const headers = { 'Content-Type': 'application/json' }  
         //  let url="https://c77b3hr0m0.execute-api.ap-south-1.amazonaws.com/v1/prayag-verifyOtp?mobileNo="+this.state.mobileNo+"&otp="+this.state.otp;
-          const response = await fetch('http://localhost:3001/user/register?'+urlData, { headers });
+          const response = await fetch(global.config.apiUrl+'user/register?'+urlData, { headers });
           //let result = await axios.get(url);
          // console.log("+++response=="+JSON.stringify(response));
           const result = await response.json();
