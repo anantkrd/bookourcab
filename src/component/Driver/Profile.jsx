@@ -23,31 +23,28 @@ class Profile extends Component {
        this.setState({userId:userId});
         console.log("++userId**********-------------==="+userId);        
         //this.setState({item:this.props.match.params.data});
-        this.getBooking(userId);
+        this.getProfile(userId);
       }
     
-      showPopup(object){
-        console.log("Here confirm");
-        this.prePayment(object);
-      }
-    async getBooking(userId){
+    async getProfile(userId){
         console.log("*****getBookigs******");   
         
         //const headers = { 'Content-Type': 'application/json' } 
         let token=localStorage.getItem("token");
         let pageNo=this.state.pageNo+1;
+        console.log("token==="+token);
         const headers = {'Authorization':`Bearer ${token}`} ;
           let urlData="&userId="+userId+"&pageId="+pageNo;
           //const response = await fetch('http://localhost:3001/booking/getCabs?originObj='+originObj+'&destinationObj='+destinationObj, { headers });
           console.log("urlData=="+urlData)
-          const response = await fetch(global.config.apiUrl+'agent/get_booking_agent?'+urlData, { headers });
+          const response = await fetch(global.config.apiUrl+'user/get_user_byid?'+urlData, { headers });
           //console.log("+++response=="+JSON.stringify(response))
           const dataRes = await response.json();
           console.log("Data="+JSON.stringify(dataRes));
           
           if(dataRes.code==200){
               console.log("Here")
-              this.setState({item:dataRes.data});
+              this.setState({item:dataRes.data[0]});
           }else{              console.log("errorr")
               this.setState({error:'some internal error please try later'})
           }
@@ -70,84 +67,7 @@ class Profile extends Component {
             document.body.appendChild(script);
         });
     }
-    prePayment=async(object)=>{
-         
-        const res = await this.loadScript(
-            "https://checkout.razorpay.com/v1/checkout.js"
-        );
-
-        if (!res) {
-            alert("Razorpay SDK failed to load. Are you online?");
-            return;
-        }
-        // creating a new order
-        const headers = { 'Content-Type': 'application/json' }  
-        let UrlData="amount=";
-        let advance=(object.agentPrice*20)/100;
-        let userAmount=object.finalAmount-object.paid;
-        const dataPay = {
-            amount: advance*100,
-            bookingId: object.orderId,
-            agentId: this.state.userId,
-            bookingAmount:object.agentPrice,
-            tripAmount:object.finalAmount,
-            userPaid:object.paid,
-            userAmount:userAmount
-
-        };
-        const resultpay = await axios.post(global.config.apiUrl+"agent/payment",dataPay);
-        
-        if (!resultpay) {
-            alert("Server error. Are you online?");
-            return;
-        }
-
-        console.log("result==pay=="+resultpay);
-        this.setState({payment_orderId:resultpay.data.id,currency:resultpay.data.currency,receipt:resultpay.data.receipt});
-        //console.log("payment_orderId==="+this.state.payment_orderId);
-        // Getting the order details back
-        const { amount, id, currency } = resultpay.data;
-        this.payNow(advance,resultpay.data.id,resultpay.data.currency)
-        return false;
-        
-    }
-    async payNow(advance,paymentid,currency){
-        const options = {
-            key: "rzp_test_8KHr7ine3uj7uk", // Enter the Key ID generated from the Dashboard
-            amount: advance,
-            currency: currency,
-            description: "Test Transaction",
-            image: '',
-            order_id: paymentid,
-            handler: async function (response) {
-                const data = {
-                    razorpayPaymentId: response.razorpay_payment_id,
-                    razorpayOrderId: response.razorpay_order_id,
-                    razorpaySignature: response.razorpay_signature,
-                    rawResponce:response
-                };
-                console.log("payment Responce=="+JSON.stringify(response));
-                const result = await axios.post(global.config.apiUrl+"agent/success", data);
-                window.location.href="/ThankYou/"+this.state.item.bookingId;
-                alert(result.data.msg);
-            },
-            prefill: {
-                name: this.state.firstName+" "+this.state.lastName,
-                email: this.state.email,
-                contact: this.state.item.mobileNo,
-            },
-            notes: {
-                address: this.state.item.pickupCity,
-            },
-            theme: {
-                color: "#61dafb",
-            },
-        };
-
-        const paymentObject = new window.Razorpay(options);
-        paymentObject.open();
-        
-    }
+    
 
     async addProfile(){
 
@@ -214,56 +134,14 @@ class Profile extends Component {
                                             <div className="col-12" style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gridGap: 10 }}>
                                                 <div>
                                                     <Form.Group controlId="formBasicEmail" >
-                                                        <Form.Label>Adhaar No.</Form.Label>
-                                                        <Form.Control type="text" placeholder="Addhaar No" value={this.state.item.adhaarNo} />                                                                                                        
+                                                        <Form.Label>Diver License</Form.Label>
+                                                        <Form.Control type="text" placeholder="License No" value={this.state.item.idNumber} />                                                                                                        
                                                     </Form.Group>
                                                 </div>
                                                 <div >
                                                     <Form.Group controlId="formBasicEmail" >
-                                                        <Form.Label>Upload Adhaar</Form.Label>
-                                                        <Form.Control type="file" placeholder="Select Adhaar" value={this.state.item.adhaarLink} />                                                                                                        
-                                                    </Form.Group>
-                                                </div>
-                                            </div>
-                                            <div className="col-12" style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gridGap: 10 }}>
-                                                <div>
-                                                    <Form.Group controlId="formBasicEmail" >
-                                                        <Form.Label>Pan No.</Form.Label>
-                                                        <Form.Control type="text"  placeholder="Pan Card No" value={this.state.item.panNo} />                                                                                                        
-                                                    </Form.Group>
-                                                </div>
-                                                <div >                                                    
-                                                    <Form.Group controlId="formBasicEmail" >
-                                                        <Form.Label>Upload Pan</Form.Label>
-                                                        <Form.Control type="file" placeholder="Select pan" value={this.state.item.panLink} />                                                                                                        
-                                                    </Form.Group>
-                                                </div>
-                                            </div>
-                                            <div className="col-12" style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gridGap: 10 }}>
-                                                <div>
-                                                    <Form.Group controlId="formBasicEmail" >
-                                                        <Form.Label>Company Name</Form.Label>
-                                                        <Form.Control type="text" placeholder="Company Name" value={this.state.item.companyName} />                                                                                                        
-                                                    </Form.Group>
-                                                </div>
-                                                <div >
-                                                    <Form.Group controlId="formBasicEmail" >
-                                                        <Form.Label>Office Address</Form.Label>
-                                                        <Form.Control type="text" placeholder="Office Address" value={this.state.item.officeAddress} />                                                                                                        
-                                                    </Form.Group>
-                                                </div>
-                                            </div>
-                                            <div className="col-12" style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gridGap: 10 }}>
-                                                <div>
-                                                    <Form.Group controlId="formBasicEmail" >
-                                                        <Form.Label>Company Reg No.</Form.Label>
-                                                        <Form.Control type="text" placeholder="Registration No." value={this.state.item.companyRegNo} />                                                                                                        
-                                                    </Form.Group>
-                                                </div>
-                                                <div >
-                                                    <Form.Group controlId="formBasicEmail" >
-                                                        <Form.Label>Company License</Form.Label>
-                                                        <Form.Control type="file" placeholder="Upload Licence" value={this.state.item.companyLicense} />                                                                                                        
+                                                        <Form.Label>Upload License</Form.Label>
+                                                        <Form.Control type="file" placeholder="Select License" value={this.state.item.licenseLink} />                                                                                                        
                                                     </Form.Group>
                                                 </div>
                                             </div>
@@ -271,7 +149,7 @@ class Profile extends Component {
                                                 
                                                 <Form.Group controlId="formBasicEmail" style={{float:'right'}}>
                                                     <Button variant="primary" type="button" onClick={this.addProfile.bind(this)}>
-                                                        Add
+                                                        Update
                                                     </Button>                                                                                                       
                                                 </Form.Group>
                                             </div>

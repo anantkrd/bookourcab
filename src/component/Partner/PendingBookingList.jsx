@@ -213,6 +213,7 @@ class PendingBookingList extends Component {
                                                     <th>PickupDate</th>
                                                     <th>ReturnDate</th>
                                                     <th>Amount</th>
+                                                    <th>Booking Amount</th>
                                                     <th>Driver</th>
                                                     <th>Car</th>
                                                     </tr>
@@ -248,6 +249,7 @@ class PendingBookingList extends Component {
                                                                     }
                                                                 </td>
                                                                 <td>{object.agentPrice}</td>
+                                                                <td>{object.agentPaid}</td>                                                                
                                                                 <td>
                                                                     { object.driverId>0?<div>{object.driverName} {object.driverContact}</div>:<Form.Group controlId="formBasicEmail" style={{float:'right'}}>
                                                                         <Button variant="primary" type="button" onClick={this.setShowDriverDialog.bind(this,object)}>

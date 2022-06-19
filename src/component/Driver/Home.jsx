@@ -26,10 +26,9 @@ class Home extends Component {
         //const headers = { 'Content-Type': 'application/json' } 
         let token=localStorage.getItem("token");
         let pageNo=this.state.pageNo+1;
+        console.log("token==="+token+"***userId**"+userId);
         const headers = {'Authorization':`Bearer ${token}`} ;
           let urlData="&userId="+userId+"&pageId="+pageNo;
-          //const response = await fetch('http://localhost:3001/booking/getCabs?originObj='+originObj+'&destinationObj='+destinationObj, { headers });
-          //console.log("urlData=="+urlData)
           const response = await fetch(global.config.apiUrl+'driver/get_my_trip?'+urlData, { headers });
           //console.log("+++response=="+JSON.stringify(response))
           const dataRes = await response.json();
@@ -59,19 +58,60 @@ class Home extends Component {
         console.log("val=="+currentState+"***");
         this.setState({showEndTrip:!currentState});
     }
-    setStartKM=()=>{
+    setTripStart=(mobile)=>{
+        console.log("=======================")
+        this.setState({startkm:mobile.target.value})
+    }
+    setMobile=(mobile)=>{
+        console.log("=mobile==="+mobile.target.value);
+        this.setState({startkm:mobile.target.value})
+    }
+    saveStartKM=async()=>{
+        let userId=localStorage.getItem("userId");
+        let token=localStorage.getItem("token");
+        let pageNo=this.state.pageNo+1;
+        console.log("token==="+token+"***userId**"+userId);
+        const headers = {'Authorization':`Bearer ${token}`} ;
+          let urlData="&userId="+userId+"&pageId="+pageNo;
+          const response = await fetch(global.config.apiUrl+'driver/start_trip?'+urlData, { headers });
+          //console.log("+++response=="+JSON.stringify(response))
+          const dataRes = await response.json();
+          console.log("Data="+JSON.stringify(dataRes));
+          
+          if(dataRes.code==200){
+              this.setState({item:dataRes.data});
+          }else{              console.log("errorr")
+              this.setState({error:'some internal error please try later'})
+          }
+          
+          this.setState({isLoading:false});
         
     }
-    saveStartKM=()=>{
-
+    
+    setTripEnd=(endkm)=>{
+        this.setState({endkm:endkm.target.value})
     }
     
-    setEndkm=()=>{
+    saveEndKM=async()=>{
+        let userId=localStorage.getItem("userId");
+        let token=localStorage.getItem("token");
+        let pageNo=this.state.pageNo+1;
+        console.log("token==="+token+"***userId**"+userId);
+        const headers = {'Authorization':`Bearer ${token}`} ;
+          let urlData="&userId="+userId+"&pageId="+pageNo;
+          const response = await fetch(global.config.apiUrl+'driver/end_trip?'+urlData, { headers });
+          //console.log("+++response=="+JSON.stringify(response))
+          const dataRes = await response.json();
+          console.log("Data="+JSON.stringify(dataRes));
+          
+          if(dataRes.code==200){
+              this.setState({item:dataRes.data});
+          }else{              console.log("errorr")
+              this.setState({error:'some internal error please try later'})
+          }
+          
+          this.setState({isLoading:false});
         
-    }
-    
-    saveEndKM=()=>{
-
     }
     render() { 
         return (
@@ -86,7 +126,7 @@ class Home extends Component {
                             <div className="col-lg-12 col-md-12">
                                     
                                     <Card>
-                                            <Card.Title style={{fontSize:16,padding:10,color:'white',backgroundColor:'gray'}}>Booking History </Card.Title>
+                                            <Card.Title style={{fontSize:16,padding:10,color:'white',backgroundColor:'gray'}}>MY upcomming Trip </Card.Title>
                                         <Card.Body>
                                             <div style={{color:'red'}}>
                                             <Table striped bordered hover responsive>
@@ -99,15 +139,16 @@ class Home extends Component {
                                                     <th>PickupDate</th>
                                                     <th>ReturnDate</th>
                                                     <th>Amount</th>
-                                                    <th>Confirm</th>
+                                                    <th>Trip Status</th>
+                                                    <th>Journy Status</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                     {
                                                         this.state.item.map((object, i)=>{
                                                             return<tr> 
-                                                                <td><Link variant="success" style={{padding: "4px",fontSize: 12, textAlign: "center"}} to={{ pathname: `/BookingDetails/${object.orderId}`}} >{object.orderId}</Link></td>
-                                                                <td>{object.userName}</td>
+                                                                <td><Link variant="success" style={{padding: "4px",fontSize: 12, textAlign: "center"}} to={{ pathname: `/driver/trip-details/${object.orderId}`}} >{object.orderId}</Link></td>
+                                                                <td>{object.userName} ({object.mobileNo})</td>
                                                                 <td>{object.pickup}</td>
                                                                 <td>{object.destination}</td>
                                                                 <td>
@@ -135,11 +176,14 @@ class Home extends Component {
                                                                 <td>{object.agentPrice}</td>
                                                                 <td><Form.Group controlId="formBasicEmail" style={{float:'right'}}>
                                                                         {
-                                                                            object.journyStatus=='pending'?<Button variant="primary" type="button" onClick={this.showStartTrip.bind(this,object)}>
-                                                                            Start Now
-                                                                            </Button>:object.journyStatus=='start'?<Button variant="primary" type="button" onClick={this.showEndTrip.bind(this,object)}>
-                                                                                End Now
-                                                                            </Button> :<div>Completed</div>
+                                                                            object.status
+                                                                        } 
+                                                                                                                                                                             
+                                                                    </Form.Group>
+                                                                </td>
+                                                                <td><Form.Group controlId="formBasicEmail" style={{float:'right'}}>
+                                                                        {
+                                                                            object.journyStatus
                                                                         } 
                                                                                                                                                                              
                                                                     </Form.Group>
@@ -177,7 +221,8 @@ class Home extends Component {
                                                         <div className="col-12">
                                                             <Form.Group controlId="formBasicEmail" >
                                                                 <Form.Label>Enter Start KM</Form.Label>
-                                                                <Form.Control name="mobileNo" value={this.state.startkm} type="text" placeholder="Mobile No" onChange={this.setStartkm} />                                                                                                        
+                                                                
+                                                                <Form.Control name="startkm" value={this.state.startkm} type="text" placeholder="Mobile No" onChange={this.setTripStart} />                                                                                                        
                                                             </Form.Group>
                                                         </div> 
                                                         <div className="col-12">
@@ -217,7 +262,7 @@ class Home extends Component {
                                                         <div className="col-12">
                                                             <Form.Group controlId="formBasicEmail" >
                                                                 <Form.Label>Enter End KM</Form.Label>
-                                                                <Form.Control name="mobileNo" value={this.state.endkm} type="text" placeholder="Mobile No" onChange={this.setEndkm} />                                                                                                        
+                                                                <Form.Control name="endkm" value={this.state.endkm} type="text" placeholder="Trip End KM" onChange={this.setTripEnd} />                                                                                                        
                                                             </Form.Group>
                                                         </div> 
                                                         <div className="col-12">

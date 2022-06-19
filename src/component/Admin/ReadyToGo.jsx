@@ -146,6 +146,7 @@ class ReadyToGo extends Component {
                                                     <th>Amount</th>
                                                     <th>Paid</th>
                                                     <th>Agent Amount</th>
+                                                    <th>Details</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -181,21 +182,9 @@ class ReadyToGo extends Component {
                                                                 <td>{object.finalAmount}</td>
                                                                 <td>{object.paid}</td>
                                                                 <td>
-                                                                    {object.agentPrice>0?<div className="row" style={{color:"red",fontSize:14}}>
-                                                                        {object.agentPrice}
-                                                                        <div className="col-12">
-                                                                            <Button style={{float:'right'}} variant="primary" type="button" onClick={this.showPopup.bind(this,object)}>
-                                                                                Update
-                                                                            </Button>
-                                                                        </div>
-                                                                    </div>:<div className="row" style={{color:"red",fontSize:14}}>
-                                                                        <div className="col-12">
-                                                                            <Button style={{float:'right'}} variant="primary" type="button" onClick={this.showPopup.bind(this,object)}>
-                                                                                Add Amount
-                                                                            </Button>
-                                                                        </div>
-                                                                    </div>}
+                                                                    {object.agentPrice}
                                                                 </td>
+                                                                <td>{object.driverName}-{object.driverContact}<br/>Cab:{object.gadiNo}</td>
                                                             </tr>;
                                                         })
                                                     }

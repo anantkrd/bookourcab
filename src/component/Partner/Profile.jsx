@@ -9,7 +9,7 @@ import { useHistory } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ClipLoader from "react-spinners/ClipLoader";
 import axios from "axios";
-class Profile extends Component {
+class DriverProfile extends Component {
     
     state = {userId:'',item:[],error:'',isLoading:false,loadingColor:'#ffffff',pageNo:0,mobileNo:'',firstName:''};
     constructor(props) {
@@ -23,14 +23,14 @@ class Profile extends Component {
        this.setState({userId:userId});
         console.log("++userId**********-------------==="+userId);        
         //this.setState({item:this.props.match.params.data});
-        this.getBooking(userId);
+        this.getProfile(userId);
       }
     
       showPopup(object){
         console.log("Here confirm");
         this.prePayment(object);
       }
-    async getBooking(userId){
+    async getProfile(userId){
         console.log("*****getBookigs******");   
         
         //const headers = { 'Content-Type': 'application/json' } 
@@ -40,14 +40,14 @@ class Profile extends Component {
           let urlData="&userId="+userId+"&pageId="+pageNo;
           //const response = await fetch('http://localhost:3001/booking/getCabs?originObj='+originObj+'&destinationObj='+destinationObj, { headers });
           console.log("urlData=="+urlData)
-          const response = await fetch(global.config.apiUrl+'agent/get_booking_agent?'+urlData, { headers });
+          const response = await fetch(global.config.apiUrl+'user/get_user_byid?'+urlData, { headers });
           //console.log("+++response=="+JSON.stringify(response))
           const dataRes = await response.json();
           console.log("Data="+JSON.stringify(dataRes));
           
           if(dataRes.code==200){
               console.log("Here")
-              this.setState({item:dataRes.data});
+              this.setState({item:dataRes.data[0]});
           }else{              console.log("errorr")
               this.setState({error:'some internal error please try later'})
           }
@@ -215,7 +215,7 @@ class Profile extends Component {
                                                 <div>
                                                     <Form.Group controlId="formBasicEmail" >
                                                         <Form.Label>Adhaar No.</Form.Label>
-                                                        <Form.Control type="text" placeholder="Addhaar No" value={this.state.item.adhaarNo} />                                                                                                        
+                                                        <Form.Control type="text" placeholder="Addhaar No" value={this.state.item.adharNo} />                                                                                                        
                                                     </Form.Group>
                                                 </div>
                                                 <div >
@@ -271,7 +271,7 @@ class Profile extends Component {
                                                 
                                                 <Form.Group controlId="formBasicEmail" style={{float:'right'}}>
                                                     <Button variant="primary" type="button" onClick={this.addProfile.bind(this)}>
-                                                        Add
+                                                        Update
                                                     </Button>                                                                                                       
                                                 </Form.Group>
                                             </div>
@@ -293,4 +293,4 @@ class Profile extends Component {
     }
 }
  
-export default Profile
+export default DriverProfile

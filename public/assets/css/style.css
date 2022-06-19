@@ -2316,3 +2316,7 @@ body {
   background: whitesmoke !important;
   height: 100vh;
 }
+.detials-div{
+  border-bottom-style: inset;
+  margin-bottom: 10px;
+}

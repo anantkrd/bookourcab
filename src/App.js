@@ -26,12 +26,17 @@ import Partner from './component/Partner/Home';
 import BookingList from './component/Partner/BookingList';
 import PendingBookingList from './component/Partner/PendingBookingList';
 import CompletedBookingList from './component/Partner/CompletedBookingList';
+
 import Profile from './component/Partner/Profile';
 import AddCar from './component/Partner/AddCar';
 import AddDriver from './component/Partner/AddDriver';
 import Driver from './component/Driver/Home';
 import BookingReport from './component/Driver/BookingReport';
 import PaymentReport from './component/Driver/PaymentReport';
+import DriverProfile from './component/Driver/Profile';
+import TripDetails from './component/Driver/TripDetails';
+import TripComplete from './component/Driver/TripComplete';
+
 function App() {
   return (
     
@@ -65,8 +70,11 @@ function App() {
       <Route path='/driver/home' component={Driver}></Route>   
       <Route path='/driver/booking-report' component={BookingReport}></Route>   
       <Route path='/driver/payment-report' component={PaymentReport}></Route>   
-      <Route path='/driver/profile' component={AddDriver}></Route>   
-
+      <Route path='/driver/profile' component={DriverProfile}></Route>    
+      <Route path='/driver/trip-details/:bookingId' component={TripDetails}></Route>   
+      <Route path='/driver/trip-complete/:bookingId' component={TripComplete}></Route>   
+      
+      
       <Header/>
     </Switch>
     </>

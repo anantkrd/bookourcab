@@ -146,6 +146,7 @@ class WaitingForDriver extends Component {
                                                     <th>Amount</th>
                                                     <th>Paid</th>
                                                     <th>Agent Amount</th>
+                                                    <th>Details</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -183,6 +184,7 @@ class WaitingForDriver extends Component {
                                                                 <td>
                                                                     {object.agentPrice}
                                                                 </td>
+                                                                <td>{object.driverName}-{object.driverContact}<br/>Cab:{object.gadiNo}</td>
                                                             </tr>;
                                                         })
                                                     }

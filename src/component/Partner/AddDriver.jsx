@@ -49,7 +49,7 @@ class AddDriver extends Component {
               console.log("Here")
               this.setState({item:dataRes.data});
           }else{              console.log("errorr")
-              this.setState({error:'some internal error please try later'})
+              //this.setState({error:'some internal error please try later'})
           }
           
           this.setState({isLoading:false});
@@ -62,6 +62,26 @@ class AddDriver extends Component {
         const headers = {'Authorization':`Bearer ${token}`} ;
         let carModelNo='';
         let carNo='';
+        if(this.state.firstName=="" || this.state.firstName==null){
+            this.setState({error:"Please enter first name"})
+            return false;
+        }
+        if(this.state.lastName=="" || this.state.lastName==null){
+            this.setState({error:"Please enter last name"})
+            return false;
+        }
+        if(this.state.mobileNo=="" || this.state.mobileNo==null){
+            this.setState({error:"Please enter mobile number"})
+            return false;
+        }
+        if(this.state.licenseNo=="" || this.state.licenseNo==null){
+            this.setState({error:"Please enter license number"})
+            return false;            
+        }
+        if(this.state.licenseUrl=="" || this.state.licenseUrl==null){
+            this.setState({error:"Please upload license photo"})
+            return false;
+        }
           let urlData="&userId="+this.state.userId+"&firstName="+this.state.firstName+"&lastName="+this.state.lastName+"&mobileNo="+this.state.mobileNo+"&email="+this.state.email+"&licenseNo="+this.state.licenseNo+"&licenseUrl="+this.state.licenseUrl;
           //const response = await fetch('http://localhost:3001/booking/getCabs?originObj='+originObj+'&destinationObj='+destinationObj, { headers });
           //console.log("urlData=="+urlData)
@@ -145,13 +165,13 @@ class AddDriver extends Component {
                                             <div className="col-12" style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gridGap: 10 }}>
                                                 <div>
                                                     <Form.Group controlId="formBasicEmail" >
-                                                        <Form.Label>First Name</Form.Label>
+                                                        <Form.Label>First Name<spam style={{color:'red'}}>*</spam></Form.Label>
                                                         <Form.Control type="text" placeholder="First Name" value={this.state.firstName} onChange={this.setFirstName}/>                                                                                                        
                                                     </Form.Group>
                                                 </div>
                                                 <div >
                                                     <Form.Group controlId="formBasicEmail">
-                                                        <Form.Label>Last Name</Form.Label>
+                                                        <Form.Label>Last Name<spam style={{color:'red'}}>*</spam></Form.Label>
                                                         <Form.Control type="text" placeholder="Last Name" value={this.state.lastName} onChange={this.setLastName} />                                                                                                        
                                                     </Form.Group>
                                                 </div>
@@ -160,7 +180,7 @@ class AddDriver extends Component {
                                             <div className="col-12" style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gridGap: 10 }}>
                                                     <div>
                                                     <Form.Group controlId="formBasicEmail" >
-                                                        <Form.Label>Mobile No</Form.Label>
+                                                        <Form.Label>Mobile No<spam style={{color:'red'}}>*</spam></Form.Label>
                                                         <Form.Control type="number" placeholder="Mobile No" value={this.state.mobileNo} onChange={this.setMobileNo} />                                                                                                        
                                                     </Form.Group>
                                                 </div>
@@ -175,14 +195,14 @@ class AddDriver extends Component {
                                             <div className="col-12" style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gridGap: 10 }}>
                                                     <div>
                                                     <Form.Group controlId="formBasicEmail" >
-                                                        <Form.Label>License No.</Form.Label>
+                                                        <Form.Label>License No.<spam style={{color:'red'}}>*</spam></Form.Label>
                                                         <Form.Control type="text" placeholder="License No" value={this.state.licenseNo} onChange={this.setLicenseNo} />                                                                                                        
                                                     </Form.Group>
                                                 </div>
                                                 <div>
                                                     <Form.Group controlId="formBasicEmail" >
-                                                        <Form.Label>License</Form.Label>
-                                                        <Form.Control type="file" placeholder="upload license" value={this.state.licenseUrl} onChange={this.setLicenseUrl} />                                                                                                        
+                                                        <Form.Label>License<spam style={{color:'red'}}>*</spam></Form.Label>
+                                                        <Form.Control type="file" accept="image/*" placeholder="upload license" value={this.state.licenseUrl} onChange={this.setLicenseUrl} />                                                                                                        
                                                     </Form.Group>
                                                 </div>
                                             </div>

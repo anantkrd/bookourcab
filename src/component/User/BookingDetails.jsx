@@ -39,7 +39,7 @@ class BookingDetails extends Component {
           console.log("+++response=="+response)
           const data = await response.json();
           console.log("Data="+JSON.stringify(data));
-          if(data.code===200){
+          if(data.code==='200'){
               this.setState({item:data.data[0]});
               this.setState({pickupDate:data.data[0].pickupDate});
               this.setState({returnDate:data.data[0].returnDate})

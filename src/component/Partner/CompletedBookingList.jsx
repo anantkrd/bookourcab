@@ -189,7 +189,10 @@ class CompletedBookingList extends Component {
                                                     <th>PickupDate</th>
                                                     <th>ReturnDate</th>
                                                     <th>Amount</th>
-                                                    <th>Confirm</th>
+                                                    <th>Booking Amount</th>
+                                                    <th>Payment From Passneger</th>
+                                                    <th>Status</th>
+                                                    <th>Journy</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -222,12 +225,13 @@ class CompletedBookingList extends Component {
                                                                     }).format(new Date(object.returnDate)):null
                                                                     }
                                                                 </td>
-                                                                <td>{object.agentPrice}</td>
-                                                                <td><Form.Group controlId="formBasicEmail" style={{float:'right'}}>
-                                                                        <Button variant="primary" type="button" onClick={this.showPopup.bind(this,object)}>
-                                                                            Pay ({(object.agentPrice*20)/100}) to confirm
-                                                                        </Button>                                                                                                       
-                                                                    </Form.Group>
+                                                                <td>{object.agentPrice}</td>                                                                
+                                                                <td>{object.agentPaid}</td>                                                             
+                                                                <td>{object.cashAmount}</td>
+                                                                <td>
+                                                                    {object.status}
+                                                                </td><td>
+                                                                    {object.journyStatus}
                                                                 </td>
                                                             </tr>;
                                                         })

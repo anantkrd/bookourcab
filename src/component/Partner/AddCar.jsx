@@ -47,7 +47,7 @@ class AddCar extends Component {
               console.log("Here")
               this.setState({item:dataRes.data});
           }else{              console.log("errorr")
-              this.setState({error:'some internal error please try later'})
+              //this.setState({error:'No data found'})
           }          
           this.setState({isLoading:false});
           //this.setState({cabsList:data.data});
@@ -58,17 +58,36 @@ class AddCar extends Component {
         const headers = {'Authorization':`Bearer ${token}`} ;
         let carModelNo='';
         let carNo='';
+        if(this.state.carModelName=="" || this.state.carModelName==null){
+            this.setState({error:"Please enter car model name"});
+            return false;
+        }
+        if(this.state.carNo=="" || this.state.carNo==null){
+            this.setState({error:"Please enter car number"})
+            return false;
+        }
+        
+        if(this.state.carType=="" || this.state.carType==null){
+            this.setState({error:"Please enter car type"})
+            return false;
+        }
+        
+        if(this.state.rcBook=="" || this.state.rcBook==null){
+            this.setState({error:"Please upload rc book"})
+            return false;
+        }
           let urlData="&userId="+this.state.userId+"&carModelNo="+this.state.carModelName+"&carNo="+this.state.carNo+"&carType="+this.state.carType+"&rcBook="+this.state.rcBook;
           //const response = await fetch('http://localhost:3001/booking/getCabs?originObj='+originObj+'&destinationObj='+destinationObj, { headers });
           //console.log("urlData=="+urlData)
           const response = await fetch(global.config.apiUrl+'agent/add_car?'+urlData, { headers });
           //console.log("+++response=="+JSON.stringify(response))
           const dataRes = await response.json();
-         // console.log("Data="+JSON.stringify(dataRes));
+          console.log("Data="+JSON.stringify(dataRes));
           
           if(dataRes.code==200){
               //console.log("Here")
-              this.setState({item:dataRes.data});
+              //this.setState({item:dataRes.data});
+              this.setState({error:'Car added successfully'})
           }else{              console.log("errorr")
               this.setState({error:'some internal error please try later'})
           }          
@@ -90,8 +109,8 @@ class AddCar extends Component {
         this.setState({carType:carType.target.value});
     }
     setRcBook =(rcBook)=>{
-        console.log("rcBook==="+rcBook);
-        //this.setState({rcBook:rcBook});
+        console.log("rcBook==="+rcBook.target.value);
+        this.setState({rcBook:rcBook.target.value});
     }
     render() { 
         const override =`
@@ -131,13 +150,13 @@ class AddCar extends Component {
                                             <div className="col-12" style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gridGap: 10 }}>
                                                 <div>
                                                     <Form.Group controlId="formBasicEmail" >
-                                                        <Form.Label>Car Model Name</Form.Label>
-                                                        <Form.Control name="carModelName" type="text" placeholder="Car Model Name`" value={this.state.item.carModelName} onChange={this.setCarModelName} />                                                                                                        
+                                                        <Form.Label>Car Model Name <spam style={{color:'red'}}>*</spam></Form.Label>
+                                                        <Form.Control name="carModelName" type="text" placeholder="Car Model Name`" value={this.state.carModelName} onChange={this.setCarModelName} />                                                                                                        
                                                     </Form.Group>
                                                 </div>
                                                 <div >
                                                     <Form.Group controlId="formBasicEmail">
-                                                        <Form.Label>Car No.</Form.Label>
+                                                        <Form.Label>Car No.<spam style={{color:'red'}}>*</spam></Form.Label>
                                                         <Form.Control name="carNo" type="text" placeholder="Car No." value={this.state.carNo} onChange={this.setCarNo}/>                                                                                                        
                                                     </Form.Group>
                                                 </div>
@@ -146,14 +165,14 @@ class AddCar extends Component {
                                             <div className="col-12" style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gridGap: 10 }}>
                                                     <div>
                                                     <Form.Group controlId="formBasicEmail" >
-                                                        <Form.Label>Type</Form.Label>
+                                                        <Form.Label>Type <spam style={{color:'red'}}>*</spam></Form.Label>
                                                         <Form.Control name="carType" type="text" placeholder="sedan, conpact, luxury" value={this.state.carType} onChange={this.setCarType} />                                                                                                        
                                                     </Form.Group>
                                                 </div>
                                                 <div>
                                                     <Form.Group controlId="formBasicEmail" >
-                                                        <Form.Label>RC Book</Form.Label>
-                                                        <Form.Control name="rcBook" type="file"  placeholder="RC Book" value={this.state.rcBook} onChange={this.setRcBook}/>                                                                                                        
+                                                        <Form.Label>RC Book <spam style={{color:'red'}}>*</spam></Form.Label>
+                                                        <Form.Control name="rcBook" type="file" accept="image/*" placeholder="RC Book" value={this.state.rcBook} onChange={this.setRcBook}/>                                                                                                        
                                                     </Form.Group>
                                                 </div>
                                             </div>

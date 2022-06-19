@@ -238,7 +238,7 @@ class Header extends Component {
                     Report
                     </a>
                     <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a className="dropdown-item" href="/driver/profile">Booking Report</a>
+                        <a className="dropdown-item" href="/driver/booking-report">Booking Report</a>
                         <a className="dropdown-item" href="/driver/bankDetails">Payment Report</a>
                     </div>
                 </li>                                 
@@ -303,7 +303,7 @@ class Header extends Component {
                                                         <div className="col-12">
                                                             <Form.Group controlId="formBasicEmail" >
                                                                 <Form.Label>Mobile No</Form.Label>
-                                                                <Form.Control name="mobileNo" value={this.state.mobileNo} type="text" placeholder="Mobile No" onChange={this.setMobile} />                                                                                                        
+                                                                <Form.Control name="mobileNo" value={this.state.mobileNo} type="text" placeholder="Mobile No" onChange={this.setMobile} />
                                                             </Form.Group>
                                                         </div> 
                                                         <div className="col-12">

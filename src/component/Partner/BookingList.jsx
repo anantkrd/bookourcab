@@ -172,7 +172,7 @@ class BookingList extends Component {
                             <div className="col-lg-12 col-md-12">
                                     
                                     <Card>
-                                            <Card.Title style={{fontSize:16,padding:10,color:'white',backgroundColor:'gray'}}>Booking History </Card.Title>
+                                            <Card.Title style={{fontSize:16,padding:10,color:'white',backgroundColor:'gray'}}>New Booking </Card.Title>
                                         <Card.Body>
                                             <div style={{color:'red'}}>
                                             <Table striped bordered hover responsive>
@@ -192,7 +192,7 @@ class BookingList extends Component {
                                                     {
                                                         this.state.item.map((object, i)=>{
                                                             return<tr> 
-                                                                <td><Link variant="success" style={{padding: "4px",fontSize: 12, textAlign: "center"}} to={{ pathname: `/BookingDetails/${object.orderId}`}} >{object.orderId}</Link></td>
+                                                                <td>{object.orderId}</td>
                                                                 <td>{object.userName}</td>
                                                                 <td>{object.pickup}</td>
                                                                 <td>{object.destination}</td>

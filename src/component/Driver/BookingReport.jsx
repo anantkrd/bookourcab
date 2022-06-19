@@ -28,18 +28,17 @@ class BookingReport extends Component {
       showPopup(object){
         this.prePayment(object);
       }
-    async getBooking(userId){
+      async getBooking(userId){
         //const headers = { 'Content-Type': 'application/json' } 
         let token=localStorage.getItem("token");
         let pageNo=this.state.pageNo+1;
+        console.log("token==="+token+"***userId**"+userId);
         const headers = {'Authorization':`Bearer ${token}`} ;
           let urlData="&userId="+userId+"&pageId="+pageNo;
-          //const response = await fetch('http://localhost:3001/booking/getCabs?originObj='+originObj+'&destinationObj='+destinationObj, { headers });
-          //console.log("urlData=="+urlData)
-          const response = await fetch(global.config.apiUrl+'agent/get_booking_agent?'+urlData, { headers });
+          const response = await fetch(global.config.apiUrl+'driver/get_payment_report?'+urlData, { headers });
           //console.log("+++response=="+JSON.stringify(response))
           const dataRes = await response.json();
-          //console.log("Data="+JSON.stringify(dataRes));
+          console.log("Data="+JSON.stringify(dataRes));
           
           if(dataRes.code==200){
               this.setState({item:dataRes.data});
@@ -51,98 +50,6 @@ class BookingReport extends Component {
           //this.setState({cabsList:data.data});
     }
     
-    loadScript=(src) =>{
-        return new Promise((resolve) => {
-            const script = document.createElement("script");
-            script.src = src;
-            script.onload = () => {
-                resolve(true);
-
-            };
-            script.onerror = () => {
-                resolve(false);
-            };
-            document.body.appendChild(script);
-        });
-    }
-    prePayment=async(object)=>{
-         
-        const res = await this.loadScript(
-            "https://checkout.razorpay.com/v1/checkout.js"
-        );
-
-        if (!res) {
-            alert("Razorpay SDK failed to load. Are you online?");
-            return;
-        }
-        // creating a new order
-        const headers = { 'Content-Type': 'application/json' }  
-        let UrlData="amount=";
-        let advance=(object.agentPrice*20)/100;
-        let userAmount=object.finalAmount-object.paid;
-        const dataPay = {
-            amount: advance*100,
-            bookingId: object.orderId,
-            agentId: this.state.userId,
-            bookingAmount:object.agentPrice,
-            tripAmount:object.finalAmount,
-            userPaid:object.paid,
-            userAmount:userAmount
-
-        };
-        const resultpay = await axios.post(global.config.apiUrl+"agent/payment",dataPay);
-        
-        if (!resultpay) {
-            alert("Server error. Are you online?");
-            return;
-        }
-
-        //console.log("result==pay=="+resultpay);
-        this.setState({payment_orderId:resultpay.data.id,currency:resultpay.data.currency,receipt:resultpay.data.receipt});
-        //console.log("payment_orderId==="+this.state.payment_orderId);
-        // Getting the order details back
-        const { amount, id, currency } = resultpay.data;
-        this.payNow(advance,resultpay.data.id,resultpay.data.currency)
-        return false;
-        
-    }
-    async payNow(advance,paymentid,currency){
-        const options = {
-            key: "rzp_test_8KHr7ine3uj7uk", // Enter the Key ID generated from the Dashboard
-            amount: advance,
-            currency: currency,
-            description: "Test Transaction",
-            image: '',
-            order_id: paymentid,
-            handler: async function (response) {
-                const data = {
-                    razorpayPaymentId: response.razorpay_payment_id,
-                    razorpayOrderId: response.razorpay_order_id,
-                    razorpaySignature: response.razorpay_signature,
-                    rawResponce:response
-                };
-                //console.log("payment Responce=="+JSON.stringify(response));
-                const result = await axios.post("http://localhost:3001/agent/success", data);
-                window.location.href="/ThankYou/"+this.state.item.bookingId;
-                alert(result.data.msg);
-            },
-            prefill: {
-                name: this.state.firstName+" "+this.state.lastName,
-                email: this.state.email,
-                contact: this.state.item.mobileNo,
-            },
-            notes: {
-                address: this.state.item.pickupCity,
-            },
-            theme: {
-                color: "#61dafb",
-            },
-        };
-
-        const paymentObject = new window.Razorpay(options);
-        paymentObject.open();
-        
-    }
     render() { 
         const override =`
         display: block;
@@ -184,14 +91,14 @@ class BookingReport extends Component {
                                                     <th>PickupDate</th>
                                                     <th>ReturnDate</th>
                                                     <th>Amount</th>
-                                                    <th>Confirm</th>
+                                                    <th>Status</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                     {
                                                         this.state.item.map((object, i)=>{
                                                             return<tr> 
-                                                                <td><Link variant="success" style={{padding: "4px",fontSize: 12, textAlign: "center"}} to={{ pathname: `/BookingDetails/${object.orderId}`}} >{object.orderId}</Link></td>
+                                                                <td><Link variant="success" style={{padding: "4px",fontSize: 12, textAlign: "center"}} to={{ pathname: `/driver/trip-details/${object.orderId}`}} >{object.orderId}</Link></td>
                                                                 <td>{object.userName}</td>
                                                                 <td>{object.pickup}</td>
                                                                 <td>{object.destination}</td>
@@ -217,12 +124,9 @@ class BookingReport extends Component {
                                                                     }).format(new Date(object.returnDate)):null
                                                                     }
                                                                 </td>
-                                                                <td>{object.agentPrice}</td>
-                                                                <td><Form.Group controlId="formBasicEmail" style={{float:'right'}}>
-                                                                        <Button variant="primary" type="button" onClick={this.showPopup.bind(this,object)}>
-                                                                            Pay ({(object.agentPrice*20)/100}) to confirm
-                                                                        </Button>                                                                                                       
-                                                                    </Form.Group>
+                                                                <td>{object.finalAmount}</td>
+                                                                <td>
+                                                                {object.status}
                                                                 </td>
                                                             </tr>;
                                                         })
