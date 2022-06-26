@@ -75,125 +75,229 @@ class BookingDetails extends Component {
                     <div className="container" data-aos="fade-up" style={{width:'95%!important'}}>
                         
                         <div className="row">   
-                    
-                            <div className="col-lg-6 col-md-6 col-sm-12" >
-                                    
-                                    <Card>
-                                        <Card.Title style={{fontSize:16,padding:10,color:'white',backgroundColor:'gray'}}>User Details </Card.Title>
-                                        <Card.Body>
-                                            <div style={{color:'red'}}>
-                                                {this.state.error}
-                                            </div>
-                                            <div className="row">
-                                                <div className='col-4'>Name</div>
-                                                <div className='col-8'>{this.state.item.userName}</div>
-                                            </div>
-                                            <div className="row">
-                                                <div className='col-4'>Mobile No</div>
-                                                <div className='col-8'>{this.state.item.mobileNo}</div>
-                                            </div>                                           
-                                            
-                                        </Card.Body>
-                                    </Card>                                   
-                            </div>             
-                            <div className="col-lg-6 col-md-6 col-sm-12">
+                             
+                            <div className="col-lg-12 col-md-12 col-sm-12">
                             <Card>
                                     <Card.Title style={{fontSize:16,padding:10,color:'white',backgroundColor:'gray'}}>Booking Details </Card.Title>
                                         <Card.Body>
-                                            <div className="row">
-                                                <div className="col-6">BookingId</div>
-                                                <div className="col-6">{this.state.item.orderId}</div>
-                                            </div>                                            
-                                            <div className="row">
-                                                <div className="col-6">Pickup</div>
-                                                <div className="col-6">{this.state.item.pickup}</div>
-                                            </div>
-                                            <div className="row">
-                                                <div className="col-6">Destination</div>
-                                                <div className="col-6">{this.state.item.destination}</div>
-                                            </div>
-                                            <div className="row">
-                                                <div className="col-6">Pickup Date</div>
-                                                <div className="col-6">
-                                               
-                                                    {this.state.pickupDate!="0000-00-00 00:00:00"?new Intl.DateTimeFormat('en-GB', { 
-                                                                        month: 'long', 
-                                                                        day: '2-digit',
-                                                                        year: 'numeric', 
-                                                                        hour:'numeric',
-                                                                        minute:'numeric',
-                                                                        hour12:true
-                                                        }).format(new Date(this.state.pickupDate)):null
-                                                    }
+                                        <div className="row detials-div">
+                                                <div className="col-lg-6 col-md-6 col-sm-6">
+                                                    <div className='row'>
+                                                        <div className='col-md-4'>Name</div>
+                                                        <div className='col-md-8'>{this.state.item.userName}</div>
+                                                    </div>                                                    
                                                 </div>
+                                                <div className="col-lg-6 col-md-6 col-sm-6">
+                                                    <div className='row'>
+                                                        <div className='col-md-4'>Mobile No</div>
+                                                        <div className='col-md-8'>{this.state.item.mobileNo}</div>
+                                                    </div>                                                    
+                                                </div>                                                
                                             </div>
-                                            <div className="row">
-                                                <div className="col-6">Return Date</div>
-                                                <div className="col-6">
-                                                {this.state.returnDate!="0000-00-00 00:00:00"?new Intl.DateTimeFormat('en-GB', { 
-                                                                        month: 'long', 
-                                                                        day: '2-digit',
-                                                                        year: 'numeric', 
-                                                                        hour:'numeric',
-                                                                        minute:'numeric',
-                                                                        hour12:true
-                                                        }).format(new Date(this.state.returnDate)):null
-                                                    }
+                                            <div className="row detials-div">
+                                                <div className="col-lg-6 col-md-6 col-sm-6">
+                                                    <div className='row'>
+                                                        <div className="col-4">BookingId</div>
+                                                        <div className="col-8">{this.state.item.orderId}</div>
+                                                    </div>
                                                 </div>
+                                                <div className="col-lg-6 col-md-6 col-sm-6">
+                                                    <div className='row'></div>
+                                                </div>
+                                                
+                                            </div>      
+                                                                                      
+                                            <div className="row detials-div">
+                                                <div className="col-lg-6 col-md-6 col-sm-6">
+                                                    <div className='row'>
+                                                        <div className="col-4">Driver Details</div>
+                                                        <div className="col-8">{this.state.item.driverName}({this.state.item.driverContact})</div>
+                                                    </div>
+                                                </div>
+                                                <div className="col-lg-6 col-md-6 col-sm-6">
+                                                    <div className='row'>
+                                                        <div className="col-4">Cab Details</div>
+                                                        <div className="col-8">{this.state.item.gadiNo}</div>
+                                                    </div>
+                                                </div>
+                                                
+                                            </div>                                      
+                                            <div className="row detials-div">
+                                            <div className="col-lg-6 col-md-6 col-sm-6">
+                                                    <div className='row'>
+                                                        <div className="col-4">Pickup</div>
+                                                        <div className="col-8">{this.state.item.pickup}</div>
+                                                    </div>
+                                                </div>
+                                                <div className="col-lg-6 col-md-6 col-sm-6">
+                                                    <div className='row'>
+                                                        <div className="col-4">Destination</div>
+                                                        <div className="col-8">{this.state.item.destination}</div>
+                                                    </div>
+                                                </div>
+                                                
                                             </div>
-                                            <div className="row">
-                                                <div className="col-6">Cab Type</div>
-                                                <div className="col-6">{this.state.item.cabType}</div>
+                                            <div className="row detials-div">
+                                            <div className="col-lg-6 col-md-6 col-sm-6">
+                                                    <div className='row'>
+                                                        <div className="col-4">Pickup Date</div>
+                                                        <div className="col-8">
+                                                    
+                                                            {this.state.pickupDate!="0000-00-00 00:00:00"?new Intl.DateTimeFormat('en-GB', { 
+                                                                                month: 'long', 
+                                                                                day: '2-digit',
+                                                                                year: 'numeric', 
+                                                                                hour:'numeric',
+                                                                                minute:'numeric',
+                                                                                hour12:true
+                                                                }).format(new Date(this.state.pickupDate)):null
+                                                            }
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div className="col-lg-6 col-md-6 col-sm-6">
+                                                    <div className='row'>
+                                                        <div className="col-4">Return Date</div>
+                                                        <div className="col-8">
+                                                        {this.state.returnDate!="0000-00-00 00:00:00"?new Intl.DateTimeFormat('en-GB', { 
+                                                                                month: 'long', 
+                                                                                day: '2-digit',
+                                                                                year: 'numeric', 
+                                                                                hour:'numeric',
+                                                                                minute:'numeric',
+                                                                                hour12:true
+                                                                }).format(new Date(this.state.returnDate)):null
+                                                            }
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
                                             </div>
-                                            <div className="row">
-                                                <div className="col-6">AC</div>
-                                                <div className="col-6">{this.state.item.ac}</div>
+                                            <div className="row detials-div">
+                                            <div className="col-lg-6 col-md-6 col-sm-6">
+                                                    <div className='row'>
+                                                        <div className="col-4">Cab Type</div>
+                                                        <div className="col-8">{this.state.item.cabType}</div>
+                                                    </div>
+                                                </div>
+                                                <div className="col-lg-6 col-md-6 col-sm-6">
+                                                    <div className='row'>
+                                                        <div className="col-4">AC</div>
+                                                        <div className="col-8">{this.state.item.ac}</div>
+                                                    </div>
+                                                </div>
+                                                
                                             </div>
-                                            <div className="row">
-                                                <div className="col-6">Bags</div>
-                                                <div className="col-6">{this.state.item.bags}</div>
+                                            <div className="row detials-div">
+                                                <div className="col-lg-6 col-md-6 col-sm-6">
+                                                    <div className='row'>
+                                                        <div className="col-4">Bags</div>
+                                                        <div className="col-8">{this.state.item.bags}</div>
+                                                    </div>
+                                                </div>
+                                                <div className="col-lg-6 col-md-6 col-sm-6">
+                                                    <div className='row'>
+                                                        <div className="col-4">Capacity</div>
+                                                        <div className="col-8">{this.state.item.capacity}</div>
+                                                    </div>
+                                                </div>                                                
                                             </div>
-                                            <div className="row">
-                                                <div className="col-6">Capacity</div>
-                                                <div className="col-6">{this.state.item.capacity}</div>
-                                            </div>
-                                            <div className="row">
-                                                <div className="col-6">Amount</div>
-                                                <div className="col-6">{this.state.item.amount}</div>
-                                            </div>
-                                            <div className="row">
-                                                <div className="col-6">Discount</div>
-                                                <div className="col-6">{this.state.item.discount}</div>
-                                            </div>
-                                            <div className="row">
-                                                <div className="col-6">Total</div>
-                                                <div className="col-6" style={{fontWeight:700}}>{this.state.item.finalAmount}</div>
+                                            <div className="row detials-div">
+                                                <div className="col-lg-6 col-md-6 col-sm-6">
+                                                    <div className='row'>
+                                                        <div className="col-4">Amount</div>
+                                                        <div className="col-8">{this.state.item.amount}</div>
+                                                    </div>
+                                                </div>
+                                                <div className="col-lg-6 col-md-6 col-sm-6">
+                                                    <div className='row'>
+                                                        <div className="col-4">Discount</div>
+                                                        <div className="col-8">{this.state.item.discount}</div>
+                                                    </div>
+                                                </div>                                                
                                             </div>
                                             
-                                            <div className="row">
-                                                <div className="col-6">Paid</div>
-                                                <div className="col-6" style={{fontWeight:700}}>{this.state.item.paid}</div>
+                                            
+                                            <div className="row detials-div">
+                                                <div className="col-lg-6 col-md-6 col-sm-6">
+                                                    <div className='row'>
+                                                        <div className="col-4">Start Km</div>
+                                                        <div className="col-8" style={{fontWeight:700}}>{this.state.item.startKm}</div>
+                                                    </div>
+                                                </div>
+                                                <div className="col-lg-6 col-md-6 col-sm-6">
+                                                    <div className='row'>                                                        
+                                                        <div className="col-4">End Km</div>
+                                                        <div className="col-8" style={{fontWeight:700}}>{this.state.item.endKm}</div>
+                                                    </div>
+                                                </div>                                                
                                             </div>
                                             
-                                            <div className="row">
-                                                <div className="col-6">Remaining</div>
-                                                <div className="col-6" style={{fontWeight:700}}>{this.state.item.pending}</div>
+                                            <div className="row detials-div">
+                                                <div className="col-lg-6 col-md-6 col-sm-6">
+                                                    <div className='row'>
+                                                        <div className="col-4">Extra Km</div>
+                                                        <div className="col-8" style={{fontWeight:700}}>{this.state.item.extraDistance}</div>
+                                                    </div>
+                                                </div>
+                                                <div className="col-lg-6 col-md-6 col-sm-6">
+                                                    <div className='row'>                                                        
+                                                        <div className="col-4">Extra Amount</div>
+                                                        <div className="col-8" style={{fontWeight:700}}> {this.state.item.extraAmount} ({this.state.item.extraRate}/KM)</div>
+                                                    </div>
+                                                </div>                                                
                                             </div>
                                             
-                                            <div className="row">
-                                                <div className="col-12" style={{color:"green",fontSize:14}}>Cars: {this.state.item.cars}</div>
+                                            <div className="row detials-div">
+                                                <div className="col-lg-6 col-md-6 col-sm-6">
+                                                    <div className='row'>
+                                                        <div className="col-4">Remaining</div>
+                                                        <div className="col-8" style={{fontWeight:700}}>{this.state.item.pending}</div>
+                                                    </div>
+                                                </div>
+                                                <div className="col-lg-6 col-md-6 col-sm-6">
+                                                    <div className='row'>                                                        
+                                                        <div className="col-4">Journy</div>
+                                                        <div className="col-8" style={{fontWeight:700}}>{this.state.item.distance}KM  ({this.state.item.journyTime})</div>
+                                                    </div>
+                                                </div>                                                
                                             </div>
-                                            <div className="row" style={{color:"#e738eb",fontSize:14}}>
-                                                <div className="col-12">Journy: {this.state.item.distance}KM  ({this.state.item.journyTime})</div>
+                                            
+                                            <div className="row detials-div">
+                                                <div className="col-lg-6 col-md-6 col-sm-6">
+                                                    <div className='row'>
+                                                        <div className="col-4">Total</div>
+                                                        <div className="col-8" style={{fontWeight:700}}>{this.state.item.finalAmount}</div>
+                                                    </div>
+                                                </div>
+                                                <div className="col-lg-6 col-md-6 col-sm-6">
+                                                    <div className='row'>
+                                                        <div className="col-4">Paid</div>
+                                                        <div className="col-8" style={{fontWeight:700}}>{this.state.item.paid}</div>
+                                                    </div>
+                                                </div>                                                
                                             </div>
-                                            <div className="row" style={{color:"red",fontSize:14}}>
+                                            <div className="row detials-div">
+                                                <div className="col-12" style={{fontSize:14}}>Cars: {this.state.item.cars}</div>
+                                            </div>
+                                            <div className="row detials-div" style={{fontSize:14}}>
                                                 <div className="col-12">Note: <span >{this.state.item.note}</span></div>
                                             </div>
                                             
-                                            <div className="row" style={{color:"red",fontSize:14}}>
-                                                <div className="col-12">Status: <span >{this.state.item.status}</span></div>
+                                            <div className="row detials-div" style={{fontSize:14}}>
+                                            <div className="col-lg-6 col-md-6 col-sm-6">
+                                                    <div className='row'>
+                                                        <div className="col-4">Trip Status</div>
+                                                        <div className="col-8" style={{fontWeight:700}}>{this.state.item.status}</div>
+                                                    </div>
+                                                </div>
+                                                <div className="col-lg-6 col-md-6 col-sm-6">
+                                                    <div className='row'>
+                                                        <div className="col-4">Journy Status</div>
+                                                        <div className="col-8" style={{fontWeight:700}}>{this.state.item.journyStatus}</div>
+                                                    </div>
+                                                </div>
                                             </div>
-
                                             {
                                                 this.state.userType=='user'&& this.state.item.pending>0?<div className="row" style={{color:"red",fontSize:14}}>
                                                     <div className="col-12">

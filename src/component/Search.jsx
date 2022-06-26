@@ -19,49 +19,71 @@ class Search extends Component {
     
       componentDidMount() {
           this.setState({isLoading:true});
-        //console.log("++pickup**********==="+JSON.stringify(this.props.match.params));
-        //console.log("distance=="+this.props.match.params.distance);
-        let pickupLocation=this.props.match.params.pickup.split(",");
-        let destinationLocation=this.props.match.params.destination.split(",");
-        let destinationLocationData=this.props.match.params.destinationLocation;
-        let pickupLocationData=this.props.match.params.pickupLocation;
+        console.log("++pickup**********==="+JSON.stringify(this.props.match.params.data));
+        let JsonObj=JSON.parse(this.props.match.params.data)
+
+        let pickupPlace=JsonObj['pickupPlace'];
+        
+        console.log("here*********destinationDistObj***********"+JsonObj['destinationDistObj']);
+        let destinationPlace=JsonObj['destinationPlace'];
+        let pickupTimeSelected=JsonObj['pickupTimeSelected'];
+        let returnTimeSelected=JsonObj['returnTimeSelected'];
+        let pickupDistObj=JsonObj['pickupDistObj'];
+        let destinationDistObj=JsonObj['destinationDistObj'];
+        let mobileNo=JsonObj['mobileNo'];
+       
+        console.log("pickupPlace=="+pickupPlace);
+        let pickupLocation=pickupPlace.split(",");
+        let destinationLocation=destinationPlace.split(",");
+        let destinationLocationData=destinationPlace;
+        let pickupLocationData=pickupPlace;
         //console.log("pickupLocation=="+pickupLocation[0]);
-        let pickupCity=this.props.match.params.pickup;
-        let destinationCity=this.props.match.params.destination;
-        let pickdateTime=this.props.match.params.pickdate;
-        let returnDateTime=this.props.match.params.returnDate;
-        let mobileNo=this.props.match.params.mobileNo;
+        let pickupCity=pickupPlace;
+        let destinationCity=destinationPlace;
+        let pickdateTime=pickupTimeSelected;
+        let returnDateTime=returnTimeSelected;
         this.setState({pickup:pickupLocation[0]});
         this.setState({destination:destinationLocation[0]});
-        this.setState({pickdate:this.props.match.params.pickdate});
-        this.setState({returnDate:this.props.match.params.returnDate});
+        this.setState({pickdate:pickupTimeSelected});
+        this.setState({returnDate:returnTimeSelected});
         
-        let originObj=JSON.parse(this.props.match.params.pickupLocation);
-        let destinationObj=JSON.parse(this.props.match.params.destinationLocation);
-        console.log("originLat="+originObj.lat);
+        let originObj=pickupDistObj;
+        let destinationObj=destinationDistObj;
+        //console.log("originLat="+originObj.lat);
         let originLat=originObj.lat;        
         let originLng=originObj.lng;
         
         let destinationLat=destinationObj.lat;
         let destinationLng=destinationObj.lng;
-        let pickupLocationData1=this.props.match.params.pickupLocation;        
-        let destinationLocationData1=this.props.match.params.destinationLocation;
+        let pickupLocationData1=pickupDistObj;        
+        let destinationLocationData1=destinationDistObj;
+        let pickupCityName=JsonObj['pickupCity'];
+        let pickupDistrict=JsonObj['pickupDistrict'];
+        let pickupState=JsonObj['pickupState'];
+        let dropCity=JsonObj['dropCity'];
+        let dropDistrict=JsonObj['dropDistrict'];
+        let dropState=JsonObj['dropState'];
         const locationUrl1 = {
             pathname: '/ConfirmBooking',
             state: { fromDashboard: true }
           }
           this.setState({locationUrl:locationUrl1});
 
-        this.getCabs(pickupLocationData1,destinationLocationData1,pickupCity,destinationCity,pickdateTime,returnDateTime,mobileNo);
+        this.getCabs(pickupLocationData1,destinationLocationData1,pickupCity,destinationCity,pickdateTime,returnDateTime,mobileNo,pickupCityName,pickupDistrict,
+            pickupState,dropCity,dropDistrict,dropState);
       }
-      async  getCabs(originObj,destinationObj,pickupCity,destinationCity,pickdateTime,returnDateTime,mobileNo) {  
-        console.log("***********");    
+      async  getCabs(originObj,destinationObj,pickupCity,destinationCity,pickdateTime,returnDateTime,mobileNo,pickupCityName,pickupDistrict,
+        pickupState,dropCity,dropDistrict,dropState) {  
+        //console.log("***********");    
         const headers = { 'Content-Type': 'application/json'}  
-          let urlData="&pickupCity="+pickupCity+"&destinationCity="+destinationCity+"&pickdateTime="+pickdateTime+"&returnDateTime="+returnDateTime+"&mobileNo="+mobileNo+"&originObj="+originObj+"&destinationObj="+destinationObj;
+            var destinationObj=JSON.stringify(destinationObj); 
+            var originObj=JSON.stringify(originObj);
+          let urlData="&pickupCity="+pickupCity+"&destinationCity="+destinationCity+"&pickdateTime="+pickdateTime+"&returnDateTime="+returnDateTime+"&mobileNo="+mobileNo+"&originObj="+originObj+"&destinationObj="+destinationObj
+          +"&pickupCityName="+pickupCityName+"&pickupDistrict="+pickupDistrict+"&pickupState="+pickupState+"&dropCityName="+dropCity+"&dropDistrict="+dropDistrict+"&dropState="+dropState;
           //const response = await fetch('http://localhost:3001/booking/getCabs?originObj='+originObj+'&destinationObj='+destinationObj, { headers });
           const response = await fetch(global.config.apiUrl+'booking/getCabs?'+urlData, { headers });
           const data = await response.json();
-          console.log("Data="+JSON.stringify(data));
+          //console.log("Data="+JSON.stringify(data));
           this.setState({cabsList:data.data});
           
           this.setState({isLoading:false});
@@ -107,7 +129,9 @@ class Search extends Component {
                                 <Card>
                                     <Card.Img variant="top" src={item['image']} style={{height:200}}/>
                                     <Card.Body>
-                                        <Card.Title style={{fontSize:16}}>{this.state.pickup} To {this.state.destination}</Card.Title>
+                                        <Card.Title style={{fontSize:16}}>{this.state.pickup} ({item['pickupCityName']},{item['pickupDistrict']}) 
+                                        To {this.state.destination} ({item['dropCityName']},{item['dropDistrict']})
+                                        </Card.Title>
                                         <div style={{color:'red'}}>
                                             <i className="fa fa-star" aria-hidden="true"></i>
                                             <i className="fa fa-star" aria-hidden="true"></i>

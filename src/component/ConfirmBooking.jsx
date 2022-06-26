@@ -19,19 +19,34 @@ class ConfirmBooking extends Component {
     */
     state = {item:[],id:'',cabType:'',image:'',ac:'',bags:'',cars:'',capacity:'',note:'',amount:0,journyTime:'',
     discountAmount:0,finalAmount:0,mobileNo:'',pickupCity:'',destinationCity:'',pickupDate:'',returnDateTime:'',originlat:0.0,
-    originlng:0.0,destinationlat:0.0,destinationlng:0.0,distance:0,firstName:'',lastName:'',email:'',error:'',payment_orderId:'',currency:'',receipt:'',bookingAmount:0};
+    originlng:0.0,destinationlat:0.0,destinationlng:0.0,distance:0,firstName:'',lastName:'',email:'',error:'',payment_orderId:'',
+    currency:'',receipt:'',bookingAmount:0,pickupCity:'',pickupDistrict:'',pickupState:'',
+    dropCity:'',dropDistrict:'',dropState:'' };
     constructor(props) {
         super(props);    
         //console.log("++pickup**********==="+JSON.stringify(this.props));    
       }
     
       componentDidMount() {
-          
-        console.log("++pickup**********==="+JSON.stringify(this.props.location.dataObj));
-        this.setState({item:this.props.location.dataObj});
-        this.setState({pickupCity:this.state.item.pickupCity});
-        var bookingAmt=Math.round((this.props.location.dataObj.finalAmount*25)/100);
-        console.log("bookingAmt==========="+this.props.location.dataObj.finalAmount);
+        let dataObjRes=[];
+        if(this.props.location.dataObj==undefined||this.props.location.dataObj=='undefined')
+        {
+            dataObjRes=localStorage.getItem("dataObj");
+            
+            dataObjRes=JSON.parse(dataObjRes);
+            console.log("++pickup**********==="+JSON.stringify(dataObjRes));
+            this.setState({item:dataObjRes});
+        }else{
+            dataObjRes=this.props.location.dataObj;
+            localStorage.setItem("dataObj",JSON.stringify(dataObjRes));
+            console.log("++pickup**********==="+JSON.stringify(dataObjRes));
+            this.setState({item:dataObjRes});
+        }
+        
+        //this.setState({item:this.props.location.dataObj});
+        this.setState({pickupCity:dataObjRes.pickupCity});
+        var bookingAmt=Math.round((dataObjRes.finalAmount*25)/100);
+        console.log("bookingAmt==========="+dataObjRes.finalAmount);
         this.setState({bookingAmount:bookingAmt});
         //this.setState({item:this.props.match.params.data});
         this.prePayment();
@@ -155,8 +170,9 @@ class ConfirmBooking extends Component {
         }
         console.log("payment_orderId==="+this.state.payment_orderId);
         //return false;
-       
-          let urlData="&fname="+this.state.firstName+"&lname="+this.state.lastName+"&email="+this.state.email+"&cabId="+this.state.item.id+"&pickup="+this.state.item.pickupCity+"&destination="+this.state.item.destinationCity+"&pickupDate="+this.state.item.pickupDate+"&returnDate="+returnDate+"&isReturn="+isReturn+"&pickupLat="+this.state.item.originlat+"&pickupLong="+this.state.item.originlng+"&destinationLat="+this.state.item.destinationlat+"&destinationLong="+this.state.item.destinationlng+"&distance="+this.state.item.distance+"&journyTime="+this.state.item.journyTime+"&cabType="+this.state.item.cabType+"&ac="+this.state.item.ac+"&bags="+this.state.item.bags+"&cars="+this.state.item.cars+"&capacity="+this.state.item.capacity+"&note="+this.state.item.note+"&rate="+this.state.item.rate+"&amount="+this.state.item.amount+"&discountAmount="+this.state.item.discountAmount+"&finalAmount="+this.state.item.finalAmount+"&mobileNo="+this.state.item.mobileNo+"&bookingId="+this.state.item.bookingId+"&payment_orderId="+this.state.payment_orderId;
+        
+          let urlData="&fname="+this.state.firstName+"&lname="+this.state.lastName+"&email="+this.state.email+"&cabId="+this.state.item.id+"&pickup="+this.state.item.pickupCity+"&destination="+this.state.item.destinationCity+"&pickupDate="+this.state.item.pickupDate+"&returnDate="+returnDate+"&isReturn="+isReturn+"&pickupLat="+this.state.item.originlat+"&pickupLong="+this.state.item.originlng+"&destinationLat="+this.state.item.destinationlat+"&destinationLong="+this.state.item.destinationlng+"&distance="+this.state.item.distance+"&journyTime="+this.state.item.journyTime+"&cabType="+this.state.item.cabType+"&ac="+this.state.item.ac+"&bags="+this.state.item.bags+"&cars="+this.state.item.cars+"&capacity="+this.state.item.capacity+"&note="+this.state.item.note+"&rate="+this.state.item.rate+"&amount="+this.state.item.amount+"&discountAmount="+this.state.item.discountAmount+"&finalAmount="+this.state.item.finalAmount+"&mobileNo="+this.state.item.mobileNo+"&bookingId="+this.state.item.bookingId
+          +"&payment_orderId="+this.state.payment_orderId+"&pickupCityName="+this.state.item.pickupCityName+"&pickupDistrict="+this.state.item.pickupDistrict+"&pickupState="+this.state.item.pickupState+"&dropCityName="+this.state.item.dropCityName+"&dropDistrict="+this.state.item.dropDistrict+"&dropState="+this.state.item.dropState;
           //const response = await fetch('http://localhost:3001/booking/getCabs?originObj='+originObj+'&destinationObj='+destinationObj, { headers });
           console.log("urlData=="+urlData)
           const response = await fetch(global.config.apiUrl+'booking/book_cab?'+urlData, { headers });
@@ -245,7 +261,7 @@ class ConfirmBooking extends Component {
                                             </div>                                            
                                             <div className="row">
                                                 <div className="col-6">Pickup</div>
-                                                <div className="col-6">{this.state.pickupCity}</div>
+                                                <div className="col-6">{this.state.item.pickupCity}</div>
                                             </div>
                                             <div className="row">
                                                 <div className="col-6">Destination</div>

@@ -58,7 +58,8 @@ function App() {
       <Route path='/BookingDetails/:bookingId' component={BookingDetails}></Route>  
       <Route path='/ConfirmBooking/:data' component={ConfirmBooking}></Route>  
       <Route path='/ThankYou/:orderId' component={ThankYou}></Route>  
-      <Route path='/Search/:pickup/:destination/:pickdate/:returnDate/:pickupLocation/:destinationLocation/:mobileNo' component={Search}></Route>
+      <Route path='/Search2/:pickup/:destination/:pickdate/:returnDate/:pickupLocation/:destinationLocation/:mobileNo' component={Search}></Route>
+      <Route path='/Search/:data' component={Search}></Route>
        
       <Route path='/agent/Login' component={Partner}></Route>   
       <Route path='/agent/Home' component={BookingList}></Route>   

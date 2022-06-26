@@ -15,7 +15,8 @@ import timespan from 'jsonwebtoken/lib/timespan';
 class Slider extends Component {
     state = { pickupTime:new Date(),returnTime:new Date(),pickupTimeSelected:new Date(),
       returnTimeSelected:new Date(),history:'',handleColor:'',pickupPlace:'',destinationPlace:'',pickupLatlng:{},destinationLatlng:{},
-    distance:'',pickupLat:0.0,pickupLng:0.0,destinationLat:0.0,destinationLng:0.0,mobileNo:'',isReturn:'N' };
+    distance:'',pickupLat:0.0,pickupLng:0.0,destinationLat:0.0,destinationLng:0.0,mobileNo:'',isReturn:'N',pickupCity:'',pickupDistrict:'',pickupState:'',
+    dropCity:'',dropDistrict:'',dropState:'' };
     constructor(props) {
       super(props);      
       this.state = {cabsList: [],pickup:'',destination:'',isReturn:'N'};      
@@ -102,7 +103,24 @@ class Slider extends Component {
     console.log("*****"+JSON.stringify(this.state.destinationLatlng));
     let pickupDistObj=JSON.stringify(this.state.pickupLatlng);
     let destinationDistObj=JSON.stringify(this.state.destinationLatlng);
-    window.location.href="/Search/"+this.state.pickupPlace+"/"+this.state.destinationPlace+"/"+this.state.pickupTimeSelected+"/"+this.state.returnTimeSelected+"/"+pickupDistObj+"/"+destinationDistObj+"/"+this.state.mobileNo;
+    let dataObj={pickupPlace:this.state.pickupPlace,
+      destinationPlace:this.state.destinationPlace,
+      pickupTimeSelected:this.state.pickupTimeSelected,
+      returnTimeSelected:this.state.returnTimeSelected,
+      pickupDistObj:this.state.pickupLatlng,
+      destinationDistObj:this.state.destinationLatlng,
+      mobileNo:this.state.mobileNo,
+      pickupCity:this.state.pickupCity,
+      pickupDistrict:this.state.pickupDistrict,
+      pickupState:this.state.pickupState,
+      dropCity:this.state.dropCity,
+      dropDistrict:this.state.dropDistrict,
+      dropState:this.state.dropState,
+    };
+    let data=JSON.stringify(dataObj);
+    console.log("data==="+data);
+    //window.location.href="/Search/"+this.state.pickupPlace+"/"+this.state.destinationPlace+"/"+this.state.pickupTimeSelected+"/"+this.state.returnTimeSelected+"/"+pickupDistObj+"/"+destinationDistObj+"/"+this.state.mobileNo;
+    window.location.href="/Search/"+data;
   }
   setDestination=(dest)=>{
     this.setState({destination:dest.target.value})
@@ -118,11 +136,34 @@ class Slider extends Component {
     //console.log("placeLabel=="+placeLabel);
     geocodeByPlaceId(placeId)
     .then(results => {
-      //console.log("resut=="+JSON.stringify(results[0].geometry));
+      console.log("resut=="+JSON.stringify(results));
       //console.log("resut=="+JSON.stringify(results[0].geometry.location));
       
-
+      let address_components=JSON.parse(JSON.stringify(results[0].address_components));
+      let addressLength=address_components.length;
+      let i=0;
+      let state='';
+      let disctrict='';
+      let city='';
+      while(i<addressLength){
+        let addressType=address_components[i]['types'][0];
+        if(addressType=="administrative_area_level_1"){
+          state=address_components[i]['long_name'];
+        }
+        if(addressType=="administrative_area_level_2"){
+          disctrict=address_components[i]['long_name'];
+        }
+        if(addressType=="locality"){
+          city=address_components[i]['long_name'];
+        }
+        i++;
+      }     
+      
+      
+      this.setState({pickupCity:city,pickupDistrict:disctrict,pickupState:state});
+      console.log("addressLength==="+addressLength+"===state=="+state+"==disctrict=="+disctrict+"=====city===="+city);
       let locationObj=JSON.parse(JSON.stringify(results[0].geometry.location));
+
       var lat=results[0].geometry.location.lat;
       var lng=results[0].geometry.location.lng;
 
@@ -135,15 +176,34 @@ class Slider extends Component {
   
   setDestination=(dataApi)=>{
     //console.log(JSON.stringify(dataApi));
-    let placeId=dataApi.value.place_id;
-    //console.log("placeId=="+placeId);
-    
+    let placeId=dataApi.value.place_id;    
     let placeLabel=dataApi.label;
     this.setState({destinationPlace:placeLabel});
     geocodeByPlaceId(placeId)
     .then(results => {
       //console.log("resut=="+JSON.stringify(results[0].geometry));
       //console.log("resut=location="+JSON.stringify(results[0].geometry.location));
+      let address_components=JSON.parse(JSON.stringify(results[0].address_components));
+      let addressLength=address_components.length;
+      let i=0;
+      let state='';
+      let disctrict='';
+      let city='';
+      while(i<addressLength){
+        let addressType=address_components[i]['types'][0];
+        if(addressType=="administrative_area_level_1"){
+          state=address_components[i]['long_name'];
+        }
+        if(addressType=="administrative_area_level_2"){
+          disctrict=address_components[i]['long_name'];
+        }
+        if(addressType=="locality"){
+          city=address_components[i]['long_name'];
+        }
+        i++;
+      }  
+      this.setState({dropCity:city,dropDistrict:disctrict,dropState:state});
+      console.log("addressLength==="+addressLength+"===state=="+state+"==disctrict=="+disctrict+"=====city===="+city);
       let locationObj=JSON.parse(JSON.stringify(results[0].geometry.location));
       var lat=results[0].geometry.location.lat;
       var lng=results[0].geometry.location.lng;
