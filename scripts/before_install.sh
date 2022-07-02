@@ -1,2 +1,2 @@
-cd /home/ec2-user/bookourcabapis
+cd /home/ec2-user/bookourcab
 yum -y install nodejs npm
