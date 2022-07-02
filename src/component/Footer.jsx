@@ -13,10 +13,10 @@ class Footer extends Component {
                 <h3>Address</h3>
                 <p>
                   Prayag Tours & Travels <br/>
-                  koper khairani<br/>
-                  New Mumbai <br/><br/>
-                  <strong>Phone:</strong> +1 5589 55488 55<br/>
-                  <strong>Email:</strong> info@example.com<br/>
+                  Shree Vishal Chs Ltd. PlotNo 17<br/>
+                  Sectore -18 Koperkhairane New Mumbai. <br/><br/>
+                  <strong>Phone:</strong> +919821224861<br/>
+                  <strong>Email:</strong> dnyandev.nagare@gmail.com<br/>
                 </p>
               </div>
               {/*
