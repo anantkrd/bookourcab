@@ -15,7 +15,7 @@ class Footer extends Component {
                   BookOurCab <br/>
                   Shree Vishal Chs Ltd. PlotNo 17<br/>
                   Sectore -18 Koperkhairane New Mumbai. <br/><br/>
-                  <strong>Phone:</strong> +919821224861<br/>
+                  <strong>Mobile:</strong> +919821224861<br/>
                   <strong>Email:</strong> dnyandev.nagare@gmail.com<br/>
                 </p>
               </div>

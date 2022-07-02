@@ -32,9 +32,9 @@ class Home extends Component {
                                     <div className="col-lg-3 col-md-3" style={{paddingRight: 5,paddingLeft: 5}}>
                                         <Card style={{margin:2,paddingRight: 5,paddingLeft: 5,height:'100%',backgroundColor: '#9e4827',color: 'white'}}>
                                             <Card.Body>
-                                                <Card.Title>Best Price Guaranteed</Card.Title>
+                                                <Card.Title>Best Price Guaranteed.</Card.Title>
                                                 <Card.Text style={{textAlign:'justify'}}>
-                                                   We guaranteed that we have very best and low price rate
+                                                   We guaranteed that we have very best and low price rate.
                                                 </Card.Text>
                                             </Card.Body>
                                         </Card>                                     
