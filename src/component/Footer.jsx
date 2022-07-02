@@ -12,7 +12,7 @@ class Footer extends Component {
               <div className="col-lg-3 col-md-6 footer-contact">
                 <h3>Address</h3>
                 <p>
-                  Prayag Tours & Travels <br/>
+                  BookOurCab <br/>
                   Shree Vishal Chs Ltd. PlotNo 17<br/>
                   Sectore -18 Koperkhairane New Mumbai. <br/><br/>
                   <strong>Phone:</strong> +919821224861<br/>
