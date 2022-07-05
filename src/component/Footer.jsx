@@ -19,17 +19,16 @@ class Footer extends Component {
                   <strong>Email :</strong> dnyandev.nagare@gmail.com<br/>
                 </p>
               </div>
-              {/*
               <div className="col-lg-2 col-md-6 footer-links">
                 <h4>Useful Links</h4>
                 <ul>
                   <li><i className="bx bx-chevron-right"></i> <a href="/Home">Home</a></li>
                   <li><i className="bx bx-chevron-right"></i> <a href="/Servises">Services</a></li>
-                  <li><i className="bx bx-chevron-right"></i> <a href="/Plans">Plans</a></li>
+                  <li><i className="bx bx-chevron-right"></i> <a href="/privacyPolicy">Pravacy Policy</a></li>
                   <li><i className="bx bx-chevron-right"></i> <a href="/Aboutus">About Us</a></li>
-                  <li><i className="bx bx-chevron-right"></i> <a href="/Contact">Contact</a></li>
+                  <li><i className="bx bx-chevron-right"></i> <a href="/termCondition">Term & Condition</a></li>
                 </ul>
-              </div>*/}
+              </div>
     
             </div>
           </div>

@@ -6,10 +6,11 @@ import  Header  from "../Header";
 import { Link } from 'react-router-dom'
 import ClipLoader from "react-spinners/ClipLoader";
 import Modal from 'react-bootstrap/Modal'
+import Pagination from "@material-ui/lab/Pagination";
 
 class AdminHome extends Component {
     
-    state = {userId:'',item:[],error:'',isLoading:false,loadingColor:'#ffffff',show:false,error:'',agentAmont:0,bookingId:0};
+    state = {userId:'',item:[],error:'',isLoading:false,loadingColor:'#ffffff',show:false,error:'',agentAmont:0,bookingId:0,pageId:0,rowCount:0,totalPage:0};
     constructor(props) {
         super(props);    
         
@@ -19,24 +20,28 @@ class AdminHome extends Component {
           this.setState({isLoading:true});      
        let userId=localStorage.getItem("userId");
        this.setState({userId:userId});
+       this.setState({pageId:0});
         console.log("++userId**********==="+userId);        
         //this.setState({item:this.props.match.params.data});
-        this.getBooking(userId);
+        this.getBooking(userId,1);
     }
     
-    async getBooking(userId){
+    async getBooking(userId,pageId){
         console.log("*****get admin home******");   
         
         //const headers = { 'Content-Type': 'application/json' } 
         let token=localStorage.getItem("token");
         const headers = {'Authorization':`Bearer ${token}`} ;
-          let urlData="&userId="+userId;
+        
+          let urlData="&userId="+userId+"&pageId="+pageId;
           //const response = await fetch('http://localhost:3001/booking/getCabs?originObj='+originObj+'&destinationObj='+destinationObj, { headers });
           //console.log("urlData=="+urlData)
           const response = await fetch(global.config.apiUrl+'admin/get_booking_admin?'+urlData, { headers });
           console.log("+++response=="+response)
           const data = await response.json();
           console.log("Data="+JSON.stringify(data));
+          this.setState({totalPage:data.totalPage});
+          this.setState({rowCount:data.rowCount});
           if(data.code==200){
               this.setState({item:data.data});
           }else{
@@ -100,6 +105,12 @@ class AdminHome extends Component {
           this.setState({isLoading:false});
         
      }
+    }
+    handlePageChange=async(event, value)=>{
+        //this.setState({pageId:value});
+        let userId=this.state.userId;
+        let pageId=value;
+        this.getBooking(userId,pageId);
     }
     render() { 
         const override =`
@@ -201,7 +212,18 @@ class AdminHome extends Component {
                                                 </tbody>    
                                             </Table>
                                             </div>
-                                            
+                                            <div>
+                                            <Pagination
+                                                className="paging"
+                                                count={this.state.totalPage}
+                                                page={this.state.rowCount}
+                                                siblingCount={1}
+                                                boundaryCount={1}
+                                                variant="outlined"
+                                                shape="rounded"
+                                                onChange={this.handlePageChange.bind()}
+                                            />
+                                            </div>
                                         </Card.Body>
                                     </Card>                                   
                             </div>             

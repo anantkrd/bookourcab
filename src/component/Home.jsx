@@ -15,7 +15,7 @@ class Home extends Component {
         //alert("Here");
         this.props.history.push('/');
       }
-      onClick = () => this.props.history.push("/Search");
+      onClick = () => this.props.history.push("/Home");
       
     render() { 
         return (
@@ -106,7 +106,7 @@ class Home extends Component {
                                                 </Card.Text>
                                                 
                                                 <div className="row">
-                                                    <div className="col-3" style={{padding: "4px",fontSize: 12, textAlign: "center"}}><i className="fa fa-inr" aria-hidden="true"></i>1500</div>
+                                                    <div className="col-3" style={{padding: "4px",fontSize: 12, textAlign: "center"}}><i className="fa fa-inr" aria-hidden="true"></i>***</div>
                                                     <div className="col-3" style={{padding: "4px",fontSize: 12, textAlign: "center"}}>Luxury</div>
                                                     <div className="col-6" style={{textAlign:"end"}}>
                                                         <Button onClick={this.onClick} variant="primary" size='small' style={{padding: "4px",fontSize: 12, textAlign: "center"}}>Book Now</Button>
@@ -131,7 +131,7 @@ class Home extends Component {
                                                 Pune To Mumbai
                                                 </Card.Text>                                                
                                                 <div className="row">
-                                                    <div className="col-3" style={{padding: "4px",fontSize: 12, textAlign: "center"}}><i className="fa fa-inr" aria-hidden="true"></i>1500</div>
+                                                    <div className="col-3" style={{padding: "4px",fontSize: 12, textAlign: "center"}}><i className="fa fa-inr" aria-hidden="true"></i>***</div>
                                                     <div className="col-3" style={{padding: "4px",fontSize: 12, textAlign: "center"}}>Luxury</div>
                                                     <div className="col-6" style={{textAlign:"end"}}>
                                                         <Button onClick={this.onClick} variant="primary" size='small' style={{padding: "4px",fontSize: 12, textAlign: "center"}}>Book Now</Button>
@@ -156,7 +156,7 @@ class Home extends Component {
                                                 Pune To Aurangabad
                                                 </Card.Text>                                                
                                                 <div className="row">
-                                                    <div className="col-3" style={{padding: "4px",fontSize: 12, textAlign: "center"}}><i className="fa fa-inr" aria-hidden="true"></i>4000</div>
+                                                    <div className="col-3" style={{padding: "4px",fontSize: 12, textAlign: "center"}}><i className="fa fa-inr" aria-hidden="true"></i>***</div>
                                                     <div className="col-3" style={{padding: "4px",fontSize: 12, textAlign: "center"}}>Compact</div>
                                                     <div className="col-6" style={{textAlign:"end"}}>
                                                         <Button onClick={this.onClick} variant="primary" size='small' style={{padding: "4px",fontSize: 12, textAlign: "center"}}>Book Now</Button>
@@ -181,7 +181,7 @@ class Home extends Component {
                                                 Mumbai To Auragabad
                                                 </Card.Text>                                                
                                                 <div className="row">
-                                                    <div className="col-3" style={{padding: "4px",fontSize: 12, textAlign: "center"}}><i className="fa fa-inr" aria-hidden="true"></i>5000</div>
+                                                    <div className="col-3" style={{padding: "4px",fontSize: 12, textAlign: "center"}}><i className="fa fa-inr" aria-hidden="true"></i>***</div>
                                                     <div className="col-3" style={{padding: "4px",fontSize: 12, textAlign: "center"}}>Luxury</div>
                                                     <div className="col-6" style={{textAlign:"end"}}>
                                                         <Button onClick={this.onClick} variant="primary" size='small' style={{padding: "4px",fontSize: 12, textAlign: "center"}}>Book Now</Button>
@@ -207,7 +207,7 @@ class Home extends Component {
                                                 </Card.Text>                                                
                                                 <div className="row">
                                                     <div className="col-3" style={{padding: "4px",fontSize: 12, textAlign: "center"}}><i className="fa fa-inr" aria-hidden="true"></i>
-                                                    8000</div>
+                                                    ***</div>
                                                     <div className="col-3" style={{padding: "4px",fontSize: 12, textAlign: "center"}}>Sedan</div>
                                                     <div className="col-6" style={{textAlign:"end"}}>
                                                         <Button onClick={this.onClick} variant="primary" size='small' style={{padding: "4px",fontSize: 12, textAlign: "center"}}>Book Now</Button>
@@ -232,7 +232,7 @@ class Home extends Component {
                                                 Mumbai To Bhopal
                                                 </Card.Text>                                                
                                                 <div className="row">
-                                                    <div className="col-3" style={{padding: "4px",fontSize: 12, textAlign: "center"}}><i className="fa fa-inr" aria-hidden="true"></i>11000</div>
+                                                    <div className="col-3" style={{padding: "4px",fontSize: 12, textAlign: "center"}}><i className="fa fa-inr" aria-hidden="true"></i>****</div>
                                                     <div className="col-3" style={{padding: "4px",fontSize: 12, textAlign: "center"}}>Luxury</div>
                                                     <div className="col-6" style={{textAlign:"end"}}>
                                                         <Button variant="primary" size='small' style={{padding: "4px",fontSize: 12, textAlign: "center"}}>Book Now</Button>

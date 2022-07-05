@@ -27,14 +27,14 @@ class Servises extends Component {
                     <div className="row">
                     <div className="col-lg-6 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
                         <div className="icon-box iconbox-blue">
-                        <div className="icon">
-                            <svg width="100" height="100" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke="none" stroke-width="0" fill="#f5f5f5" d="M300,521.0016835830174C376.1290562159157,517.8887921683347,466.0731472004068,529.7835943286574,510.70327084640275,468.03025145048787C554.3714126377745,407.6079735673963,508.03601936045806,328.9844924480964,491.2728898941984,256.3432110539036C474.5976632858925,184.082847569629,479.9380746630129,96.60480741107993,416.23090153303,58.64404602377083C348.86323505073057,18.502131276798302,261.93793281208167,40.57373210992963,193.5410806939664,78.93577620505333C130.42746243093433,114.334589627462,98.30271207620316,179.96522072025542,76.75703585869454,249.04625023123273C51.97151888228291,328.5150500222984,13.704378332031375,421.85034740162234,66.52175969318436,486.19268352777647C119.04800174914682,550.1803526380478,217.28368757567262,524.383925680826,300,521.0016835830174"></path>
-                            </svg>
-                            <i className="bx bx-notepad"></i>
-                        </div>
-                        <h4><a href="">VAT Return Filling</a></h4>
-                        <p> As per Article 72 of chapter 2, every taxable person or entity is required to submit the tax return to the authority at the end of each tax period within the time limits and according to the procedures specified in the Executive regulation of the decree law declaring all supplies made and received the tax period</p>
+                            <div className="icon">
+                                <svg width="100" height="100" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke="none" stroke-width="0" fill="#f5f5f5" d="M300,521.0016835830174C376.1290562159157,517.8887921683347,466.0731472004068,529.7835943286574,510.70327084640275,468.03025145048787C554.3714126377745,407.6079735673963,508.03601936045806,328.9844924480964,491.2728898941984,256.3432110539036C474.5976632858925,184.082847569629,479.9380746630129,96.60480741107993,416.23090153303,58.64404602377083C348.86323505073057,18.502131276798302,261.93793281208167,40.57373210992963,193.5410806939664,78.93577620505333C130.42746243093433,114.334589627462,98.30271207620316,179.96522072025542,76.75703585869454,249.04625023123273C51.97151888228291,328.5150500222984,13.704378332031375,421.85034740162234,66.52175969318436,486.19268352777647C119.04800174914682,550.1803526380478,217.28368757567262,524.383925680826,300,521.0016835830174"></path>
+                                </svg>
+                                <i className="bx bx-notepad"></i>
+                            </div>
+                            <h4><a href="">Local Car Rentals</a></h4>
+                            <p>We provide service for all major cities in india. you can book from anywhere and go to any where within city in india.</p>
                         </div>
                     </div>
 
@@ -46,8 +46,12 @@ class Servises extends Component {
                             </svg>
                             <i className="bx bx-trending-up"></i>
                         </div>
-                        <h4><a href="">VAT Registration Services</a></h4>
-                        <p>Every person having a place of residence in the State of UAE or any other implementing State shall be required to get registration if the total value of supplies made by such person exceeds AED 375,000 in a immediately preceding 12 month period, or if it is expected to exceed AED 375,000 in the next 30 days.</p>
+                        <h4><a href="">Outstation Taxi</a></h4>
+                            <p style={{textAlign:'justify'}}>We also provides taxi/cabs for go in any outstaion within india. you can book our car from any where and go to any where in india.</p>
+                            <p style={{textAlign:'justify'}}>We have collection of multiple cars you can book any one as you want</p>
+                            <li style={{textAlign:'justify'}}>Sedan: Book Sedan car with driver and you can travel up to 4 people and 2 luguege bags</li>
+                            <li style={{textAlign:'justify'}}>Innova/SUV/: Book innova/SUV car with driver and you can travel up to 6 people and 2 luguege bags</li>
+                            <li style={{textAlign:'justify'}}>Crysta: Book Crysta car with driver and you can travel up to 6 people and 2 luguege bags</li>
                         </div>
                     </div>
 
@@ -59,17 +63,9 @@ class Servises extends Component {
                             </svg>
                             <i className="bx bx-font"></i>
                         </div>
-                        <h4><a href="">VAT Advisory</a></h4>
-                            <p style={{textAlign:'justify'}}>Managing VAT obligations will be an ongoing challenge for businesses. With the passage of time, VAT legislation is likely to witness changes, which will have an impact on businesses.</p>
-                            <p style={{textAlign:'justify'}}>
-                                Further VAT considerations will come into play with changes in business scenarios, such as the launch of new services, new transactions being added to your business, or with changes in your supply-chain structure. All these would need review and advice from a VAT impact perspective.
-                            </p>
-                            <p style={{textAlign:'justify'}}>
-                                Since all the VAT related expertise may not be available to you in-house, it is critical that you partner with qualified and experienced professional, who can guide you on all VAT related matters.
-                            </p>
-                            <p style={{textAlign:'justify'}}>
-                                Our specialists can provide client focused advisory services on VAT related matters. Our dedicated VAT team can provide a range of VAT services. We can perform current AS IS assessment and impact assessment to review the current tax position of your business and provide relevant VAT advice. 
-                            </p>
+                        <h4><a href="">One way cabs</a></h4>
+                            <p style={{textAlign:'justify'}}>We proivde one way pickup and drop service from any location in india</p>
+                            
                         </div>
                     </div>
 
@@ -81,8 +77,8 @@ class Servises extends Component {
                             </svg>
                             <i className="bx bx-clipboard"></i>
                         </div>
-                        <h4><a href="">VAT Impact Assessment Review</a></h4>
-                        <p>With the implementation of Value Added Tax (VAT) in the UAE from January 1, 2018, almost all organisations are experiencing its effect.</p>
+                        <h4><a href="">Airport Taxi</a></h4>
+                        <p>We also provide booking for airport in india</p>
                         </div>
                     </div>
 

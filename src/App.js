@@ -7,6 +7,9 @@ import Home from './component/Home';
 import Plans from './component/Plans';
 import Servises from './component/Servises';
 import Search from './component/Search';
+import TermCondition from './component/TermCondition';
+import PrivacyPolicy from './component/PrivacyPolicy';
+
 import ConfirmBooking from './component/ConfirmBooking';
 import ThankYou from './component/ThankYou';
 import Login from './component/Login/Login';
@@ -48,7 +51,11 @@ function App() {
       <Route path='/Plans' component={Plans}></Route> 
       <Route path='/Servises' component={Servises}></Route>  
       <Route path='/Login' component={Login}></Route>  
-      <Route path='/History' component={History}></Route>  
+      <Route path='/History' component={History}></Route>         
+      <Route path='/termCondition' component={TermCondition}></Route>   
+      <Route path='/privacyPolicy' component={PrivacyPolicy}></Route>   
+      
+
       <Route path='/admin/Booking' component={Booking}></Route>  
       <Route path='/admin/SearchLog' component={SearchLog}></Route>  
       <Route path='/admin/completed' component={Completed}></Route>  
@@ -73,7 +80,7 @@ function App() {
       <Route path='/driver/payment-report' component={PaymentReport}></Route>   
       <Route path='/driver/profile' component={DriverProfile}></Route>    
       <Route path='/driver/trip-details/:bookingId' component={TripDetails}></Route>   
-      <Route path='/driver/trip-complete/:bookingId' component={TripComplete}></Route>   
+      <Route path='/driver/trip-complete/:bookingId' component={TripComplete}></Route>  
       
       
       <Header/>
