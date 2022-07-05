@@ -18,8 +18,7 @@ class WaitingForAgent extends Component {
         super(props);    
         //console.log("++pickup**********==="+JSON.stringify(this.props));  
         //this.setShow.bind(this);
-      }
-      
+      }      
     componentDidMount() {    
           this.setState({isLoading:true});      
        let userId=localStorage.getItem("userId");
@@ -27,8 +26,7 @@ class WaitingForAgent extends Component {
         console.log("++userId**********==="+userId);        
         //this.setState({item:this.props.match.params.data});
         this.getBooking(userId,1);
-    }
-    
+    }    
     async getBooking(userId,pageId){
         console.log("*****get admin home******");   
         
