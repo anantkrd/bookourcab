@@ -44,6 +44,7 @@ function App() {
   return (
     
       <Router>  
+        <Switch>
         <Route path='/Home' component={Home}></Route>  
         <Route path='/admin/Home/' component={AdminHome}></Route>        
         <Route path='/admin/newBookings/' component={AdminHome}></Route>         
@@ -84,7 +85,9 @@ function App() {
         <Route exact path='/' component={Home}></Route>  
         
         <Header/>
+        </Switch>
       </Router>
+      
   );
 }
 
