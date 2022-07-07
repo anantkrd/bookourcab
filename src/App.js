@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-import { BrowserRouter,Route,  Switch } from "react-router-dom";
+import { BrowserRouter as Router,Route,  Switch } from "react-router-dom";
 import Header from './component/Header';
 import Home from './component/Home';
 //import AboutUs from './component/Home';
@@ -43,7 +43,7 @@ import TripComplete from './component/Driver/TripComplete';
 function App() {
   return (
     
-      <Switch>  
+      <Router>  
         <Route path='/Home' component={Home}></Route>  
         <Route path='/admin/Home/' component={AdminHome}></Route>        
         <Route path='/admin/newBookings/' component={AdminHome}></Route>         
@@ -84,7 +84,7 @@ function App() {
         <Route exact path='/' component={Home}></Route>  
         
         <Header/>
-      </Switch>
+      </Router>
   );
 }
 
