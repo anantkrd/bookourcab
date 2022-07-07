@@ -43,7 +43,6 @@ import TripComplete from './component/Driver/TripComplete';
 function App() {
   return (
     
-    <BrowserRouter basename='/'>
       <Switch>  
         <Route path='/Home' component={Home}></Route>  
         <Route path='/admin/Home/' component={AdminHome}></Route>        
@@ -86,7 +85,6 @@ function App() {
         
         <Header/>
       </Switch>
-    </BrowserRouter>
   );
 }
 
