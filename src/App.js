@@ -45,8 +45,7 @@ function App() {
     
     <BrowserRouter basename='/'>
       <Switch>  
-        <Route path='/' component={Home}></Route>  
-        <Route path='/Home/' component={Home}></Route>  
+        <Route path='/Home' component={Home}></Route>  
         <Route path='/admin/Home/' component={AdminHome}></Route>        
         <Route path='/admin/newBookings/' component={AdminHome}></Route>         
         <Route path='/Plans' component={Plans}></Route> 
@@ -83,6 +82,7 @@ function App() {
         <Route path='/driver/trip-details/:bookingId' component={TripDetails}></Route>   
         <Route path='/driver/trip-complete/:bookingId' component={TripComplete}></Route>  
         
+        <Route exact path='/' component={Home}></Route>  
         
         <Header/>
       </Switch>
