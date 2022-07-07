@@ -45,6 +45,7 @@ function App() {
     
     <BrowserRouter basename='/'>
       <Switch>  
+        <Route path='/' component={Home}></Route>  
         <Route path='/Home/' component={Home}></Route>  
         <Route path='/admin/Home/' component={AdminHome}></Route>        
         <Route path='/admin/newBookings/' component={AdminHome}></Route>         
