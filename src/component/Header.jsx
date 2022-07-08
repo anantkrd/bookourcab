@@ -262,7 +262,7 @@ class Header extends Component {
             return (<ul>
                 <li className="nav-item"><a href="/Home" >Home</a></li>                                
                 <li><a href="#" onClick={this.setShow.bind(this.state.show)}><span>Sign In</span></a></li>
-                <li className="nav-item"><a href="/agent/Login" >Partner new</a></li> 
+                <li className="nav-item"><a href="/agent/Login" >Partner 1</a></li> 
             </ul> );
         }
     }
@@ -273,7 +273,7 @@ class Header extends Component {
                    
                     <h1 className="logo mr-auto">
                         <a href="/Home">
-                            <img src="/logo1.png" style={{width:60}}></img>
+                            <img src="/logo1.png" style={{width:100}}></img>
                         </a>
                     </h1>
                     <nav className="nav-menu d-none d-lg-block">
