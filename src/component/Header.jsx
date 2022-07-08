@@ -273,7 +273,7 @@ class Header extends Component {
                    
                     <h1 className="logo mr-auto">
                         <a href="/Home">
-                            <img src="/assets/img/logo/prayag.png" style={{width:60}}></img>
+                            <img src="/logo1.png" style={{width:100}}></img>
                         </a>
                     </h1>
                     <nav className="nav-menu d-none d-lg-block">

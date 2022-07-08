@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-import { BrowserRouter as Router,Route,  Switch } from "react-router-dom";
+import { Route, Switch, BrowserRouter as Router } from "react-router-dom";
 import Header from './component/Header';
 import Home from './component/Home';
 //import AboutUs from './component/Home';
@@ -45,42 +45,42 @@ function App() {
     
       <Router>  
         <Switch>
-        <Route path='/Home'><Home/></Route>  
-        <Route path='/admin/Home/'><AdminHome/></Route>        
-        <Route path='/admin/newBookings/' ><AdminHome/></Route>         
-        <Route path='/Plans'><Plans/></Route> 
-        <Route path='/Servises'><Servises/></Route>  
-        <Route path='/Login'><Login/></Route>  
-        <Route path='/History' ><History/></Route>         
-        <Route path='/termCondition'><TermCondition/></Route>   
-        <Route path='/privacyPolicy' ><PrivacyPolicy/></Route>   
+        <Route exact path='/Home'><Home/></Route>  
+        <Route exact path='/admin/Home/'><AdminHome/></Route>        
+        <Route exact path='/admin/newBookings/' ><AdminHome/></Route>         
+        <Route exact path='/Plans'><Plans/></Route> 
+        <Route exact path='/Servises'><Servises/></Route>  
+        <Route exact path='/Login'><Login/></Route>  
+        <Route exact path='/History' ><History/></Route>         
+        <Route exact path='/termCondition'><TermCondition/></Route>   
+        <Route exact path='/privacyPolicy' ><PrivacyPolicy/></Route>   
         
 
-        <Route path='/admin/Booking'><Booking/></Route>  
-        <Route path='/admin/SearchLog'><SearchLog/></Route>  
-        <Route path='/admin/completed' ><Completed/></Route>  
-        <Route path='/admin/ready' ><ReadyToGo/></Route>  
-        <Route path='/admin/driverWaiting' ><WaitingForDriver/></Route>  
-        <Route path='/admin/agentWaiting' ><WaitingForAgent/></Route>  
-        <Route path='/BookingDetails/:bookingId' ><BookingDetails/></Route>  
-        <Route path='/ConfirmBooking/:data' ><ConfirmBooking/></Route>  
-        <Route path='/ThankYou/:orderId' ><ThankYou/></Route>  
-        <Route path='/Search2/:pickup/:destination/:pickdate/:returnDate/:pickupLocation/:destinationLocation/:mobileNo' ><Search/></Route>
-        <Route path='/Search/:data' ><Search/></Route>
+        <Route exact path='/admin/Booking'><Booking/></Route>  
+        <Route exact path='/admin/SearchLog'><SearchLog/></Route>  
+        <Route exact path='/admin/completed' ><Completed/></Route>  
+        <Route exact path='/admin/ready' ><ReadyToGo/></Route>  
+        <Route exact path='/admin/driverWaiting' ><WaitingForDriver/></Route>  
+        <Route exact path='/admin/agentWaiting' ><WaitingForAgent/></Route>  
+        <Route exact path='/BookingDetails/:bookingId' ><BookingDetails/></Route>  
+        <Route exact path='/ConfirmBooking/:data' ><ConfirmBooking/></Route>  
+        <Route exact path='/ThankYou/:orderId' ><ThankYou/></Route>  
+        <Route exact path='/Search2/:pickup/:destination/:pickdate/:returnDate/:pickupLocation/:destinationLocation/:mobileNo' ><Search/></Route>
+        <Route exact path='/Search/:data' ><Search/></Route>
         
-        <Route path='/agent/Login'><Partner/></Route>   
-        <Route path='/agent/Home' ><BookingList/></Route>   
-        <Route path='/agent/myPendingBookings'><PendingBookingList/></Route>   
-        <Route path='/agent/myCompletedBookings' ><CompletedBookingList/></Route>   
-        <Route path='/agent/Profile' ><Profile/></Route>   
-        <Route path='/agent/AddCar' ><AddCar/></Route>   
-        <Route path='/agent/AddDriver' ><AddDriver/></Route>   
-        <Route path='/driver/home'><Driver/></Route>   
-        <Route path='/driver/booking-report' ><BookingReport/></Route>   
-        <Route path='/driver/payment-report'><PaymentReport/></Route>   
-        <Route path='/driver/profile' ><DriverProfile/></Route>    
-        <Route path='/driver/trip-details/:bookingId'><TripDetails/></Route>   
-        <Route path='/driver/trip-complete/:bookingId'><TripComplete/></Route>  
+        <Route exact path='/agent/Login'><Partner/></Route>   
+        <Route exact path='/agent/Home' ><BookingList/></Route>   
+        <Route exact path='/agent/myPendingBookings'><PendingBookingList/></Route>   
+        <Route exact path='/agent/myCompletedBookings' ><CompletedBookingList/></Route>   
+        <Route exact path='/agent/Profile' ><Profile/></Route>   
+        <Route exact path='/agent/AddCar' ><AddCar/></Route>   
+        <Route exact path='/agent/AddDriver' ><AddDriver/></Route>   
+        <Route exact path='/driver/home'><Driver/></Route>   
+        <Route exact path='/driver/booking-report' ><BookingReport/></Route>   
+        <Route exact path='/driver/payment-report'><PaymentReport/></Route>   
+        <Route exact path='/driver/profile' ><DriverProfile/></Route>    
+        <Route exact path='/driver/trip-details/:bookingId'><TripDetails/></Route>   
+        <Route exact path='/driver/trip-complete/:bookingId'><TripComplete/></Route>  
         
         <Route exact path='/'><Home/></Route>  
         
