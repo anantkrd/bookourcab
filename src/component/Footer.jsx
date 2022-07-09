@@ -38,10 +38,10 @@ class Footer extends Component {
     
           <div className="mr-md-auto text-center text-md-left">
             <div className="copyright">
-              &copy; Copyright <strong><span>Prayag Tours & Travels</span></strong>. All Rights Reserved
+              &copy; Copyright <strong><span>BookOurCar</span></strong>. All Rights Reserved
             </div>
             <div className="credits">
-              Designed by <a href="https://bootstrapmade.com/">Prayag Tours & Travels</a>
+              Designed by <a href="https://bootstrapmade.com/">Ellipse Software Technology</a>
             </div>
           </div>
           <div className="social-links text-center text-md-right pt-3 pt-md-0">
