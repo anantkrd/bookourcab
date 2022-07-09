@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom'
 import { useHistory } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import BookingDetails from './BookingDetails';
-
+import { withRouter } from 'react-router-dom';
 class History extends Component {
     
     state = {userId:'',item:[],error:''};
@@ -131,4 +131,4 @@ class History extends Component {
     }
 }
  
-export default History;
+export default withRouter(History);

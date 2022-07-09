@@ -8,7 +8,7 @@ import  Footer  from "../Footer";
 //import { Link } from 'react-router-dom'
 //import { useHistory } from 'react-router-dom';
 //import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
+import { withRouter } from 'react-router-dom';
 import ClipLoader from "react-spinners/ClipLoader";
 class BookingDetails extends Component {
     
@@ -335,4 +335,4 @@ class BookingDetails extends Component {
     }
 }
  
-export default BookingDetails;
+export default withRouter(BookingDetails);

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Card from 'react-bootstrap/Card'
 import { Button,Table } from 'react-bootstrap';
-
+import { withRouter } from 'react-router-dom';
 import Form from 'react-bootstrap/Form'
 import Slider from './Slider';
 import  Header  from "./Header";
@@ -72,4 +72,4 @@ class ThankYou extends Component {
     }
 }
  
-export default ThankYou;
+export default withRouter(ThankYou);

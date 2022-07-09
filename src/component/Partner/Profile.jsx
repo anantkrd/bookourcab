@@ -9,6 +9,7 @@ import { useHistory } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ClipLoader from "react-spinners/ClipLoader";
 import axios from "axios";
+import { withRouter } from 'react-router-dom';
 class DriverProfile extends Component {
     
     state = {userId:'',item:[],error:'',isLoading:false,loadingColor:'#ffffff',pageNo:0,mobileNo:'',firstName:''};
@@ -293,4 +294,4 @@ class DriverProfile extends Component {
     }
 }
  
-export default DriverProfile
+export default withRouter(DriverProfile);

@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom'
 import { useHistory } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ClipLoader from "react-spinners/ClipLoader";
+import { withRouter } from 'react-router-dom';
 class Booking extends Component {
     
     state = {userId:'',item:[],error:'',isLoading:false,loadingColor:'#ffffff',pageNo:0};
@@ -151,4 +152,4 @@ class Booking extends Component {
     }
 }
  
-export default Booking;
+export default withRouter(Booking);

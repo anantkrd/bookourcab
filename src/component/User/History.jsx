@@ -9,6 +9,7 @@ import { Link } from 'react-router-dom'
 //import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 //import BookingDetails from './BookingDetails';
 import ClipLoader from "react-spinners/ClipLoader";
+import { withRouter } from 'react-router-dom';
 class History extends Component {
     
     state = {userId:'',item:[],error:'',isLoading:false,loadingColor:'#ffffff'};
@@ -151,4 +152,4 @@ class History extends Component {
     }
 }
  
-export default History;
+export default withRouter(History);

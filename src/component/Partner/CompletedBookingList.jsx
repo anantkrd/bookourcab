@@ -9,6 +9,7 @@ import { useHistory } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ClipLoader from "react-spinners/ClipLoader";
 import axios from "axios";
+import { withRouter } from 'react-router-dom';
 class CompletedBookingList extends Component {
     
     state = {userId:'',item:[],error:'',isLoading:false,loadingColor:'#ffffff',pageNo:0,payment_orderId:''};
@@ -258,4 +259,4 @@ class CompletedBookingList extends Component {
     }
 }
  
-export default CompletedBookingList;
+export default withRouter(CompletedBookingList);

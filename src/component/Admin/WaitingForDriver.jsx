@@ -9,7 +9,7 @@ import { useHistory } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ClipLoader from "react-spinners/ClipLoader";
 import Modal from 'react-bootstrap/Modal'
-
+import { withRouter } from 'react-router-dom';
 class WaitingForDriver extends Component {
     
     state = {userId:'',item:[],error:'',isLoading:false,loadingColor:'#ffffff',show:false,error:'',agentAmont:0,bookingId:0};
@@ -253,4 +253,4 @@ class WaitingForDriver extends Component {
     }
 }
  
-export default WaitingForDriver;
+export default withRouter(WaitingForDriver);

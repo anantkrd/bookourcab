@@ -8,7 +8,7 @@ import  Header  from "../Header";
 import  Footer  from "../Footer";
 
 import axios from "axios";
-
+import { withRouter } from 'react-router-dom';
 import ClipLoader from "react-spinners/ClipLoader";
 class TripComplete extends Component {
     
@@ -304,4 +304,4 @@ class TripComplete extends Component {
     }
 }
  
-export default TripComplete;
+export default withRouter(TripComplete);

@@ -9,7 +9,7 @@ import  Footer  from "../Footer";
 //import { Link } from 'react-router-dom'
 //import { useHistory } from 'react-router-dom';
 //import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
+import { withRouter } from 'react-router-dom';
 import ClipLoader from "react-spinners/ClipLoader";
 class TripDetails extends Component {
     
@@ -499,4 +499,4 @@ class TripDetails extends Component {
     }
 }
  
-export default TripDetails;
+export default withRouter(TripDetails);

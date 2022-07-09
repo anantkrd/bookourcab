@@ -4,7 +4,7 @@ import { Button,Table } from 'react-bootstrap';
 import Slider from './Slider';
 import  Header  from "./Header";
 import  Footer  from "./Footer";
-
+import { withRouter } from 'react-router-dom';
 import './../config';
 import { Link } from 'react-router-dom'
 import { useHistory } from 'react-router-dom';
@@ -287,4 +287,4 @@ class Home extends Component {
     }
 }
  
-export default Home;
+export default withRouter(Home);

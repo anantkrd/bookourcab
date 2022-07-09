@@ -9,7 +9,7 @@ import { useHistory } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ClipLoader from "react-spinners/ClipLoader";
 import axios from "axios";
-
+import { withRouter } from 'react-router-dom';
 import Modal from 'react-bootstrap/Modal';
 class PendingBookingList extends Component {
     
@@ -428,4 +428,4 @@ class PendingBookingList extends Component {
     }
 }
  
-export default PendingBookingList;
+export default withRouter(PendingBookingList);

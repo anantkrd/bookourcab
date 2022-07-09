@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom'
 import ClipLoader from "react-spinners/ClipLoader";
 import Modal from 'react-bootstrap/Modal'
 import Pagination from "@material-ui/lab/Pagination";
-
+import { withRouter } from 'react-router-dom';
 class AdminHome extends Component {
     
     state = {userId:'',item:[],error:'',isLoading:false,loadingColor:'#ffffff',show:false,error:'',agentAmont:0,bookingId:0,pageId:0,rowCount:0,totalPage:0};
@@ -284,4 +284,4 @@ class AdminHome extends Component {
     }
 }
  
-export default AdminHome;
+export default withRouter(AdminHome);

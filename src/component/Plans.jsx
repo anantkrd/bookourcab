@@ -1,7 +1,7 @@
 import React, { Component,Text } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
-
+import { withRouter } from 'react-router-dom';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from '@material-ui/core/CardActions';
@@ -362,4 +362,4 @@ class Plans extends Component {
     }
 }
  
-export default Plans;
+export default withRouter(Plans);

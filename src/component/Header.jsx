@@ -8,6 +8,7 @@ import { Button,Table } from 'react-bootstrap';
 import './../config';
 import axios from "axios";
 import Form from 'react-bootstrap/Form'
+import { withRouter } from 'react-router-dom';
 class Header extends Component {
     state = { uid:'',userId:'', firstName:'',lastName:'',mobileNo:'',email:'',userType:'', show:false}
     state = {item:[],id:'',bookingId:'',mobileNo:'',otp:'',isOtpSent:'N',error:''};
@@ -346,4 +347,4 @@ class Header extends Component {
     }
 }
  
-export default Header;
+export default withRouter(Header);

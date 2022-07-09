@@ -9,6 +9,7 @@ import { useHistory } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ClipLoader from "react-spinners/ClipLoader";
 import axios from "axios";
+import { withRouter } from 'react-router-dom';
 class PaymentReport extends Component {
     
     state = {userId:'',item:[],error:'',isLoading:false,loadingColor:'#ffffff',pageNo:0,payment_orderId:''};
@@ -249,4 +250,4 @@ class PaymentReport extends Component {
     }
 }
  
-export default PaymentReport;
+export default withRouter(PaymentReport);

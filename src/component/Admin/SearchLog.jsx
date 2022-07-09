@@ -7,7 +7,7 @@ import  Header  from "../Header";
 //import { Link } from 'react-router-dom'
 //import { useHistory } from 'react-router-dom';
 //import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
+import { withRouter } from 'react-router-dom';
 import ClipLoader from "react-spinners/ClipLoader";
 class SearchLog extends Component {
     
@@ -155,4 +155,4 @@ class SearchLog extends Component {
     }
 }
  
-export default SearchLog;
+export default withRouter(SearchLog);
