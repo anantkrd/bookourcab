@@ -5,7 +5,7 @@ import { Button,Table } from 'react-bootstrap';
 import Form from 'react-bootstrap/Form'
 import  Header  from "./Header";
 import  Footer  from "./Footer";
-
+import { Link,withRouter } from 'react-router-dom'
 import axios from "axios";
 class ConfirmBooking extends Component {
     //state = {  }
@@ -24,7 +24,7 @@ class ConfirmBooking extends Component {
     dropCity:'',dropDistrict:'',dropState:'' };
     constructor(props) {
         super(props);    
-        //console.log("++pickup**********==="+JSON.stringify(this.props));    
+        console.log("++Data**********==="+JSON.stringify(this.props));    
       }
     
       componentDidMount() {
@@ -331,4 +331,4 @@ class ConfirmBooking extends Component {
     }
 }
  
-export default ConfirmBooking;
+export default withRouter(ConfirmBooking);
