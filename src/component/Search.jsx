@@ -17,10 +17,10 @@ class Search extends Component {
         super(props);        
       }
     
-      componentDidMount() {
+      componentDidMount(props) {
           this.setState({isLoading:true});
         console.log("++pickup**********==="+JSON.stringify(this.props));
-        console.log("useParams()==="+JSON.stringify(this.props.match));
+        console.log("useParams()==="+JSON.stringify(props));
         let JsonObj=JSON.parse(this.props.match.params.data)
 
         let pickupPlace=JsonObj['pickupPlace'];
