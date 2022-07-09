@@ -175,4 +175,4 @@ class Search extends Component {
     }
 }
  
-export default Search;
+export default withRouter(Search);

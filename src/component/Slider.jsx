@@ -9,6 +9,7 @@ import GooglePlacesAutocomplete from 'react-google-places-autocomplete';
 import { geocodeByPlaceId } from 'react-google-places-autocomplete';
 import { compareAsc, format } from 'date-fns'
 import { useHistory } from "react-router-dom";
+import { Link,withRouter } from 'react-router-dom'
 import { getDistance,getPreciseDistance } from 'geolib';
 import timespan from 'jsonwebtoken/lib/timespan';
 
@@ -367,4 +368,4 @@ class Slider extends Component {
     }
 }
  
-export default Slider;
+export default withRouter(Slider);
