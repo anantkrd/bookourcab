@@ -29,14 +29,14 @@ class Plans extends Component {
           .then(results => results.json())
           .then(res => {
             if(res.code==200){
-                console.log("--------***-----"+JSON.stringify(res.data));
+                //console.log("--------***-----"+JSON.stringify(res.data));
             }else{
               //ToastAndroid.show(res.message, ToastAndroid.SHORT);
             }
               //this.setState({loading:false});
           })
           .catch((error) => {
-            console.log("************"+error);
+            //console.log("************"+error);
           });
       }
     render() { 

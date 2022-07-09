@@ -25,18 +25,18 @@ class Home extends Component {
         this.setState({mobileNo:''});
         this.setState({otp:''});
         const currentState = this.state.isLoginShow;
-        console.log("val=="+currentState+"***");
+        
         this.setState({isLoginShow:!currentState});
     } 
     showRegister=(val)=>{
         this.setState({mobileNo:''});
         this.setState({otp:''});
         const currentState = this.state.isRegShow;
-        console.log("val=="+currentState+"***");
+        
         this.setState({isRegShow:!currentState});
     } 
     setMobile=(mobile)=>{
-        console.log("===="+mobile.target.value);
+        
         this.setState({mobileNo:mobile.target.value});
     }
     setOtp=(otp)=>{
@@ -62,7 +62,7 @@ class Home extends Component {
           const response = await fetch(global.config.apiUrl+'user/send_otp?'+urlData, { headers });
           
           const data = await response.json();
-          console.log("Data="+JSON.stringify(data));
+          
           if(data.code==200){
               //alert("Thank you, Your bokking is confimed");
               this.setState({isOtpSent:'Y'});
@@ -81,10 +81,10 @@ class Home extends Component {
           //let result = await axios.get(url);
          // console.log("+++response=="+JSON.stringify(response));
           const result = await response.json();
-          console.log("Data="+JSON.stringify(result));
+          
           if(result.code==200){
               let userObj=result.data[0];
-              console.log("userObj=="+JSON.stringify(userObj)+"==id="+userObj.id);
+              
                 localStorage.setItem("userId",userObj.id);
                 localStorage.setItem("firstName",userObj.firstName);
                 localStorage.setItem("lastName",userObj.lastName);
@@ -132,7 +132,7 @@ class Home extends Component {
           //let result = await axios.get(url);
          // console.log("+++response=="+JSON.stringify(response));
           const result = await response.json();
-          console.log("Data="+JSON.stringify(result));
+          
           if(result.code==200){              
             this.setState({error:'Register successfully'});  
             this.setState({userMobileNo:""});               
@@ -156,7 +156,7 @@ class Home extends Component {
         this.setState({email:email.target.value});
     }
     setUserMobileNo =(rmobile)=>{
-        console.log("herer"+rmobile.target.value);
+       
         this.setState({userMobileNo:rmobile.target.value});
     }
     render() { 

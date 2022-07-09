@@ -33,13 +33,13 @@ class BookingReport extends Component {
         //const headers = { 'Content-Type': 'application/json' } 
         let token=localStorage.getItem("token");
         let pageNo=this.state.pageNo+1;
-        console.log("token==="+token+"***userId**"+userId);
+        
         const headers = {'Authorization':`Bearer ${token}`} ;
           let urlData="&userId="+userId+"&pageId="+pageNo;
           const response = await fetch(global.config.apiUrl+'driver/get_payment_report?'+urlData, { headers });
-          //console.log("+++response=="+JSON.stringify(response))
+          
           const dataRes = await response.json();
-          console.log("Data="+JSON.stringify(dataRes));
+          
           
           if(dataRes.code==200){
               this.setState({item:dataRes.data});

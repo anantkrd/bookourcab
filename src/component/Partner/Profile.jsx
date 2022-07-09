@@ -22,17 +22,16 @@ class DriverProfile extends Component {
           this.setState({isLoading:true});      
        let userId=localStorage.getItem("userId");
        this.setState({userId:userId});
-        console.log("++userId**********-------------==="+userId);        
+                
         //this.setState({item:this.props.match.params.data});
         this.getProfile(userId);
       }
     
       showPopup(object){
-        console.log("Here confirm");
+        
         this.prePayment(object);
       }
     async getProfile(userId){
-        console.log("*****getBookigs******");   
         
         //const headers = { 'Content-Type': 'application/json' } 
         let token=localStorage.getItem("token");
@@ -40,14 +39,13 @@ class DriverProfile extends Component {
         const headers = {'Authorization':`Bearer ${token}`} ;
           let urlData="&userId="+userId+"&pageId="+pageNo;
           //const response = await fetch('http://localhost:3001/booking/getCabs?originObj='+originObj+'&destinationObj='+destinationObj, { headers });
-          console.log("urlData=="+urlData)
+          
           const response = await fetch(global.config.apiUrl+'user/get_user_byid?'+urlData, { headers });
           //console.log("+++response=="+JSON.stringify(response))
           const dataRes = await response.json();
-          console.log("Data="+JSON.stringify(dataRes));
-          
+                    
           if(dataRes.code==200){
-              console.log("Here")
+             
               this.setState({item:dataRes.data[0]});
           }else{              console.log("errorr")
               this.setState({error:'some internal error please try later'})
@@ -103,7 +101,7 @@ class DriverProfile extends Component {
             return;
         }
 
-        console.log("result==pay=="+resultpay);
+        
         this.setState({payment_orderId:resultpay.data.id,currency:resultpay.data.currency,receipt:resultpay.data.receipt});
         //console.log("payment_orderId==="+this.state.payment_orderId);
         // Getting the order details back
@@ -127,7 +125,7 @@ class DriverProfile extends Component {
                     razorpaySignature: response.razorpay_signature,
                     rawResponce:response
                 };
-                console.log("payment Responce=="+JSON.stringify(response));
+                
                 const result = await axios.post(global.config.apiUrl+"agent/success", data);
                 window.location.href="/ThankYou/"+this.state.item.bookingId;
                 alert(result.data.msg);

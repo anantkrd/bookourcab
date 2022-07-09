@@ -19,13 +19,13 @@ class Search extends Component {
     
       componentDidMount(props) {
           this.setState({isLoading:true});
-        console.log("++pickup**********==="+JSON.stringify(this.props));
-        console.log("useParams()==="+JSON.stringify(props));
+        //console.log("++pickup**********==="+JSON.stringify(this.props));
+        //console.log("useParams()==="+JSON.stringify(props));
         let JsonObj=JSON.parse(this.props.match.params.data)
 
         let pickupPlace=JsonObj['pickupPlace'];
         
-        console.log("here*********destinationDistObj***********"+JsonObj['destinationDistObj']);
+        //console.log("here*********destinationDistObj***********"+JsonObj['destinationDistObj']);
         let destinationPlace=JsonObj['destinationPlace'];
         let pickupTimeSelected=JsonObj['pickupTimeSelected'];
         let returnTimeSelected=JsonObj['returnTimeSelected'];
@@ -33,12 +33,11 @@ class Search extends Component {
         let destinationDistObj=JsonObj['destinationDistObj'];
         let mobileNo=JsonObj['mobileNo'];
        
-        console.log("pickupPlace=="+pickupPlace);
         let pickupLocation=pickupPlace.split(",");
         let destinationLocation=destinationPlace.split(",");
         let destinationLocationData=destinationPlace;
         let pickupLocationData=pickupPlace;
-        //console.log("pickupLocation=="+pickupLocation[0]);
+        
         let pickupCity=pickupPlace;
         let destinationCity=destinationPlace;
         let pickdateTime=pickupTimeSelected;
@@ -50,7 +49,7 @@ class Search extends Component {
         
         let originObj=pickupDistObj;
         let destinationObj=destinationDistObj;
-        //console.log("originLat="+originObj.lat);
+        
         let originLat=originObj.lat;        
         let originLng=originObj.lng;
         
@@ -75,7 +74,7 @@ class Search extends Component {
       }
       async  getCabs(originObj,destinationObj,pickupCity,destinationCity,pickdateTime,returnDateTime,mobileNo,pickupCityName,pickupDistrict,
         pickupState,dropCity,dropDistrict,dropState) {  
-        //console.log("***********");    
+          
         const headers = { 'Content-Type': 'application/json'}  
             var destinationObj=JSON.stringify(destinationObj); 
             var originObj=JSON.stringify(originObj);
@@ -84,20 +83,19 @@ class Search extends Component {
           //const response = await fetch('http://localhost:3001/booking/getCabs?originObj='+originObj+'&destinationObj='+destinationObj, { headers });
           const response = await fetch(global.config.apiUrl+'booking/getCabs?'+urlData, { headers });
           const data = await response.json();
-          //console.log("Data="+JSON.stringify(data));
+          
           this.setState({cabsList:data.data});
           
           this.setState({isLoading:false});
           /*let url="https://nd45kbm83l.execute-api.ap-south-1.amazonaws.com/v1/search-cabs?"+urlData;
           let result = await axios.get(url);
-            console.log(JSON.stringify(result.data.data));
+           
             this.setState({cabsList:result.data.data});*/
     }
     confirmBooking(data){
         //console.log("data==="+JSON.stringify(data));
         let dataObj=JSON.stringify(data);
-        console.log("dataObj=="+dataObj);
-        console.log("**************"+data.id);
+        
         window.location.href="/ConfirmBooking/"+dataObj;
     }
     render() { 

@@ -26,14 +26,13 @@ class Home extends Component {
         //const headers = { 'Content-Type': 'application/json' } 
         let token=localStorage.getItem("token");
         let pageNo=this.state.pageNo+1;
-        console.log("token==="+token+"***userId**"+userId);
+        
         const headers = {'Authorization':`Bearer ${token}`} ;
           let urlData="&userId="+userId+"&pageId="+pageNo;
           const response = await fetch(global.config.apiUrl+'driver/get_my_trip?'+urlData, { headers });
-          //console.log("+++response=="+JSON.stringify(response))
-          const dataRes = await response.json();
-          console.log("Data="+JSON.stringify(dataRes));
           
+          const dataRes = await response.json();
+                    
           if(dataRes.code==200){
               this.setState({item:dataRes.data});
           }else{              console.log("errorr")
@@ -49,35 +48,34 @@ class Home extends Component {
     showStartTrip=()=>{
         this.setState({startkm:0});
         const currentState = this.state.showStartTrip;
-        console.log("val=="+currentState+"***");
+        
         this.setState({showStartTrip:!currentState});
     }
     showEndTrip=()=>{
         this.setState({endkm:0});
         const currentState = this.state.showEndTrip;
-        console.log("val=="+currentState+"***");
+        
         this.setState({showEndTrip:!currentState});
     }
     setTripStart=(mobile)=>{
-        console.log("=======================")
+        
         this.setState({startkm:mobile.target.value})
     }
     setMobile=(mobile)=>{
-        console.log("=mobile==="+mobile.target.value);
+        
         this.setState({startkm:mobile.target.value})
     }
     saveStartKM=async()=>{
         let userId=localStorage.getItem("userId");
         let token=localStorage.getItem("token");
         let pageNo=this.state.pageNo+1;
-        console.log("token==="+token+"***userId**"+userId);
+        
         const headers = {'Authorization':`Bearer ${token}`} ;
           let urlData="&userId="+userId+"&pageId="+pageNo;
           const response = await fetch(global.config.apiUrl+'driver/start_trip?'+urlData, { headers });
-          //console.log("+++response=="+JSON.stringify(response))
-          const dataRes = await response.json();
-          console.log("Data="+JSON.stringify(dataRes));
           
+          const dataRes = await response.json();
+                    
           if(dataRes.code==200){
               this.setState({item:dataRes.data});
           }else{              console.log("errorr")
@@ -96,14 +94,13 @@ class Home extends Component {
         let userId=localStorage.getItem("userId");
         let token=localStorage.getItem("token");
         let pageNo=this.state.pageNo+1;
-        console.log("token==="+token+"***userId**"+userId);
+        
         const headers = {'Authorization':`Bearer ${token}`} ;
           let urlData="&userId="+userId+"&pageId="+pageNo;
           const response = await fetch(global.config.apiUrl+'driver/end_trip?'+urlData, { headers });
           //console.log("+++response=="+JSON.stringify(response))
           const dataRes = await response.json();
-          console.log("Data="+JSON.stringify(dataRes));
-          
+                    
           if(dataRes.code==200){
               this.setState({item:dataRes.data});
           }else{              console.log("errorr")

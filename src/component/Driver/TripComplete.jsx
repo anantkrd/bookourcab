@@ -20,7 +20,7 @@ class TripComplete extends Component {
     
       componentDidMount() {
         this.setState({isLoading:true});
-        console.log("details*********============***==="+JSON.stringify(this.props));
+        
         //this.setState({item:this.props.location.dataObj});
         this.setState({bookingId:this.props.match.params.bookingId});
         //this.setState({item:this.props.match.params.data});
@@ -34,11 +34,11 @@ class TripComplete extends Component {
         const headers = {'Authorization':`Bearer ${token}`} ;  
           let urlData="bookingId="+bookingId;
           //const response = await fetch('http://localhost:3001/booking/getCabs?originObj='+originObj+'&destinationObj='+destinationObj, { headers });
-          console.log("urlData=="+urlData)
+          
           const response = await fetch(global.config.apiUrl+'user/get_booking_details?'+urlData, { headers });
-          console.log("+++response=="+response)
+          
           const data = await response.json();
-          console.log("Data="+JSON.stringify(data));
+          
           if(data.code==='200'){
               this.setState({item:data.data[0]});
               this.setState({pickupDate:data.data[0].pickupDate});
@@ -54,14 +54,13 @@ class TripComplete extends Component {
         let userId=localStorage.getItem("userId");
         let token=localStorage.getItem("token");
         let pageNo=this.state.pageNo+1;
-        console.log("token==="+token+"***userId**"+userId);
+        
         const headers = {'Authorization':`Bearer ${token}`} ;
         let urlData="&userId="+userId+"&bookingId="+this.state.item.orderId;
           const response = await fetch(global.config.apiUrl+'driver/complete_trip?'+urlData, { headers });
           //console.log("+++response=="+JSON.stringify(response))
           const dataRes = await response.json();
-          console.log("Data="+JSON.stringify(dataRes));
-          
+                    
           if(dataRes.code==200){
              // this.setState({item:dataRes.data});
              this.setState({error:'Trip completed'});

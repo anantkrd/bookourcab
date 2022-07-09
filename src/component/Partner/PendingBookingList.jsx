@@ -27,21 +27,19 @@ class PendingBookingList extends Component {
       }
     
     async getBooking(userId){
-        //console.log("*****getBookigs******");   
-        
+                
         let token=localStorage.getItem("token");
         let pageNo=this.state.pageNo+1;
         const headers = {'Authorization':`Bearer ${token}`} ;
           let urlData="&userId="+userId+"&pageId="+pageNo;
           //const response = await fetch('http://localhost:3001/booking/getCabs?originObj='+originObj+'&destinationObj='+destinationObj, { headers });
-          //console.log("urlData=="+urlData)
-          const response = await fetch(global.config.apiUrl+'agent/get_my_bookings?'+urlData, { headers });
-          //console.log("+++response=="+JSON.stringify(response))
-          const dataRes = await response.json();
-          //console.log("Data="+JSON.stringify(dataRes));
           
+          const response = await fetch(global.config.apiUrl+'agent/get_my_bookings?'+urlData, { headers });
+          
+          const dataRes = await response.json();
+                    
           if(dataRes.code==200){
-              //console.log("Here")
+              
               this.setState({item:dataRes.data});
           }else{             
               this.setState({error:'some internal error please try later'})
@@ -53,24 +51,24 @@ class PendingBookingList extends Component {
     setShowCarDialog=(objectData)=>{
         this.setState({bookingId:objectData.orderId});
         const currentState = this.state.showCarDialog;
-        //console.log("val=="+currentState+"***");
+        
         this.setState({showCarDialog:!currentState});
     }
     setHideCarDialog=()=>{
         const currentState = this.state.showCarDialog;
-        //console.log("val=="+currentState+"***");
+        
         this.setState({showCarDialog:!currentState});
     }
     
     setShowDriverDialog=(objectData)=>{
         this.setState({bookingId:objectData.orderId});
         let currentState = this.state.showDriverDialog;
-        //console.log("val=="+currentState+"***");
+        
         this.setState({showDriverDialog:!currentState});
     }
     setHideDriverDialog=()=>{
         let currentState = this.state.showDriverDialog;
-        //console.log("val=="+currentState+"***");
+        
         this.setState({showDriverDialog:!currentState});
     }
     setCarNo=(carNo)=>{
@@ -83,12 +81,11 @@ class PendingBookingList extends Component {
         let token=localStorage.getItem("token");
         const headers = {'Authorization':`Bearer ${token}`} ;
           let urlData="&driverMobile="+this.state.driverMobile;
-          //console.log("urlData=="+urlData)
-          const response = await fetch(global.config.apiUrl+'agent/search_driver?'+urlData, { headers });
-          //console.log("+++response=="+JSON.stringify(response))
-          const dataRes = await response.json();
-          //console.log("Data="+JSON.stringify(dataRes));
           
+          const response = await fetch(global.config.apiUrl+'agent/search_driver?'+urlData, { headers });
+          
+          const dataRes = await response.json();
+                    
           if(dataRes.code==200){
               //console.log("Here")
               this.setState({driverData:dataRes.data});
@@ -104,14 +101,13 @@ class PendingBookingList extends Component {
         let token=localStorage.getItem("token");
         const headers = {'Authorization':`Bearer ${token}`} ;
           let urlData="&carno="+this.state.carNo;
-          //console.log("urlData=="+urlData)
+          
           const response = await fetch(global.config.apiUrl+'agent/search_car?'+urlData, { headers });
-          //console.log("+++response=="+JSON.stringify(response))
+          
           const dataRes = await response.json();
-          //console.log("Data="+JSON.stringify(dataRes));
           
           if(dataRes.code==200){
-              //console.log("Here")
+              
               this.setState({carData:dataRes.data});
           }else{              
               this.setState({error:'some internal error please try later'})
@@ -120,8 +116,6 @@ class PendingBookingList extends Component {
           this.setState({isLoading:false});
     }
     selectDriver=async(objectData)=>{
-        //console.log("Booiking id=="+this.state.bookingId);
-        //console.log(objectData);
         let token=localStorage.getItem("token");
         const headers = {'Authorization':`Bearer ${token}`} ;
         let driverName=objectData.firstName+" "+objectData.lastName;
@@ -134,7 +128,7 @@ class PendingBookingList extends Component {
             contactNo:this.state.email
         };
         const result = await axios.post(global.config.apiUrl+"agent/assign_booking_driver", data,{ headers });
-        //console.log("+++response=="+JSON.stringify(result));        
+              
         if(result.data.code==200){            
             this.setState({error:result.data.msg});
             this.setHideDriverDialog();            
@@ -147,8 +141,7 @@ class PendingBookingList extends Component {
     }
     
     selectCar=async(objectData)=>{
-       // console.log(objectData)
-        //console.log("Booiking id=="+this.state.bookingId);
+       
         let token=localStorage.getItem("token");
         const headers = {'Authorization':`Bearer ${token}`} ;
         const data = {

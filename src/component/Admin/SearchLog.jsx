@@ -21,7 +21,7 @@ class SearchLog extends Component {
         this.setState({isLoading:true});      
        let userId=localStorage.getItem("userId");
        this.setState({userId:userId});
-        console.log("++userId**********==="+userId);        
+        //console.log("++userId**********==="+userId);        
         //this.setState({item:this.props.match.params.data});
         this.getBookingLog(userId);
       }
@@ -34,11 +34,11 @@ class SearchLog extends Component {
         const headers = {'Authorization':`Bearer ${token}`} ;
           let urlData="&userId="+userId;
           //const response = await fetch('http://localhost:3001/booking/getCabs?originObj='+originObj+'&destinationObj='+destinationObj, { headers });
-          console.log("urlData=="+urlData)
+          //console.log("urlData=="+urlData)
           const response = await fetch(global.config.apiUrl+'user/get_search_log?'+urlData, { headers });
-          console.log("+++response=="+response)
+          //console.log("+++response=="+response)
           const data = await response.json();
-          console.log("Data="+JSON.stringify(data));
+          //console.log("Data="+JSON.stringify(data));
           if(data.code==200){
               this.setState({item:data.data});
           }else{

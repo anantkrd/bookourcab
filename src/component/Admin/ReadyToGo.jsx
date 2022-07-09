@@ -22,8 +22,7 @@ class ReadyToGo extends Component {
     componentDidMount() {    
           this.setState({isLoading:true});      
        let userId=localStorage.getItem("userId");
-       this.setState({userId:userId});
-        console.log("++userId**********==="+userId);        
+       this.setState({userId:userId});       
         //this.setState({item:this.props.match.params.data});
         this.getBooking(userId);
     }
@@ -36,11 +35,11 @@ class ReadyToGo extends Component {
         const headers = {'Authorization':`Bearer ${token}`} ;
           let urlData="&userId="+userId;
           //const response = await fetch('http://localhost:3001/booking/getCabs?originObj='+originObj+'&destinationObj='+destinationObj, { headers });
-          console.log("urlData=="+urlData)
+          //console.log("urlData=="+urlData)
           const response = await fetch(global.config.apiUrl+'admin/get_ready_booking?'+urlData, { headers });
-          console.log("+++response=="+response)
+          
           const data = await response.json();
-          console.log("Data="+JSON.stringify(data));
+          //console.log("Data="+JSON.stringify(data));
           if(data.code==200){
               this.setState({item:data.data});
           }else{
@@ -54,7 +53,7 @@ class ReadyToGo extends Component {
           //this.setState({cabsList:data.data});
     }
     showPopup(object){
-        console.log("Here ..."+JSON.stringify(object))
+        
         this.setState({agentAmont:0});
         this.setState({error:''});
         const currentState = this.state.show;
@@ -63,18 +62,18 @@ class ReadyToGo extends Component {
         this.setState({show:!currentState});
     }
     setAgentAmont=(amount)=>{
-        console.log("===="+amount.target.value);
+        //console.log("===="+amount.target.value);
         this.setState({agentAmont:amount.target.value});        
     }
     
     setShow=(val)=>{
         this.setState({agentAmont:0});
         const currentState = this.state.show;
-        console.log("val=="+currentState+"***");
+        //console.log("val=="+currentState+"***");
         this.setState({show:!currentState});
     }
     async addAgentPrice(bookingId){
-     console.log("here in add")   ;
+     //console.log("here in add")   ;
      if(this.state.agentAmont<1){
          this.setState({error:"amount must be >0"});
      }else{
@@ -83,11 +82,11 @@ class ReadyToGo extends Component {
         const headers = {'Authorization':`Bearer ${token}`} ;
           let urlData="&amount="+this.state.agentAmont+"&bookingId="+this.state.bookingId;
           //const response = await fetch('http://localhost:3001/booking/getCabs?originObj='+originObj+'&destinationObj='+destinationObj, { headers });
-          console.log("urlData=="+urlData)
+          
           const response = await fetch(global.config.apiUrl+'user/update_agent_amount?'+urlData, { headers });
-          console.log("+++response=="+response)
+          
           const data = await response.json();
-          console.log("Data="+JSON.stringify(data));
+          //console.log("Data="+JSON.stringify(data));
           if(data.code==200){
               this.setState({item:data.data});
               this.getBooking(this.state.userId);

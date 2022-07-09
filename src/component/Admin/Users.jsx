@@ -21,25 +21,25 @@ class History extends Component {
           
        let userId=localStorage.getItem("userId");
        this.setState({userId:userId});
-        console.log("++userId**********==="+userId);
+        //console.log("++userId**********==="+userId);
         
         //this.setState({item:this.props.match.params.data});
         this.getHistory(userId);
       }
     
     async getHistory(userId){
-        console.log("*****getHistory******");   
+        //console.log("*****getHistory******");   
         
         //const headers = { 'Content-Type': 'application/json' } 
         let token=localStorage.getItem("token");
         const headers = {'Authorization':`Bearer ${token}`} ;
           let urlData="&userId="+userId;
           //const response = await fetch('http://localhost:3001/booking/getCabs?originObj='+originObj+'&destinationObj='+destinationObj, { headers });
-          console.log("urlData=="+urlData)
+          
           const response = await fetch(global.config.apiUrl+'user/get_user_booking?'+urlData, { headers });
-          console.log("+++response=="+response)
+          
           const data = await response.json();
-          console.log("Data="+JSON.stringify(data));
+          
           if(data.code==200){
               this.setState({item:data.data});
           }else{

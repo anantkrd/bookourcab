@@ -20,12 +20,12 @@ class Login extends Component {
         if(userId>0){
             window.location.href="/Home";            
         }
-        console.log("++pickup**********==="+JSON.stringify(this.props.match.params.orderId));
+        
         this.setState({bookingId:this.props.match.params.orderId});
         //this.setState({item:this.props.match.params.data});
       }
     setMobile=(mobile)=>{
-        console.log("===="+mobile.target.value);
+        
         this.setState({mobileNo:mobile.target.value});
     }
     setOtp=(otp)=>{
@@ -52,7 +52,7 @@ class Login extends Component {
               let data=await res.json();
               console.log("data===="+data);*/
             let result = await axios.get("https://vsu8l5to11.execute-api.ap-south-1.amazonaws.com/v1/login");
-            console.log({ loading: false, products: result.data });
+            
           } catch (error) {
             console.log(error);
           }

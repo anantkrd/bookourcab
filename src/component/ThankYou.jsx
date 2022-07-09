@@ -27,7 +27,7 @@ class ThankYou extends Component {
     
       componentDidMount() {
           
-        console.log("++pickup**********==="+JSON.stringify(this.props.match.params.orderId));
+        //console.log("++pickup**********==="+JSON.stringify(this.props.match.params.orderId));
         this.setState({bookingId:this.props.match.params.orderId});
         //this.setState({item:this.props.match.params.data});
       }

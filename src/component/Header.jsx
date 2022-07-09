@@ -263,7 +263,7 @@ class Header extends Component {
             return (<ul>
                 <li className="nav-item"><a href="/Home" >Home</a></li>                                
                 <li><a href="#" onClick={this.setShow.bind(this.state.show)}><span>Sign In</span></a></li>
-                <li className="nav-item"><a href="/agent/Login" >Partner 1</a></li> 
+                <li className="nav-item"><a href="/agent/Login" >Partner</a></li> 
             </ul> );
         }
     }

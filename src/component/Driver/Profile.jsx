@@ -22,7 +22,7 @@ class Profile extends Component {
           this.setState({isLoading:true});      
        let userId=localStorage.getItem("userId");
        this.setState({userId:userId});
-        console.log("++userId**********-------------==="+userId);        
+              
         //this.setState({item:this.props.match.params.data});
         this.getProfile(userId);
       }
@@ -33,18 +33,17 @@ class Profile extends Component {
         //const headers = { 'Content-Type': 'application/json' } 
         let token=localStorage.getItem("token");
         let pageNo=this.state.pageNo+1;
-        console.log("token==="+token);
+        
         const headers = {'Authorization':`Bearer ${token}`} ;
           let urlData="&userId="+userId+"&pageId="+pageNo;
           //const response = await fetch('http://localhost:3001/booking/getCabs?originObj='+originObj+'&destinationObj='+destinationObj, { headers });
-          console.log("urlData=="+urlData)
+          
           const response = await fetch(global.config.apiUrl+'user/get_user_byid?'+urlData, { headers });
           //console.log("+++response=="+JSON.stringify(response))
           const dataRes = await response.json();
-          console.log("Data="+JSON.stringify(dataRes));
-          
+                    
           if(dataRes.code==200){
-              console.log("Here")
+              
               this.setState({item:dataRes.data[0]});
           }else{              console.log("errorr")
               this.setState({error:'some internal error please try later'})
@@ -60,7 +59,6 @@ class Profile extends Component {
             script.src = src;
             script.onload = () => {
                 resolve(true);
-
             };
             script.onerror = () => {
                 resolve(false);

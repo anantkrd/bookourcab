@@ -20,7 +20,7 @@ class BookingDetails extends Component {
     
       componentDidMount() {
         this.setState({isLoading:true});
-        //console.log("details**********==="+JSON.stringify(this.props));
+        
         //this.setState({item:this.props.location.dataObj});
         this.setState({bookingId:this.props.match.params.bookingId});
         //this.setState({item:this.props.match.params.data});
@@ -34,11 +34,11 @@ class BookingDetails extends Component {
         const headers = {'Authorization':`Bearer ${token}`} ;  
           let urlData="bookingId="+bookingId;
           //const response = await fetch('http://localhost:3001/booking/getCabs?originObj='+originObj+'&destinationObj='+destinationObj, { headers });
-          console.log("urlData=="+urlData)
+          
           const response = await fetch(global.config.apiUrl+'user/get_booking_details?'+urlData, { headers });
-          console.log("+++response=="+response)
+         
           const data = await response.json();
-          console.log("Data="+JSON.stringify(data));
+          
           if(data.code==='200'){
               this.setState({item:data.data[0]});
               this.setState({pickupDate:data.data[0].pickupDate});

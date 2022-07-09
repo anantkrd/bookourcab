@@ -22,18 +22,17 @@ class AddCar extends Component {
           this.setState({isLoading:true});      
        let userId=localStorage.getItem("userId");
        this.setState({userId:userId});
-        //console.log("++userId**********-------------==="+userId);        
+               
         //this.setState({item:this.props.match.params.data});
         this.getCars(userId);
       }
     
       showPopup(object){
-        console.log("Here confirm");
+        
         this.prePayment(object);
       }
     async getCars(userId){
-        console.log("*****get cars******");   
-        
+       
         //const headers = { 'Content-Type': 'application/json' } 
         let token=localStorage.getItem("token");
         let pageNo=this.state.pageNo+1;
@@ -45,7 +44,7 @@ class AddCar extends Component {
           //console.log("Data="+JSON.stringify(dataRes));
           
           if(dataRes.code==200){
-              console.log("Here")
+              
               this.setState({item:dataRes.data});
           }else{              console.log("errorr")
               //this.setState({error:'No data found'})
@@ -79,15 +78,13 @@ class AddCar extends Component {
         }
           let urlData="&userId="+this.state.userId+"&carModelNo="+this.state.carModelName+"&carNo="+this.state.carNo+"&carType="+this.state.carType+"&rcBook="+this.state.rcBook;
           //const response = await fetch('http://localhost:3001/booking/getCabs?originObj='+originObj+'&destinationObj='+destinationObj, { headers });
-          //console.log("urlData=="+urlData)
+          
           const response = await fetch(global.config.apiUrl+'agent/add_car?'+urlData, { headers });
-          //console.log("+++response=="+JSON.stringify(response))
+          
           const dataRes = await response.json();
-          console.log("Data="+JSON.stringify(dataRes));
           
           if(dataRes.code==200){
-              //console.log("Here")
-              //this.setState({item:dataRes.data});
+              
               this.setState({error:'Car added successfully'})
           }else{              console.log("errorr")
               this.setState({error:'some internal error please try later'})
@@ -96,7 +93,7 @@ class AddCar extends Component {
     }
     onInputHandler(e){
         const {name, value} = e.target;
-        console.log("name="+name+"***value="+value);
+       
        //this.setState({name: value});
   
     }
@@ -110,7 +107,7 @@ class AddCar extends Component {
         this.setState({carType:carType.target.value});
     }
     setRcBook =(rcBook)=>{
-        console.log("rcBook==="+rcBook.target.value);
+        
         this.setState({rcBook:rcBook.target.value});
     }
     render() { 

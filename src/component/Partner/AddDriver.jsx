@@ -19,20 +19,19 @@ class AddDriver extends Component {
       }
     
       componentDidMount() {    
-          this.setState({isLoading:true});      
+        this.setState({isLoading:true});      
        let userId=localStorage.getItem("userId");
        this.setState({userId:userId});
-        console.log("++userId**********-------------==="+userId);        
+             
         //this.setState({item:this.props.match.params.data});
         this.getBooking(userId);
       }
     
       showPopup(object){
-        console.log("Here confirm");
+        
         this.prePayment(object);
       }
     async getBooking(userId){
-        console.log("*****getBookigs******");   
         
         //const headers = { 'Content-Type': 'application/json' } 
         let token=localStorage.getItem("token");
@@ -40,14 +39,14 @@ class AddDriver extends Component {
         const headers = {'Authorization':`Bearer ${token}`} ;
           let urlData="&userId="+userId+"&pageId="+pageNo;
           //const response = await fetch('http://localhost:3001/booking/getCabs?originObj='+originObj+'&destinationObj='+destinationObj, { headers });
-          console.log("urlData=="+urlData)
+         
           const response = await fetch(global.config.apiUrl+'agent/get_drivers?'+urlData, { headers });
           //console.log("+++response=="+JSON.stringify(response))
           const dataRes = await response.json();
-          console.log("Data="+JSON.stringify(dataRes));
+          
           
           if(dataRes.code==200){
-              console.log("Here")
+              
               this.setState({item:dataRes.data});
           }else{              console.log("errorr")
               //this.setState({error:'some internal error please try later'})
@@ -85,7 +84,7 @@ class AddDriver extends Component {
         }
           let urlData="&userId="+this.state.userId+"&firstName="+this.state.firstName+"&lastName="+this.state.lastName+"&mobileNo="+this.state.mobileNo+"&email="+this.state.email+"&licenseNo="+this.state.licenseNo+"&licenseUrl="+this.state.licenseUrl;
           //const response = await fetch('http://localhost:3001/booking/getCabs?originObj='+originObj+'&destinationObj='+destinationObj, { headers });
-          //console.log("urlData=="+urlData)
+          
           //const response = await fetch('http://localhost:3001/agent/add_driver?'+urlData, { headers });
           const data = {
             userId: this.state.userId,
@@ -100,13 +99,10 @@ class AddDriver extends Component {
 
         const result = await axios.post(global.config.apiUrl+"agent/add_driver", data,{ headers });
 
-
-          console.log("+++response=="+JSON.stringify(result))
-          
           if(result.data.code==200){            
               this.setState({error:result.data.msg})
           }else{             
-               console.log("errorr")
+               
               this.setState({error:'some internal error please try later'})
           }          
           this.setState({isLoading:false});     

@@ -23,10 +23,9 @@ class History extends Component {
        let userId=localStorage.getItem("userId");
        let token=localStorage.getItem("token");
        this.setState({userId:userId});
-        //console.log("++userId**********==="+userId);
+        
         if(userId=="" || userId==null)
         {
-            //console.log("No user Found");
             window.location.href="/Home";
         }
         //this.setState({item:this.props.match.params.data});
@@ -34,7 +33,7 @@ class History extends Component {
       }
     
     async getHistory(userId){
-        //console.log("****---*getHistory******");   
+          
         let token=localStorage.getItem("token");
         const headers = {'Authorization':`Bearer ${token}`} ;
       // let headers["Authorization"] = `Bearer ${token}`;
@@ -43,9 +42,8 @@ class History extends Component {
           //console.log("urlData=="+urlData+"==headers="+JSON.stringify(headers));
           const response = await fetch(global.config.apiUrl+'user/get_user_booking?'+urlData, { headers });
 
-          //console.log("+++response=="+response)
           const data = await response.json();
-          //console.log("Data=*************************"+JSON.stringify(data));
+          
           if(data.code==200){
               this.setState({item:data.data});
           }else{

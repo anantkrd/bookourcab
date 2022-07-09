@@ -36,12 +36,11 @@ class BookingList extends Component {
         const headers = {'Authorization':`Bearer ${token}`} ;
           let urlData="&userId="+userId+"&pageId="+pageNo;
           //const response = await fetch('http://localhost:3001/booking/getCabs?originObj='+originObj+'&destinationObj='+destinationObj, { headers });
-          //console.log("urlData=="+urlData)
-          const response = await fetch(global.config.apiUrl+'agent/get_booking_agent?'+urlData, { headers });
-          //console.log("+++response=="+JSON.stringify(response))
-          const dataRes = await response.json();
-          //console.log("Data="+JSON.stringify(dataRes));
           
+          const response = await fetch(global.config.apiUrl+'agent/get_booking_agent?'+urlData, { headers });
+          
+          const dataRes = await response.json();
+                    
           if(dataRes.code==200){
               this.setState({item:dataRes.data});
           }else{              console.log("errorr")
@@ -105,7 +104,6 @@ class BookingList extends Component {
         const { amount, id, currency } = resultpay.data;
         this.payNow(advance,resultpay.data.id,resultpay.data.currency)
         return false;
-        
     }
     async payNow(advance,paymentid,currency){
         let bookingId=this.state.item.bookingId;

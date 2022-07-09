@@ -24,7 +24,7 @@ class ConfirmBooking extends Component {
     dropCity:'',dropDistrict:'',dropState:'' };
     constructor(props) {
         super(props);    
-        console.log("++Data**********==="+JSON.stringify(this.props));    
+        //console.log("++Data**********==="+JSON.stringify(this.props));    
       }
     
       componentDidMount() {
@@ -34,19 +34,19 @@ class ConfirmBooking extends Component {
             dataObjRes=localStorage.getItem("dataObj");
             
             dataObjRes=JSON.parse(dataObjRes);
-            console.log("++pickup**********==="+JSON.stringify(dataObjRes));
+            //console.log("++pickup**********==="+JSON.stringify(dataObjRes));
             this.setState({item:dataObjRes});
         }else{
             dataObjRes=this.props.location.dataObj;
             localStorage.setItem("dataObj",JSON.stringify(dataObjRes));
-            console.log("++pickup**********==="+JSON.stringify(dataObjRes));
+            
             this.setState({item:dataObjRes});
         }
         
         //this.setState({item:this.props.location.dataObj});
         this.setState({pickupCity:dataObjRes.pickupCity});
         var bookingAmt=Math.round((dataObjRes.finalAmount*25)/100);
-        console.log("bookingAmt==========="+dataObjRes.finalAmount);
+        
         this.setState({bookingAmount:bookingAmt});
         //this.setState({item:this.props.match.params.data});
         this.prePayment();
@@ -102,7 +102,7 @@ class ConfirmBooking extends Component {
             return;
         }
 
-        console.log("result==pay=="+resultpay);
+        
         this.setState({payment_orderId:resultpay.data.id,currency:resultpay.data.currency,receipt:resultpay.data.receipt});
         //console.log("payment_orderId==="+this.state.payment_orderId);
         // Getting the order details back
@@ -118,7 +118,7 @@ class ConfirmBooking extends Component {
             razorpaySignature: '',
             rawResponce:''
         };
-        console.log("payment Responce=="+JSON.stringify(data));
+        
         const result = await axios.post(global.config.apiUrl+"booking/success", data);
     }
     async payNow(){
@@ -138,7 +138,7 @@ class ConfirmBooking extends Component {
                     razorpaySignature: response.razorpay_signature,
                     rawResponce:response
                 };
-                console.log("payment Responce=="+JSON.stringify(response)+"-====bookingId=="+bookingId);
+                
                 const result = await axios.post(global.config.apiUrl+"booking/success", data);
                 window.location.href="/ThankYou/"+bookingId;
                 alert(result.data.msg);
@@ -168,17 +168,15 @@ class ConfirmBooking extends Component {
             returnDate='';
             isReturn='N';
         }
-        console.log("payment_orderId==="+this.state.payment_orderId);
-        //return false;
         
           let urlData="&fname="+this.state.firstName+"&lname="+this.state.lastName+"&email="+this.state.email+"&cabId="+this.state.item.id+"&pickup="+this.state.item.pickupCity+"&destination="+this.state.item.destinationCity+"&pickupDate="+this.state.item.pickupDate+"&returnDate="+returnDate+"&isReturn="+isReturn+"&pickupLat="+this.state.item.originlat+"&pickupLong="+this.state.item.originlng+"&destinationLat="+this.state.item.destinationlat+"&destinationLong="+this.state.item.destinationlng+"&distance="+this.state.item.distance+"&journyTime="+this.state.item.journyTime+"&cabType="+this.state.item.cabType+"&ac="+this.state.item.ac+"&bags="+this.state.item.bags+"&cars="+this.state.item.cars+"&capacity="+this.state.item.capacity+"&note="+this.state.item.note+"&rate="+this.state.item.rate+"&amount="+this.state.item.amount+"&discountAmount="+this.state.item.discountAmount+"&finalAmount="+this.state.item.finalAmount+"&mobileNo="+this.state.item.mobileNo+"&bookingId="+this.state.item.bookingId
           +"&payment_orderId="+this.state.payment_orderId+"&pickupCityName="+this.state.item.pickupCityName+"&pickupDistrict="+this.state.item.pickupDistrict+"&pickupState="+this.state.item.pickupState+"&dropCityName="+this.state.item.dropCityName+"&dropDistrict="+this.state.item.dropDistrict+"&dropState="+this.state.item.dropState;
           //const response = await fetch('http://localhost:3001/booking/getCabs?originObj='+originObj+'&destinationObj='+destinationObj, { headers });
-          console.log("urlData=="+urlData)
+          
           const response = await fetch(global.config.apiUrl+'booking/book_cab?'+urlData, { headers });
-          console.log("+++response=="+response)
+          
           const data = await response.json();
-          console.log("Data="+JSON.stringify(data));
+          
           if(data.code==200){
               //alert("Thank you, Your bokking is confimed");
               

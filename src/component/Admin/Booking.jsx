@@ -21,24 +21,24 @@ class Booking extends Component {
           this.setState({isLoading:true});      
        let userId=localStorage.getItem("userId");
        this.setState({userId:userId});
-        console.log("++userId**********==="+userId);        
+        //console.log("++userId**********==="+userId);        
         //this.setState({item:this.props.match.params.data});
         this.getBooking(userId);
       }
     
     async getBooking(userId){
-        console.log("*****getHistory******");   
+        //console.log("*****getHistory******");   
         
         //const headers = { 'Content-Type': 'application/json' } 
         let token=localStorage.getItem("token");
         let pageNo=this.state.pageNo+1;
         const headers = {'Authorization':`Bearer ${token}`} ;
           let urlData="&userId="+userId+"&pageId="+pageNo;
-          console.log("urlData=="+urlData)
+          //console.log("urlData=="+urlData)
           const response = await fetch(global.config.apiUrl+'user/get_booking?'+urlData, { headers });
-          console.log("+++response=="+response)
+          //console.log("+++response=="+response)
           const data = await response.json();
-          console.log("Data="+JSON.stringify(data));
+          //console.log("Data="+JSON.stringify(data));
           if(data.code==200){
               this.setState({item:data.data});
           }else{

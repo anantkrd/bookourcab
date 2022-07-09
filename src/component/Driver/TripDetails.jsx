@@ -21,7 +21,7 @@ class TripDetails extends Component {
     
       componentDidMount() {
         this.setState({isLoading:true});
-        console.log("details**********==="+JSON.stringify(this.props));
+        
         //this.setState({item:this.props.location.dataObj});
         this.setState({bookingId:this.props.match.params.bookingId});
         //this.setState({item:this.props.match.params.data});
@@ -35,11 +35,11 @@ class TripDetails extends Component {
         const headers = {'Authorization':`Bearer ${token}`} ;  
           let urlData="bookingId="+bookingId;
           //const response = await fetch('http://localhost:3001/booking/getCabs?originObj='+originObj+'&destinationObj='+destinationObj, { headers });
-          console.log("urlData=="+urlData)
+          
           const response = await fetch(global.config.apiUrl+'user/get_booking_details?'+urlData, { headers });
-          console.log("+++response=="+response)
+          
           const data = await response.json();
-          console.log("Data="+JSON.stringify(data));
+          
           if(data.code==='200'){
               this.setState({item:data.data[0]});
               this.setState({pickupDate:data.data[0].pickupDate});
@@ -57,17 +57,17 @@ class TripDetails extends Component {
     showStartTrip=()=>{
         this.setState({startkm:0});
         const currentState = this.state.showStartTrip;
-        console.log("val=="+currentState+"***");
+        
         this.setState({showStartTrip:!currentState});
     }
     showEndTrip=()=>{
         this.setState({endkm:0});
         const currentState = this.state.showEndTrip;
-        console.log("val=="+currentState+"***");
+        
         this.setState({showEndTrip:!currentState});
     }
     setTripStart=(mobile)=>{
-        console.log("=======================")
+        
         this.setState({startkm:mobile.target.value})
     }
     setMobile=(mobile)=>{
@@ -78,13 +78,12 @@ class TripDetails extends Component {
         let userId=localStorage.getItem("userId");
         let token=localStorage.getItem("token");
         let pageNo=this.state.pageNo+1;
-        console.log("token==="+token+"***userId**"+userId);
+        
         const headers = {'Authorization':`Bearer ${token}`} ;
           let urlData="&userId="+userId+"&bookingId="+this.state.item.orderId+"&startkm="+this.state.startkm;
           const response = await fetch(global.config.apiUrl+'driver/start_trip?'+urlData, { headers });
-          //console.log("+++response=="+JSON.stringify(response))
-          const dataRes = await response.json();
-          console.log("Data="+JSON.stringify(dataRes));
+          
+          const dataRes = await response.json();         
           
           if(dataRes.code==200){
             this.setState({error:'record updated'});
@@ -107,7 +106,7 @@ class TripDetails extends Component {
         let userId=localStorage.getItem("userId");
         let token=localStorage.getItem("token");
         let pageNo=this.state.pageNo+1;
-        console.log("token==="+token+"***userId**"+userId+"===endkm=="+this.state.endkm+"***startkm*"+this.state.item.startKm);
+        
         const headers = {'Authorization':`Bearer ${token}`} ;
         if(this.state.endkm<=this.state.item.startKm){
             this.setState({error:'Invalid values'});
@@ -115,42 +114,33 @@ class TripDetails extends Component {
         }
         let urlData="&userId="+userId+"&bookingId="+this.state.item.orderId+"&endkm="+this.state.endkm;
           const response = await fetch(global.config.apiUrl+'driver/end_trip?'+urlData, { headers });
-          //console.log("+++response=="+JSON.stringify(response))
-          const dataRes = await response.json();
-          console.log("Data="+JSON.stringify(dataRes));
           
+          const dataRes = await response.json();
           if(dataRes.code==200){
-             // this.setState({item:dataRes.data});
+             
              this.setState({error:'record updated'});
              this.geetDetails(this.props.match.params.bookingId);
              window.location.href="/driver/trip-complete/"+this.state.item.orderId;
           }else{              
               this.setState({error:'some internal error please try later'})
-          }
-          
-          this.setState({isLoading:false});
-        
+          }          
+          this.setState({isLoading:false});        
     }
     completeTript=async()=>{
         let userId=localStorage.getItem("userId");
         let token=localStorage.getItem("token");
         let pageNo=this.state.pageNo+1;
-        console.log("token==="+token+"***userId**"+userId);
+        
         const headers = {'Authorization':`Bearer ${token}`} ;
         let urlData="&userId="+userId+"&bookingId="+this.state.item.orderId;
-          const response = await fetch(global.config.apiUrl+'driver/complete_trip?'+urlData, { headers });
-          //console.log("+++response=="+JSON.stringify(response))
-          const dataRes = await response.json();
-          console.log("Data="+JSON.stringify(dataRes));
-          
-          if(dataRes.code==200){
-             // this.setState({item:dataRes.data});
+          const response = await fetch(global.config.apiUrl+'driver/complete_trip?'+urlData, { headers });          
+          const dataRes = await response.json();                    
+          if(dataRes.code==200){             
              this.setState({error:'Trip completed'});
              window.location.href="/driver/home";
           }else{              
               this.setState({error:'some internal error please try later'})
-          }
-          
+          }          
           this.setState({isLoading:false});
     }
     render() {  
