@@ -4,7 +4,7 @@ import { Button,Table } from 'react-bootstrap';
 import Slider from './Slider';
 import  Header  from "./Header";
 import  Footer  from "./Footer";
-import { Link } from 'react-router-dom'
+import { Link,withRouter } from 'react-router-dom'
 import { useHistory } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ClipLoader from "react-spinners/ClipLoader";
@@ -20,6 +20,7 @@ class Search extends Component {
       componentDidMount() {
           this.setState({isLoading:true});
         console.log("++pickup**********==="+JSON.stringify(this.props));
+        console.log("useParams()==="+JSON.stringify(this.props.match));
         let JsonObj=JSON.parse(this.props.match.params.data)
 
         let pickupPlace=JsonObj['pickupPlace'];
