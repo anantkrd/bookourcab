@@ -2307,6 +2307,11 @@ section {
 .react-datepicker-popper {
   width: 350px !important;
 }
+.bookingConfirmTabs .nav-tabs a {
+  width: 20%;
+  font-weight: 700;
+  text-align: center;
+}
 .nav-tabs a {
   width: 50%;
   font-weight: 700;
