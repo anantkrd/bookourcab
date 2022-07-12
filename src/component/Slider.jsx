@@ -12,7 +12,7 @@ import { useHistory } from "react-router-dom";
 import { Link,withRouter } from 'react-router-dom'
 import { getDistance,getPreciseDistance } from 'geolib';
 import timespan from 'jsonwebtoken/lib/timespan';
-
+import moment from 'moment';
 class Slider extends Component {
     state = { pickupTime:new Date(),returnTime:new Date(),pickupTimeSelected:new Date(),
       returnTimeSelected:new Date(),history:'',handleColor:'',pickupPlace:'',destinationPlace:'',pickupLatlng:{},destinationLatlng:{},
@@ -28,14 +28,37 @@ class Slider extends Component {
       };
       this.setState({handleColor:handleColor1});
       
-      
+      var new_date = moment(moment.now()).format("YYYY-MM-DD H:mm:ss");
+      var new_dateTime = moment(new_date).add(5, 'hours');
+      var new_dateTime1 = moment(new_dateTime).format("YYYY-MM-DD H:mm:ss");
+      console.log("new_date-="+new_date+"====new_dateTime==="+new_dateTime1);
+      //this.setState({pickupTime:new_dateTime1});
     }
    // const [value, onChange] = useState(new Date());
    onpickTimeChange=(date)=>{ 
     let picktime=date;
+    let timeNow=moment(moment.now()).format("YYYY-MM-DD H:mm:ss");
+    let timeOnly=moment(date).format("H:mm:ss");
+    console.log("timeOnly=="+timeOnly);
+    
+    let formattedDate=moment(date).format("YYYY-MM-DD H:mm:ss");
+    console.log(timeNow+"==pickdate ="+moment(date).format("YYYY-MM-DD H:mm:ss"));
+    let tripBookingBEforHours=moment(formattedDate).diff(moment(timeNow), 'hours');
+    let tripBookingBEforDays=moment(formattedDate).diff(moment(timeNow), 'days');
+    console.log("Diff="+moment(formattedDate).diff(moment(timeNow), 'hours'));
+    if(tripBookingBEforHours<=0 && timeOnly!='0:00:00'){
+      alert("Please select valid time");
+      this.setState({pickupTime:''});
+      return false;
+    }
+    if(tripBookingBEforHours>0 && tripBookingBEforHours<3 && timeOnly!='0:00:00'){
+      alert("Please plan your trip 2 Hours in advance");
+      this.setState({pickupTime:''});
+      return false;
+    }
     //picktime=format(date, 'yyyy-MM-dd  H:mm a');
     
-    picktime=date.toLocaleString('en-IN',{ hour12: false });
+    /*picktime=date.toLocaleString('en-IN',{ hour12: false });
     var dateNew = picktime.toLocaleString('en-US',{hour12:false}).split(" ");
     var time = dateNew[1];
     var mdy = dateNew[0];
@@ -43,8 +66,8 @@ class Slider extends Component {
     var month = parseInt(mdy[1]);
     var day = parseInt(mdy[0]);
     var year = parseInt(mdy[2]);
-    var formattedDate = year + '-' + month + '-' + day + ' ' + time;
-    
+    var formattedDate = year + '-' + month + '-' + day + ' ' + time;*/
+    console.log("pickupTimeSelected=="+formattedDate);
     this.setState({pickupTimeSelected:formattedDate});
     //console.log("picktime=="+picktime);
      this.setState({pickupTime:date});
@@ -53,7 +76,8 @@ class Slider extends Component {
     this.setState({returnTime:date});
     //let dateNew=Moment(date).format('YYYY-MM-DD HH:MM:SS');
     // console.log("dateNew=="+dateNew);
-    let returnTime=date.toLocaleString('en-IN',{ hour12: false });
+    let formattedDate=moment(date).format("YYYY-MM-DD H:mm:ss");
+    /*let returnTime=date.toLocaleString('en-IN',{ hour12: false });
     var dateNew = returnTime.toLocaleString('en-US',{hour12:false}).split(" ");
     var time = dateNew[1];
     var mdy = dateNew[0];
@@ -61,8 +85,8 @@ class Slider extends Component {
     var month = parseInt(mdy[1]);
     var day = parseInt(mdy[0]);
     var year = parseInt(mdy[2]);
-    var formattedDate = year + '-' + month + '-' + day + ' ' + time;
-    
+    var formattedDate = year + '-' + month + '-' + day + ' ' + time;*/
+    //console.log("returnTimeSelected=="+formattedDate);
     this.setState({returnTimeSelected:formattedDate});
   }
   searchCabs=()=>{

@@ -118,7 +118,16 @@ class Search extends Component {
                 <ClipLoader color={this.state.loadingColor} loading={this.state.isLoading}  size={150} css={override} />
                 <div> 
                 <section id="pricing" className="pricing">
-
+                <div className="container align-items-center" data-aos="fade-up" style={{width:'95%!important',backgroundColor: 'white',padding:16}}>
+                    <div className="row">
+                        <div className="col-md-6">Pickup: {this.state.pickup}</div>
+                        <div className="col-md-6">Drop: {this.state.destination}</div>
+                    </div>
+                    <div className="row">
+                        <div className="col-md-6">Pickup Time: {this.state.pickdate}</div>
+                        <div className="col-md-6">Return Time: {this.state.returnDate}</div>
+                    </div>
+                </div>
                     <div className="container" data-aos="fade-up" style={{width:'95%!important'}}>
                         
                         <div className="row">   
@@ -141,7 +150,7 @@ class Search extends Component {
                                         <Card.Text style={{fontSize:13,color:'gray'}}>
                                         {item['cars'].substring(0,50)}
                                         </Card.Text>
-                                        <div className="col-12" style={{fontSize:13,color:'gray',padding:0}}>{item['distance']}KM {item['journyTime']}</div>
+                                        <div className="col-12" style={{fontSize:13,color:'gray',padding:0}}>Up To: {item['distance']}KM {item['journyTime']} Approx</div>
                                         <div className="row">
                                             <div className="col-5" style={{padding: "4px",fontSize: 12, textAlign: "left",fontWeight:700}}><i className="fa fa-inr" aria-hidden="true"></i><span>{item['finalAmount']}</span>  <span style={{color:'gray',textDecoration:'line-through'}}> {item['amount']}</span></div>
                                             <div className="col-3" style={{padding: "4px",fontSize: 12, textAlign: "center"}}>{item['cabType']}</div>

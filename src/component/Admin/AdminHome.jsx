@@ -21,13 +21,13 @@ class AdminHome extends Component {
        let userId=localStorage.getItem("userId");
        this.setState({userId:userId});
        this.setState({pageId:0});
-        console.log("++userId**********==="+userId);        
+        //console.log("++userId**********==="+userId);        
         //this.setState({item:this.props.match.params.data});
         this.getBooking(userId,1);
     }
     
     async getBooking(userId,pageId){
-        console.log("*****get admin home******");   
+        //console.log("*****get admin home******");   
         
         //const headers = { 'Content-Type': 'application/json' } 
         let token=localStorage.getItem("token");
@@ -37,9 +37,9 @@ class AdminHome extends Component {
           //const response = await fetch('http://localhost:3001/booking/getCabs?originObj='+originObj+'&destinationObj='+destinationObj, { headers });
           //console.log("urlData=="+urlData)
           const response = await fetch(global.config.apiUrl+'admin/get_booking_admin?'+urlData, { headers });
-          console.log("+++response=="+response)
+          //console.log("+++response=="+response)
           const data = await response.json();
-          console.log("Data="+JSON.stringify(data));
+         // console.log("Data="+JSON.stringify(data));
           this.setState({totalPage:data.totalPage});
           this.setState({rowCount:data.rowCount});
           if(data.code==200){
@@ -55,7 +55,7 @@ class AdminHome extends Component {
           //this.setState({cabsList:data.data});
     }
     showPopup(object){
-        console.log("Here ..."+JSON.stringify(object))
+        //console.log("Here ..."+JSON.stringify(object))
         this.setState({agentAmont:0});
         this.setState({error:''});
         const currentState = this.state.show;
@@ -71,11 +71,11 @@ class AdminHome extends Component {
     setShow=(val)=>{
         this.setState({agentAmont:0});
         const currentState = this.state.show;
-        console.log("val=="+currentState+"***");
+        //console.log("val=="+currentState+"***");
         this.setState({show:!currentState});
     }
     async addAgentPrice(bookingId){
-     console.log("here in add")   ;
+     //console.log("here in add")   ;
      if(this.state.agentAmont<1){
          this.setState({error:"amount must be >0"});
      }else{
@@ -92,7 +92,7 @@ class AdminHome extends Component {
           if(data.code==200){
               //this.setState({item:data.data});
               const currentState = this.state.show;
-              console.log("val=="+currentState+"***");
+              //console.log("val=="+currentState+"***");
               this.setState({show:!currentState});
               this.getBooking(this.state.userId);
           }else{

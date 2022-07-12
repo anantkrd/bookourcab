@@ -387,7 +387,7 @@ h6 {
   align-items: flex-end;
   justify-content: center;
   position: absolute;
-  bottom: 40px;
+  
   top: 10px;
   left: 55px;
   right: 55px;
@@ -2306,6 +2306,11 @@ section {
 }
 .react-datepicker-popper {
   width: 350px !important;
+}
+.bookingConfirmTabs .nav-tabs a {
+  width: 20%;
+  font-weight: 700;
+  text-align: center;
 }
 .nav-tabs a {
   width: 50%;

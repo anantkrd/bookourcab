@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Card from 'react-bootstrap/Card'
-import { Button,Table } from 'react-bootstrap';
+import { Button,Table,Tabs,Tab } from 'react-bootstrap';
 
 import Form from 'react-bootstrap/Form'
 import  Header  from "./Header";
@@ -168,6 +168,18 @@ class ConfirmBooking extends Component {
             returnDate='';
             isReturn='N';
         }
+        if(this.state.firstName==""){
+            this.setState({error:'Please Enter First name'})
+            return false;
+        }        
+        if(this.state.lastName==""){
+            this.setState({error:'Please Enter Last name'})
+            return false;
+        }        
+        if(this.state.email==""){
+            this.setState({error:'Please Enter Email'})
+            return false;
+        }
         
           let urlData="&fname="+this.state.firstName+"&lname="+this.state.lastName+"&email="+this.state.email+"&cabId="+this.state.item.id+"&pickup="+this.state.item.pickupCity+"&destination="+this.state.item.destinationCity+"&pickupDate="+this.state.item.pickupDate+"&returnDate="+returnDate+"&isReturn="+isReturn+"&pickupLat="+this.state.item.originlat+"&pickupLong="+this.state.item.originlng+"&destinationLat="+this.state.item.destinationlat+"&destinationLong="+this.state.item.destinationlng+"&distance="+this.state.item.distance+"&journyTime="+this.state.item.journyTime+"&cabType="+this.state.item.cabType+"&ac="+this.state.item.ac+"&bags="+this.state.item.bags+"&cars="+this.state.item.cars+"&capacity="+this.state.item.capacity+"&note="+this.state.item.note+"&rate="+this.state.item.rate+"&amount="+this.state.item.amount+"&discountAmount="+this.state.item.discountAmount+"&finalAmount="+this.state.item.finalAmount+"&mobileNo="+this.state.item.mobileNo+"&bookingId="+this.state.item.bookingId
           +"&payment_orderId="+this.state.payment_orderId+"&pickupCityName="+this.state.item.pickupCityName+"&pickupDistrict="+this.state.item.pickupDistrict+"&pickupState="+this.state.item.pickupState+"&dropCityName="+this.state.item.dropCityName+"&dropDistrict="+this.state.item.dropDistrict+"&dropState="+this.state.item.dropState;
@@ -176,7 +188,7 @@ class ConfirmBooking extends Component {
           const response = await fetch(global.config.apiUrl+'booking/book_cab?'+urlData, { headers });
           
           const data = await response.json();
-          
+          console.log("data=="+JSON.stringify(data));
           if(data.code==200){
               //alert("Thank you, Your bokking is confimed");
               
@@ -315,6 +327,27 @@ class ConfirmBooking extends Component {
                                         </Card.Body>
                                     </Card>
                             </div>
+                        </div>
+                        <div className="bookingConfirmTabs">
+                            <Tabs defaultActiveKey="tnc" id="uncontrolled-tab-example" className="mb-12">
+                                <Tab eventKey="includes" title="Includes">
+                                    
+                                </Tab>
+                                <Tab eventKey="excludes" title="Excludes">
+                                    
+                                </Tab>
+                                <Tab eventKey="tnc" title="T&C">
+                                    <div style={{backgroundColor:'white',padding:5}}>
+                                        <ul style={{textAlign:'justify'}}>
+                                            <li>Your Trip has a KM limit. If your usage exceeds this limit, you will be charged for the excess KM used.</li>
+                                            <li>We promote cleaner fuel and thus your cab can be a CNG vehicle. The driver may need to fill CNG once or more during your trip. Please cooperate with the driver.</li>
+                                            <li>For driving between 10:00 pm to 6:00 am on any of the nights, an additional allowance will be applicable and is to be paid to the driver.</li>
+                                            <li>Your trip includes one pick up in Pick-up city and one drop to destination city. It does not include within city travel.</li>
+                                            <li>If your Trip has Hill climbs, cab AC may be switched off during such climbs.</li>
+                                        </ul>
+                                    </div>
+                                </Tab>
+                            </Tabs>
                         </div>
 
                     </div>
