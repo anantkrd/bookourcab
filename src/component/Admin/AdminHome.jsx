@@ -214,7 +214,7 @@ class AdminHome extends Component {
                                             <Table striped bordered hover responsive>
                                                 <thead>
                                                     <tr>
-                                                    <th>BookingId</th>
+                                                    <th>BookingId.</th>
                                                     <th>Name </th>
                                                     <th>Pickup</th>
                                                     <th>Destination</th>
