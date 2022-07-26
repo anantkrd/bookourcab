@@ -257,7 +257,7 @@ class AdminHome extends Component {
                                                                 </td>
                                                                 <td>{object.finalAmount}</td>
                                                                 <td>{object.paid}</td>
-                                                                <td>
+                                                                <td> okok
                                                                     {object.agentPrice>0?<div className="row" style={{color:"red",fontSize:14}}>
                                                                         {object.agentPrice}
                                                                         <div className="col-12" style={{paddingTop:5}}>
@@ -273,7 +273,7 @@ class AdminHome extends Component {
                                                                         </div>
                                                                     </div>}
                                                                     {object.agentId<=0?<div className="row" style={{color:"red",fontSize:14}}>
-                                                                        {object.agentId}
+                                                                       
                                                                         <div className="col-12" style={{paddingTop:5}}>
                                                                             <Button style={{float:'right'}} size="sm" variant="primary" type="button" onClick={this.setShowAgentPopup.bind(this,object)}>
                                                                                 Add Agent
