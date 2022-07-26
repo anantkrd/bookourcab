@@ -214,7 +214,7 @@ class AdminHome extends Component {
                                             <Table striped bordered hover responsive>
                                                 <thead>
                                                     <tr>
-                                                    <th>BookingId.</th>
+                                                    <th>BookingId</th>
                                                     <th>Name </th>
                                                     <th>Pickup</th>
                                                     <th>Destination</th>
@@ -257,7 +257,7 @@ class AdminHome extends Component {
                                                                 </td>
                                                                 <td>{object.finalAmount}</td>
                                                                 <td>{object.paid}</td>
-                                                                <td> okok
+                                                                <td> check
                                                                     {object.agentPrice>0?<div className="row" style={{color:"red",fontSize:14}}>
                                                                         {object.agentPrice}
                                                                         <div className="col-12" style={{paddingTop:5}}>
