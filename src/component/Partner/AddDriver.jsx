@@ -12,7 +12,7 @@ import axios from "axios";
 import { withRouter } from 'react-router-dom';
 class AddDriver extends Component {
     
-    state = {userId:'',item:[],error:'',isLoading:false,loadingColor:'#ffffff',pageNo:0,firstName:'',lastName:'',mobileNo:'',email:'',licenseNo:'',licenseUrl:''};
+    state = {userId:'',item:[],error:'',isLoading:false,loadingColor:'#ffffff',pageNo:0,firstName:'',lastName:'',mobileNo:'',email:'',licenseNo:'',licenseUrl:'',licenseFile:''};
     constructor(props) {
         super(props);    
         //console.log("++pickup**********==="+JSON.stringify(this.props));    
@@ -24,14 +24,14 @@ class AddDriver extends Component {
        this.setState({userId:userId});
              
         //this.setState({item:this.props.match.params.data});
-        this.getBooking(userId);
+        this.getDrivers(userId);
       }
     
       showPopup(object){
         
         this.prePayment(object);
       }
-    async getBooking(userId){
+    async getDrivers(userId){
         
         //const headers = { 'Content-Type': 'application/json' } 
         let token=localStorage.getItem("token");
@@ -100,7 +100,8 @@ class AddDriver extends Component {
         const result = await axios.post(global.config.apiUrl+"agent/add_driver", data,{ headers });
 
           if(result.data.code==200){            
-              this.setState({error:result.data.msg})
+              this.setState({error:result.data.msg});
+              this.getDrivers(this.state.userId);
           }else{             
                
               this.setState({error:'some internal error please try later'})
@@ -123,8 +124,33 @@ class AddDriver extends Component {
     setLicenseNo =(licenseNo)=>{
         this.setState({licenseNo:licenseNo.target.value});
     }
-    setLicenseUrl =(licenseUrl)=>{
-        this.setState({licenseUrl:licenseUrl.target.value});
+    setLicenseUrl =async(event)=>{
+        this.setState({error:""});
+        
+        console.log("File Details=="+JSON.stringify(event.target.files[0]));
+        console.log("size=="+event.target.files[0].size);
+        if(event.target.files[0].size>512000){
+            this.setState({error:"Max file size allowed 500KB"});
+            return false;
+        }
+        this.setState({licenseFile:event.target.files[0]});
+
+    }
+    UploadImage =async (event) => {
+        console.log("licenseFile==="+this.state.licenseFile.name);
+        event.preventDefault()
+        const formData = new FormData();
+        formData.append("licenseIamge", this.state.licenseFile);
+        /*try {
+          const response = await axios({
+            method: "post",
+            url: "/api/upload/file",
+            data: formData,
+            headers: { "Content-Type": "multipart/form-data" },
+          });
+        } catch(error) {
+          console.log(error)
+        }*/
     }
     render() { 
         const override =`
@@ -200,6 +226,10 @@ class AddDriver extends Component {
                                                     <Form.Group controlId="formBasicEmail" >
                                                         <Form.Label>License<spam style={{color:'red'}}>*</spam></Form.Label>
                                                         <Form.Control type="file" accept="image/*" placeholder="upload license" value={this.state.licenseUrl} onChange={this.setLicenseUrl} />                                                                                                        
+                                                        
+                                                        <Button variant="primary" type="button" onClick={this.UploadImage.bind(this)}>
+                                                            Upload Now
+                                                        </Button>
                                                     </Form.Group>
                                                 </div>
                                             </div>

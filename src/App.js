@@ -62,6 +62,9 @@ function App() {
         <Route exact path='/admin/ready' ><ReadyToGo/></Route>  
         <Route exact path='/admin/driverWaiting' ><WaitingForDriver/></Route>  
         <Route exact path='/admin/agentWaiting' ><WaitingForAgent/></Route>  
+        <Route exact path='/admin/AddCar' ><AddCar/></Route>   
+        <Route exact path='/admin/AddDriver' ><AddDriver/></Route>  
+
         <Route exact path='/BookingDetails/:bookingId' ><BookingDetails/></Route>  
         <Route exact path='/ConfirmBooking/:data' ><ConfirmBooking/></Route>  
         <Route exact path='/ThankYou/:orderId' ><ThankYou/></Route>  

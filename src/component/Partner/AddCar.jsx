@@ -85,7 +85,8 @@ class AddCar extends Component {
           
           if(dataRes.code==200){
               
-              this.setState({error:'Car added successfully'})
+              this.setState({error:'Car added successfully'});
+              this.getCars(this.state.userId);
           }else{              console.log("errorr")
               this.setState({error:'some internal error please try later'})
           }          

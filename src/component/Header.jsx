@@ -161,6 +161,15 @@ class Header extends Component {
                 <li className="nav-item"><a href="/admin/Home">Home</a></li>
                 <li className="nav-item dropdown">
                     <a className="dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    My Profile
+                    </a>
+                    <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a className="dropdown-item" href="/admin/AddCar">My Cars</a>
+                        <a className="dropdown-item" href="/admin/addDriver">My Driver</a>
+                    </div>
+                </li>   
+                <li className="nav-item dropdown">
+                    <a className="dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Booking
                     </a>
                     <div className="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -169,6 +178,10 @@ class Header extends Component {
                         <a className="dropdown-item" href="/admin/driverWaiting">Waiting for Driver</a>
                         <a className="dropdown-item" href="/admin/ready">Ready</a>
                         <a className="dropdown-item" href="/admin/completed">Completed</a>
+
+                        <a className="dropdown-item" href="/agent/myPendingBookings">My Pending</a>
+                        <a className="dropdown-item" href="/agent/myCompletedBookings">My Completed</a>
+                        
                     </div>
                 </li> 
                 <li className="nav-item dropdown">
@@ -208,7 +221,7 @@ class Header extends Component {
                     </a>
                     <div className="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a className="dropdown-item" href="/agent/profile">Profile</a>
-                        <a className="dropdown-item" href="/agent/AddCar">My Cabs</a>
+                        <a className="dropdown-item" href="/agent/AddCar">My Cars</a>
                         <a className="dropdown-item" href="/agent/addDriver">My Driver</a>
                     </div>
                 </li>           

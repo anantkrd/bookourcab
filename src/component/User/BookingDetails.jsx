@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import Card from 'react-bootstrap/Card'
-import { Button } from 'react-bootstrap';
-
+import Card from 'react-bootstrap/Card';
+import { Button,Table,Tabs,Tab } from 'react-bootstrap';
 //import Form from 'react-bootstrap/Form'
 import  Header  from "../Header";
 import  Footer  from "../Footer";
@@ -320,6 +319,41 @@ class BookingDetails extends Component {
                                             
                                         </Card.Body>
                                     </Card>
+                            </div>
+                            <div className="bookingConfirmTabs">
+                                <Tabs defaultActiveKey="tnc" id="uncontrolled-tab-example" className="mb-12">
+                                    <Tab eventKey="includes" title="Includes">
+                                        <div className="row">
+                                            <div className="col-4" style={{textAlign:'center',padding:20}}>
+                                                <i style={{padding:10,borderStyle:'ridge',borderRadius:'20%'}} class="fa fa-user-secret" aria-hidden="true"></i> Driver Allowance</div>
+                                            <div className="col-4" style={{textAlign:'center',padding:20}}>
+                                                <i style={{padding:10,borderStyle:'ridge',borderRadius:'20%'}} className="fa fa-inr" aria-hidden="true"></i> GST (5%)</div>
+                                            <div className="col-4" style={{textAlign:'center',padding:20}}>
+                                                <i style={{padding:10,borderStyle:'ridge',borderRadius:'20%'}} className="fa fa-road" aria-hidden="true"></i> {this.state.item.distance}Km Charges</div>
+                                        </div>
+                                    </Tab>
+                                    <Tab eventKey="excludes" title="Excludes">
+                                        <div className="row">
+                                            <div className="col-4" style={{textAlign:'center',padding:20}}>
+                                                <i style={{padding:10,borderStyle:'ridge',borderRadius:'20%'}} className="fa fa-inr" aria-hidden="true"></i> Toll / State tax</div>
+                                            <div className="col-4" style={{textAlign:'center',padding:20}}>
+                                                <i style={{padding:10,borderStyle:'ridge',borderRadius:'20%'}} className="fa fa-product-hunt" aria-hidden="true"></i> Parking</div>
+                                            <div className="col-4" style={{textAlign:'center',padding:20}}>
+                                                <i style={{padding:10,borderStyle:'ridge',borderRadius:'20%'}} className="fa fa-road" aria-hidden="true"></i> Pay ₹{this.state.item.rate}/km after {this.state.item.distance} km</div>
+                                        </div>
+                                    </Tab>
+                                    <Tab eventKey="tnc" title="T&C">
+                                        <div style={{backgroundColor:'white',padding:10}}>
+                                            <ul style={{textAlign:'justify'}}>
+                                                <li> <i class="fa fa-check-circle" aria-hidden="true"></i>Your Trip has a KM limit. If your usage exceeds this limit, you will be charged for the excess KM used.</li>
+                                                <li><i class="fa fa-check-circle" aria-hidden="true"></i>We promote cleaner fuel and thus your cab can be a CNG vehicle. The driver may need to fill CNG once or more during your trip. Please cooperate with the driver.</li>
+                                                <li><i class="fa fa-check-circle" aria-hidden="true"></i>For driving between 10:00 pm to 6:00 am on any of the nights, an additional allowance will be applicable and is to be paid to the driver.</li>
+                                                <li><i class="fa fa-check-circle" aria-hidden="true"></i>Your trip includes one pick up in Pick-up city and one drop to destination city. It does not include within city travel.</li>
+                                                <li><i class="fa fa-check-circle" aria-hidden="true"></i>If your Trip has Hill climbs, cab AC may be switched off during such climbs.</li>
+                                            </ul>
+                                        </div>
+                                    </Tab>
+                                </Tabs>
                             </div>
                         </div>
 
