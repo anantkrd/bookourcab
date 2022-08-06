@@ -17,6 +17,7 @@ import History from './component/User/History';
 import Booking from './component/Admin/Booking';
 import SearchLog from './component/Admin/SearchLog';
 
+import UserProfile from './component/User/Profile';
 
 import BookingDetails from './component/User/BookingDetails';
 import AdminHome from './component/Admin/AdminHome';
@@ -24,7 +25,6 @@ import Completed from './component/Admin/Completed';
 import ReadyToGo from './component/Admin/ReadyToGo';
 import WaitingForDriver from './component/Admin/WaitingForDriver';
 import WaitingForAgent from './component/Admin/WaitingForAgent';
-
 import Partner from './component/Partner/Home';
 import BookingList from './component/Partner/BookingList';
 import PendingBookingList from './component/Partner/PendingBookingList';
@@ -51,7 +51,8 @@ function App() {
         <Route exact path='/Plans'><Plans/></Route> 
         <Route exact path='/Servises'><Servises/></Route>  
         <Route exact path='/Login'><Login/></Route>  
-        <Route exact path='/History' ><History/></Route>         
+        <Route exact path='/History' ><History/></Route>   
+        <Route exact path='/Profile' ><UserProfile/></Route>      
         <Route exact path='/termCondition'><TermCondition/></Route>   
         <Route exact path='/privacyPolicy' ><PrivacyPolicy/></Route>   
         

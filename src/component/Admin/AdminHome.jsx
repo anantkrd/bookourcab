@@ -28,7 +28,6 @@ class AdminHome extends Component {
     }
     
     async getAgents(userId,pageId){
-        //console.log("*****get admin home******");   
         let token=localStorage.getItem("token");
         const headers = {'Authorization':`Bearer ${token}`} ;  
         let urlData="&userId="+userId+"&pageId="+pageId;
@@ -37,12 +36,9 @@ class AdminHome extends Component {
           const response = await fetch(global.config.apiUrl+'admin/get_agent?'+urlData, { headers });
         //const headers = { 'Content-Type': 'application/json' } 
         
-          //console.log("+++response=="+response)
           const data = await response.json();
-         // console.log("Data="+JSON.stringify(data));
           
           if(data.code==200){
-            console.log("Agent Data="+JSON.stringify(data.data));
               this.setState({agents:data.data});
           }else{
               if(data.code==200){
@@ -55,7 +51,6 @@ class AdminHome extends Component {
           //this.setState({cabsList:data.data});
     }
     async getBooking(userId,pageId=1){
-        //console.log("*****get admin home******");   
         
         //const headers = { 'Content-Type': 'application/json' } 
         let token=localStorage.getItem("token");
@@ -63,9 +58,9 @@ class AdminHome extends Component {
         
           let urlData="&userId="+userId+"&pageId="+pageId;
           //const response = await fetch('http://localhost:3001/booking/getCabs?originObj='+originObj+'&destinationObj='+destinationObj, { headers });
-          //console.log("urlData=="+urlData)
+          
           const response = await fetch(global.config.apiUrl+'admin/get_booking_admin?'+urlData, { headers });
-          //console.log("+++response=="+response)
+          
           const data = await response.json();
          // console.log("Data="+JSON.stringify(data));
           this.setState({totalPage:data.totalPage});
@@ -83,36 +78,30 @@ class AdminHome extends Component {
           //this.setState({cabsList:data.data});
     }
     showPopup(object){
-        //console.log("Here ..."+JSON.stringify(object))
         this.setState({agentAmont:0});
         this.setState({error:''});
         const currentState = this.state.show;
-        //console.log("val=="+currentState+"***");
         this.setState({bookingId:object.bookingId});
         this.setState({show:!currentState});
     }
     setAgentAmont=(amount)=>{
-        console.log("===="+amount.target.value);
         this.setState({agentAmont:amount.target.value});        
     }
     
     setShow=(val)=>{
         this.setState({agentAmont:0});
         const currentState = this.state.show;
-        //console.log("val=="+currentState+"***");
         this.setState({show:!currentState});
     }
     setShowAgentPopup=async(object)=>{        
         this.setState({agentId:0});
         const currentState = this.state.showAgent;
-        console.log("val=="+currentState+"***");
         this.setState({bookingId:object.bookingId});
         this.setState({showAgent:!currentState});
     }
     setShowAgent=async(object)=>{        
         this.setState({agentId:0});
         const currentState = this.state.showAgent;
-        console.log("val=="+currentState+"***");
         this.setState({showAgent:!currentState});
     }
     assignAgent=async(obj)=>{
@@ -120,13 +109,12 @@ class AdminHome extends Component {
         const headers = {'Authorization':`Bearer ${token}`} ;
         let urlData="&agentId="+this.state.agentId+"&bookingId="+this.state.bookingId;
         const response = await fetch(global.config.apiUrl+'admin/assign_agent?'+urlData, { headers });
-         // console.log("+++response=="+response)
+         
           const data = await response.json();
-          //console.log("Data="+JSON.stringify(data));
           if(data.code==200){
               //this.setState({item:data.data});
               const currentState = this.state.showAgent;
-              //console.log("val=="+currentState+"***");
+              
               this.setState({showAgent:!currentState});
               this.getBooking(this.state.userId,1);
           }else{
@@ -139,7 +127,7 @@ class AdminHome extends Component {
           this.setState({isLoading:false});
     }
     async addAgentPrice(bookingId){
-     //console.log("here in add")   ;
+     
      if(this.state.agentAmont<1){
          this.setState({error:"amount must be >0"});
      }else{
@@ -148,15 +136,15 @@ class AdminHome extends Component {
         const headers = {'Authorization':`Bearer ${token}`} ;
           let urlData="&amount="+this.state.agentAmont+"&bookingId="+this.state.bookingId;
           //const response = await fetch('http://localhost:3001/booking/getCabs?originObj='+originObj+'&destinationObj='+destinationObj, { headers });
-          //console.log("urlData=="+urlData)
+          
           const response = await fetch(global.config.apiUrl+'admin/update_agent_amount?'+urlData, { headers });
-         // console.log("+++response=="+response)
+         
           const data = await response.json();
-          //console.log("Data="+JSON.stringify(data));
+          
           if(data.code==200){
               //this.setState({item:data.data});
               const currentState = this.state.show;
-              //console.log("val=="+currentState+"***");
+              
               this.setState({show:!currentState});
               this.getBooking(this.state.userId,1);
           }else{
@@ -177,7 +165,7 @@ class AdminHome extends Component {
         this.getBooking(userId,pageId);
     }
     setAgentId=(id)=>{
-        console.log(this.state.bookingId+"Agent Id=="+id);
+       
         this.setState({agentId:id});
     }
     render() { 
@@ -257,7 +245,7 @@ class AdminHome extends Component {
                                                                 </td>
                                                                 <td>{object.finalAmount}</td>
                                                                 <td>{object.paid}</td>
-                                                                <td> check
+                                                                <td> 
                                                                     {object.agentPrice>0?<div className="row" style={{color:"red",fontSize:14}}>
                                                                         {object.agentPrice}
                                                                         <div className="col-12" style={{paddingTop:5}}>
@@ -382,7 +370,7 @@ class AdminHome extends Component {
                                                         <Form.Label>Select Norm Type</Form.Label>
                                                         <Form.Control as="select" value={this.state.agentId}
                                                             onChange={e => {
-                                                                console.log("e.target.value", e.target.value);
+                                                                //console.log("e.target.value", e.target.value);
                                                                 this.setAgentId(e.target.value);
                                                             }}
                                                             >

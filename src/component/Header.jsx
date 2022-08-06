@@ -11,7 +11,7 @@ import Form from 'react-bootstrap/Form'
 import { withRouter } from 'react-router-dom';
 class Header extends Component {
     state = { uid:'',userId:'', firstName:'',lastName:'',mobileNo:'',email:'',userType:'', show:false}
-    state = {item:[],id:'',bookingId:'',mobileNo:'',otp:'',isOtpSent:'N',error:''};
+    state = {item:[],id:'',bookingId:'',mobileNo:'',otp:'',isOtpSent:'N',error:'',userPassword:''};
     super(){
         this.setShow.bind(this);
     }
@@ -58,7 +58,48 @@ class Header extends Component {
     setOtp=(otp)=>{
         this.setState({otp:otp.target.value});
     }
+    setUserPassword=(obj)=>{
+        this.setState({userPassword:obj.target.value})
+    }
     
+    loginWithPassword=async()=>{
+        this.setState({error:''});
+        let urlData="&mobileNo="+this.state.mobileNo+"&userPassword="+this.state.userPassword;
+        const headers = { 'Content-Type': 'application/json' }  
+          //console.log("urlData=="+urlData);
+          let url=global.config.apiUrl+"v1/user_login?mobileNo="+this.state.mobileNo+"&userPassword="+this.state.userPassword;
+          const response = await fetch(global.config.apiUrl+'user/user_login?'+urlData, { headers });
+          //let result = await axios.get(url);
+         // console.log("+++response=="+JSON.stringify(response));
+          const result = await response.json();
+          console.log("Data="+JSON.stringify(result));
+          if(result.code==200){
+              let userObj=result.data[0];
+              console.log("userObj=="+JSON.stringify(userObj)+"==id="+userObj.id);
+                localStorage.setItem("userId",userObj.id);
+                localStorage.setItem("firstName",userObj.firstName);
+                localStorage.setItem("lastName",userObj.lastName);
+                localStorage.setItem("mobileNo",userObj.mobileNo);
+                localStorage.setItem("email",userObj.email);
+                localStorage.setItem("userType",userObj.userType);
+                localStorage.setItem("token",userObj.token);
+                if(userObj.userType=='agent'){
+                    window.location.href="agent/Home";
+                }else if(userObj.userType=='admin'){
+                    window.location.href="admin/Home";
+                }else if(userObj.userType=='driver'){
+                    window.location.href="driver/Home";
+                }else{
+                    window.location.href="/Home";
+                }
+                
+                //console.log("UserId:"+localStorage.getItem("userId"));
+                //window.location.href="/Home";
+          }else{
+            this.setState({isOtpSent:'N'});
+              this.setState({error:'user not found'})
+          }
+    }
     async sendOtp(){
         this.setState({error:''});
         let urlData="&mobileNo="+this.state.mobileNo;
@@ -200,6 +241,7 @@ class Header extends Component {
             return <ul>
                 <li className="nav-item"><a href="/Home">Home</a></li>
                 <li className="nav-item"><a href="/History">History</a></li>
+                <li className="nav-item"><a href="/Profile">Profile</a></li>
                                                  
                 <li><a href="#"onClick={this.signOut.bind(this)}><span>Sign Out</span></a></li>
             </ul>
@@ -313,11 +355,41 @@ class Header extends Component {
                                             <Card.Body>
                                                 <div className="col-lg-12 col-md-12" style={{color:'red'}}>{this.state.error}</div>
                                                 {
+                                                    <div >
+                                                        <div className="col-12">
+                                                            <Form.Group controlId="formBasicEmail" >
+                                                                <Form.Label>Mobile No</Form.Label>
+                                                                <Form.Control name="mobileNo" value={this.state.mobileNo} type="text" placeholder="Mobile No" onChange={this.setMobile} />
+                                                            </Form.Group>
+                                                        </div> 
+                                                        <div className="col-12">
+                                                            <Form.Group controlId="formBasicEmail" >
+                                                                <Form.Label>Password</Form.Label>
+                                                                <Form.Control name="userPassword" value={this.state.userPassword} type="password" placeholder="Paasword/Mobile No" onChange={this.setUserPassword} />
+                                                            </Form.Group>
+                                                        </div> 
+                                                        
+                                                        <div className="col-12">
+                                                            <Form.Group controlId="formBasicEmail" style={{float:'right'}}>
+                                                                <Button variant="primary" type="button" onClick={this.loginWithPassword.bind(this)}>
+                                                                   Login
+                                                                </Button>                                                                                                       
+                                                            </Form.Group>
+                                                        </div>
+                                                        
+                                                    </div>
+                                                /*
                                                     this.state.isOtpSent=='N'?<div >
                                                         <div className="col-12">
                                                             <Form.Group controlId="formBasicEmail" >
                                                                 <Form.Label>Mobile No</Form.Label>
                                                                 <Form.Control name="mobileNo" value={this.state.mobileNo} type="text" placeholder="Mobile No" onChange={this.setMobile} />
+                                                            </Form.Group>
+                                                        </div> 
+                                                        <div className="col-12">
+                                                            <Form.Group controlId="formBasicEmail" >
+                                                                <Form.Label>Password</Form.Label>
+                                                                <Form.Control name="userPassword" value={this.state.userPassword} type="password" placeholder="Paasword" onChange={this.setUserPassword} />
                                                             </Form.Group>
                                                         </div> 
                                                         <div className="col-12">
@@ -327,6 +399,7 @@ class Header extends Component {
                                                                 </Button>                                                                                                       
                                                             </Form.Group>
                                                         </div>
+                                                        
                                                     </div>:<div>
                                                         <div className="col-12">
                                                             <Form.Group controlId="formBasicEmail" >
@@ -342,7 +415,7 @@ class Header extends Component {
                                                                 </Button>                                                                                                       
                                                             </Form.Group>
                                                         </div>
-                                                    </div>
+                                                    </div>*/
                                                 }
                                                 
                                                 

@@ -125,11 +125,11 @@ class ConfirmBooking extends Component {
     async payNow(){
         let bookingId=this.state.item.bookingId;
         const options = {
-            key: "rzp_test_8KHr7ine3uj7uk", // Enter the Key ID generated from the Dashboard
+            key: global.config.paymentKey,//"rzp_test_8KHr7ine3uj7uk", // Enter the Key ID generated from the Dashboard
             amount: this.state.bookingAmount*100,
             currency: this.state.currency,
             name: this.state.firstName+" "+this.state.lastName,
-            description: "Test Transaction",
+            description: "Booking ID: "+bookingId,
             image: '',
             order_id: this.state.payment_orderId,
             handler: async function (response) {

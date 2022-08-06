@@ -10,7 +10,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ClipLoader from "react-spinners/ClipLoader";
 import axios from "axios";
 import { withRouter } from 'react-router-dom';
-class DriverProfile extends Component {
+class UserProfile extends Component {
     
     state = {userId:'',item:[],error:'',isLoading:false,loadingColor:'#ffffff',pageNo:0,mobileNo:'',firstName:''};
     constructor(props) {
@@ -115,7 +115,7 @@ class DriverProfile extends Component {
             key: global.config.paymentKey,//"rzp_test_8KHr7ine3uj7uk", // Enter the Key ID generated from the Dashboard
             amount: advance,
             currency: currency,
-            description: "Booking ID: "+paymentid,
+            description: "Booking ID: ",
             image: '',
             order_id: paymentid,
             handler: async function (response) {
@@ -292,4 +292,4 @@ class DriverProfile extends Component {
     }
 }
  
-export default withRouter(DriverProfile);
+export default withRouter(UserProfile);

@@ -108,7 +108,7 @@ class PaymentReport extends Component {
     }
     async payNow(advance,paymentid,currency){
         const options = {
-            key: "rzp_test_8KHr7ine3uj7uk", // Enter the Key ID generated from the Dashboard
+            key: global.config.paymentKey,//"rzp_test_8KHr7ine3uj7uk", // Enter the Key ID generated from the Dashboard
             amount: advance,
             currency: currency,
             description: "Test Transaction",
