@@ -187,9 +187,9 @@ class ConfirmBooking extends Component {
           //const response = await fetch('http://localhost:3001/booking/getCabs?originObj='+originObj+'&destinationObj='+destinationObj, { headers });
           
           const response = await fetch(global.config.apiUrl+'booking/book_cab?'+urlData, { headers });
-          
+          console.log("response:"+JSON.stringify(response));
           const data = await response.json();
-          console.log("data=="+JSON.stringify(data));
+          //console.log("data=="+JSON.stringify(data));
           if(data.code==200){
               //alert("Thank you, Your bokking is confimed");
               

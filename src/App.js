@@ -3,7 +3,7 @@ import './App.css';
 import { Route, Switch, BrowserRouter as Router } from "react-router-dom";
 import Header from './component/Header';
 import Home from './component/Home';
-//import AboutUs from './component/Home';
+import AboutUs from './component/AboutUs';
 import Plans from './component/Plans';
 import Servises from './component/Servises';
 import Search from './component/Search';
@@ -54,7 +54,9 @@ function App() {
         <Route exact path='/History' ><History/></Route>   
         <Route exact path='/Profile' ><UserProfile/></Route>      
         <Route exact path='/termCondition'><TermCondition/></Route>   
-        <Route exact path='/privacyPolicy' ><PrivacyPolicy/></Route>   
+        <Route exact path='/privacyPolicy' ><PrivacyPolicy/></Route>  
+        <Route exact path='/AboutUs' ><AboutUs/></Route>  
+         
         
 
         <Route exact path='/admin/Booking'><Booking/></Route>  

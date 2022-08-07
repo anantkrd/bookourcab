@@ -24,7 +24,7 @@ class Home extends Component {
                 <Slider/> 
                     
                 <div>
-                <section id="about-us" className="about-us">
+                    <section id="about-us" className="about-us">
                         <div className="container" data-aos="fade-up">                   
                             <div className="row content">
 
@@ -75,203 +75,31 @@ class Home extends Component {
                         </div>
                     </section>
                     
-                <section id="pricing" className="pricing">
-
-                    <div className="container" data-aos="fade-up">
-                        <div className="section-title">
-                                <h2>Regular Trips
-                                
-                                <span className="fa fa-envelope-open"></span>
-                                </h2>
-                                
-                            </div>
-                        <div className="row">                    
-                                    
-                                                
-                                    <div className="col-lg-4 col-md-4" style={{marginTop:20,paddingRight: 5,paddingLeft: 5}}>
-                                        
-                                        <Card>
-                                            <Card.Img variant="top" src="assets/img/ertiga1.png" style={{height:200}}/>
-                                            <Card.Body>
-                                                <Card.Title>Mumbai To Pune ..</Card.Title>
-                                                <div style={{color:'red'}}>
-                                                    <i className="fa fa-star" aria-hidden="true"></i>
-                                                    <i className="fa fa-star" aria-hidden="true"></i>
-                                                    <i className="fa fa-star" aria-hidden="true"></i>
-                                                    <i className="fa fa-star" aria-hidden="true"></i>
-                                                    <i className="fa fa-star-half-o" aria-hidden="true"></i>
-                                                </div>
-                                                <Card.Text>
-                                                Mumbia To Pune.
-                                                </Card.Text>
-                                                
-                                                <div className="row">
-                                                    <div className="col-3" style={{padding: "4px",fontSize: 12, textAlign: "center"}}><i className="fa fa-inr" aria-hidden="true"></i>***</div>
-                                                    <div className="col-3" style={{padding: "4px",fontSize: 12, textAlign: "center"}}>Luxury</div>
-                                                    <div className="col-6" style={{textAlign:"end"}}>
-                                                        <Button onClick={this.onClick} variant="primary" size='small' style={{padding: "4px",fontSize: 12, textAlign: "center"}}>Book Now</Button>
-                                                    </div>
-                                                </div>
-                                            </Card.Body>
-                                        </Card>                                   
-                                    </div> 
-                                    <div className="col-lg-4 col-md-4" style={{marginTop:20,paddingRight: 5,paddingLeft: 5}}>                                        
-                                        <Card>
-                                            <Card.Img variant="top" src="assets/img/innova2.png" style={{height:200}}/>
-                                            <Card.Body>
-                                                <Card.Title>Pune To Mumbai</Card.Title>
-                                                <div style={{color:'red'}}>
-                                                    <i className="fa fa-star" aria-hidden="true"></i>
-                                                    <i className="fa fa-star" aria-hidden="true"></i>
-                                                    <i className="fa fa-star" aria-hidden="true"></i>
-                                                    <i className="fa fa-star" aria-hidden="true"></i>
-                                                    <i className="fa fa-star-half-o" aria-hidden="true"></i>
-                                                </div>
-                                                <Card.Text>
-                                                Pune To Mumbai
-                                                </Card.Text>                                                
-                                                <div className="row">
-                                                    <div className="col-3" style={{padding: "4px",fontSize: 12, textAlign: "center"}}><i className="fa fa-inr" aria-hidden="true"></i>***</div>
-                                                    <div className="col-3" style={{padding: "4px",fontSize: 12, textAlign: "center"}}>Luxury</div>
-                                                    <div className="col-6" style={{textAlign:"end"}}>
-                                                        <Button onClick={this.onClick} variant="primary" size='small' style={{padding: "4px",fontSize: 12, textAlign: "center"}}>Book Now</Button>
-                                                    </div>
-                                                </div>
-                                            </Card.Body>
-                                        </Card>                                   
-                                    </div>  
-                                    <div className="col-lg-4 col-md-4" style={{marginTop:20,paddingRight: 5,paddingLeft: 5}}>                                        
-                                        <Card>
-                                            <Card.Img variant="top" src="assets/img/swft1.jpg" style={{height:200}} />
-                                            <Card.Body>
-                                                <Card.Title>Pune To Aurangabad</Card.Title>
-                                                <div style={{color:'red'}}>
-                                                    <i className="fa fa-star" aria-hidden="true"></i>
-                                                    <i className="fa fa-star" aria-hidden="true"></i>
-                                                    <i className="fa fa-star" aria-hidden="true"></i>
-                                                    <i className="fa fa-star" aria-hidden="true"></i>
-                                                    <i className="fa fa-star-half-o" aria-hidden="true"></i>
-                                                </div>
-                                                <Card.Text>
-                                                Pune To Aurangabad
-                                                </Card.Text>                                                
-                                                <div className="row">
-                                                    <div className="col-3" style={{padding: "4px",fontSize: 12, textAlign: "center"}}><i className="fa fa-inr" aria-hidden="true"></i>***</div>
-                                                    <div className="col-3" style={{padding: "4px",fontSize: 12, textAlign: "center"}}>Compact</div>
-                                                    <div className="col-6" style={{textAlign:"end"}}>
-                                                        <Button onClick={this.onClick} variant="primary" size='small' style={{padding: "4px",fontSize: 12, textAlign: "center"}}>Book Now</Button>
-                                                    </div>
-                                                </div>
-                                            </Card.Body>
-                                        </Card>                                   
-                                    </div>  
-                                    <div className="col-lg-4 col-md-4" style={{marginTop:20,paddingRight: 5,paddingLeft: 5}}>                                        
-                                        <Card >
-                                            <Card.Img variant="top" src="assets/img/innova2.png" style={{height:200}} />
-                                            <Card.Body>
-                                                <Card.Title>Mumbai To Auragabad</Card.Title>
-                                                <div style={{color:'red'}}>
-                                                    <i className="fa fa-star" aria-hidden="true"></i>
-                                                    <i className="fa fa-star" aria-hidden="true"></i>
-                                                    <i className="fa fa-star" aria-hidden="true"></i>
-                                                    <i className="fa fa-star" aria-hidden="true"></i>
-                                                    <i className="fa fa-star-half-o" aria-hidden="true"></i>
-                                                </div>
-                                                <Card.Text>
-                                                Mumbai To Auragabad
-                                                </Card.Text>                                                
-                                                <div className="row">
-                                                    <div className="col-3" style={{padding: "4px",fontSize: 12, textAlign: "center"}}><i className="fa fa-inr" aria-hidden="true"></i>***</div>
-                                                    <div className="col-3" style={{padding: "4px",fontSize: 12, textAlign: "center"}}>Luxury</div>
-                                                    <div className="col-6" style={{textAlign:"end"}}>
-                                                        <Button onClick={this.onClick} variant="primary" size='small' style={{padding: "4px",fontSize: 12, textAlign: "center"}}>Book Now</Button>
-                                                    </div>
-                                                </div>
-                                            </Card.Body>
-                                        </Card>                                   
-                                    </div>  
-                                    <div className="col-lg-4 col-md-4" style={{marginTop:20,paddingRight: 5,paddingLeft: 5}}>                                        
-                                        <Card >
-                                            <Card.Img variant="top" src="assets/img/swiftd1.png" style={{height:200}} />
-                                            <Card.Body>
-                                                <Card.Title>Mumbai To Surat</Card.Title>
-                                                <div style={{color:'red'}}>
-                                                    <i className="fa fa-star" aria-hidden="true"></i>
-                                                    <i className="fa fa-star" aria-hidden="true"></i>
-                                                    <i className="fa fa-star" aria-hidden="true"></i>
-                                                    <i className="fa fa-star" aria-hidden="true"></i>
-                                                    <i className="fa fa-star-half-o" aria-hidden="true"></i>
-                                                </div>
-                                                <Card.Text>
-                                                Mumbai To Surat
-                                                </Card.Text>                                                
-                                                <div className="row">
-                                                    <div className="col-3" style={{padding: "4px",fontSize: 12, textAlign: "center"}}><i className="fa fa-inr" aria-hidden="true"></i>
-                                                    ***</div>
-                                                    <div className="col-3" style={{padding: "4px",fontSize: 12, textAlign: "center"}}>Sedan</div>
-                                                    <div className="col-6" style={{textAlign:"end"}}>
-                                                        <Button onClick={this.onClick} variant="primary" size='small' style={{padding: "4px",fontSize: 12, textAlign: "center"}}>Book Now</Button>
-                                                    </div>
-                                                </div>
-                                            </Card.Body>
-                                        </Card>                                   
-                                    </div>  
-                                    <div className="col-lg-4 col-md-4" style={{marginTop:20,paddingRight: 5,paddingLeft: 5}}>                                        
-                                        <Card>
-                                            <Card.Img variant="top" src="assets/img/ertiga2.png"  style={{height:200}} />
-                                            <Card.Body>
-                                                <Card.Title>Mumbai To Bhopal</Card.Title>
-                                                <div style={{color:'red'}}>
-                                                    <i className="fa fa-star" aria-hidden="true"></i>
-                                                    <i className="fa fa-star" aria-hidden="true"></i>
-                                                    <i className="fa fa-star" aria-hidden="true"></i>
-                                                    <i className="fa fa-star" aria-hidden="true"></i>
-                                                    <i className="fa fa-star-half-o" aria-hidden="true"></i>
-                                                </div>
-                                                <Card.Text>
-                                                Mumbai To Bhopal
-                                                </Card.Text>                                                
-                                                <div className="row">
-                                                    <div className="col-3" style={{padding: "4px",fontSize: 12, textAlign: "center"}}><i className="fa fa-inr" aria-hidden="true"></i>****</div>
-                                                    <div className="col-3" style={{padding: "4px",fontSize: 12, textAlign: "center"}}>Luxury</div>
-                                                    <div className="col-6" style={{textAlign:"end"}}>
-                                                        <Button variant="primary" size='small' style={{padding: "4px",fontSize: 12, textAlign: "center"}}>Book Now</Button>
-                                                    </div>
-                                                </div>
-                                            </Card.Body>
-                                        </Card>                                   
-                                    </div>        
-                       </div>
-
-                    </div>
-                    
-                </section>
-                 
                     <section id="features" className="features">
                         <div className="container" data-aos="fade-up">  
                             <div className="section-title"></div>
                             <div className='row'>
                                 <div className="col-lg-3 col-md-4">
                                     <div className="icon-box">
-                                    <i className="ri-store-line" style={{color: '#ffbb2c'}}></i>
+                                    <i className="bx bxs-car" style={{color: '#ffbb2c'}}></i>
                                     <h3><a href="">Sanitized cars</a></h3>
                                     </div>
                                 </div>
                                 <div className="col-lg-3 col-md-4">
                                     <div className="icon-box">
-                                    <i className="ri-store-line" style={{color: '#ffbb2c'}}></i>
+                                    <i className="fa fa-user" style={{color: '#ffbb2c'}}></i>
                                     <h3><a href="">Fully vaccinated drivers</a></h3>
                                     </div>
                                 </div>
                                 <div className="col-lg-3 col-md-4">
                                     <div className="icon-box">
-                                    <i className="ri-store-line" style={{color: '#ffbb2c'}}></i>
+                                    <i className="fa fa-server" style={{color: '#ffbb2c'}}></i>
                                     <h3><a href="">best service</a></h3>
                                     </div>
                                 </div>
                                 <div className="col-lg-3 col-md-4">
                                     <div className="icon-box">
-                                    <i className="ri-store-line" style={{color: '#ffbb2c'}}></i>
+                                    <i className="fa fa-inr" style={{color: '#ffbb2c'}}></i>
                                     <h3><a href="">pay cashless</a></h3>
                                     </div>
                                 </div>
@@ -279,6 +107,178 @@ class Home extends Component {
                             
                         </div>
                     </section>
+                    <section id="pricing" className="pricing">
+
+                        <div className="container" data-aos="fade-up">
+                            <div className="section-title">
+                                    <h2>Regular Trips
+                                    
+                                    <span className="fa fa-envelope-open"></span>
+                                    </h2>
+                                    
+                                </div>
+                            <div className="row">                    
+                                        
+                                                    
+                                        <div className="col-lg-4 col-md-4" style={{marginTop:20,paddingRight: 5,paddingLeft: 5}}>
+                                            
+                                            <Card>
+                                                <Card.Img variant="top" src="assets/img/ertiga1.png" style={{height:200}}/>
+                                                <Card.Body>
+                                                    <Card.Title>Mumbai To Pune ..</Card.Title>
+                                                    <div style={{color:'red'}}>
+                                                        <i className="fa fa-star" aria-hidden="true"></i>
+                                                        <i className="fa fa-star" aria-hidden="true"></i>
+                                                        <i className="fa fa-star" aria-hidden="true"></i>
+                                                        <i className="fa fa-star" aria-hidden="true"></i>
+                                                        <i className="fa fa-star-half-o" aria-hidden="true"></i>
+                                                    </div>
+                                                    <Card.Text>
+                                                    Mumbia To Pune.
+                                                    </Card.Text>
+                                                    
+                                                    <div className="row">
+                                                        <div className="col-3" style={{padding: "4px",fontSize: 12, textAlign: "center"}}><i className="fa fa-inr" aria-hidden="true"></i>***</div>
+                                                        <div className="col-3" style={{padding: "4px",fontSize: 12, textAlign: "center"}}>Luxury</div>
+                                                        <div className="col-6" style={{textAlign:"end"}}>
+                                                            <Button onClick={this.onClick} variant="primary" size='small' style={{padding: "4px",fontSize: 12, textAlign: "center"}}>Book Now</Button>
+                                                        </div>
+                                                    </div>
+                                                </Card.Body>
+                                            </Card>                                   
+                                        </div> 
+                                        <div className="col-lg-4 col-md-4" style={{marginTop:20,paddingRight: 5,paddingLeft: 5}}>                                        
+                                            <Card>
+                                                <Card.Img variant="top" src="assets/img/innova2.png" style={{height:200}}/>
+                                                <Card.Body>
+                                                    <Card.Title>Pune To Mumbai</Card.Title>
+                                                    <div style={{color:'red'}}>
+                                                        <i className="fa fa-star" aria-hidden="true"></i>
+                                                        <i className="fa fa-star" aria-hidden="true"></i>
+                                                        <i className="fa fa-star" aria-hidden="true"></i>
+                                                        <i className="fa fa-star" aria-hidden="true"></i>
+                                                        <i className="fa fa-star-half-o" aria-hidden="true"></i>
+                                                    </div>
+                                                    <Card.Text>
+                                                    Pune To Mumbai
+                                                    </Card.Text>                                                
+                                                    <div className="row">
+                                                        <div className="col-3" style={{padding: "4px",fontSize: 12, textAlign: "center"}}><i className="fa fa-inr" aria-hidden="true"></i>***</div>
+                                                        <div className="col-3" style={{padding: "4px",fontSize: 12, textAlign: "center"}}>Luxury</div>
+                                                        <div className="col-6" style={{textAlign:"end"}}>
+                                                            <Button onClick={this.onClick} variant="primary" size='small' style={{padding: "4px",fontSize: 12, textAlign: "center"}}>Book Now</Button>
+                                                        </div>
+                                                    </div>
+                                                </Card.Body>
+                                            </Card>                                   
+                                        </div>  
+                                        <div className="col-lg-4 col-md-4" style={{marginTop:20,paddingRight: 5,paddingLeft: 5}}>                                        
+                                            <Card>
+                                                <Card.Img variant="top" src="assets/img/swft1.jpg" style={{height:200}} />
+                                                <Card.Body>
+                                                    <Card.Title>Pune To Aurangabad</Card.Title>
+                                                    <div style={{color:'red'}}>
+                                                        <i className="fa fa-star" aria-hidden="true"></i>
+                                                        <i className="fa fa-star" aria-hidden="true"></i>
+                                                        <i className="fa fa-star" aria-hidden="true"></i>
+                                                        <i className="fa fa-star" aria-hidden="true"></i>
+                                                        <i className="fa fa-star-half-o" aria-hidden="true"></i>
+                                                    </div>
+                                                    <Card.Text>
+                                                    Pune To Aurangabad
+                                                    </Card.Text>                                                
+                                                    <div className="row">
+                                                        <div className="col-3" style={{padding: "4px",fontSize: 12, textAlign: "center"}}><i className="fa fa-inr" aria-hidden="true"></i>***</div>
+                                                        <div className="col-3" style={{padding: "4px",fontSize: 12, textAlign: "center"}}>Compact</div>
+                                                        <div className="col-6" style={{textAlign:"end"}}>
+                                                            <Button onClick={this.onClick} variant="primary" size='small' style={{padding: "4px",fontSize: 12, textAlign: "center"}}>Book Now</Button>
+                                                        </div>
+                                                    </div>
+                                                </Card.Body>
+                                            </Card>                                   
+                                        </div>  
+                                        <div className="col-lg-4 col-md-4" style={{marginTop:20,paddingRight: 5,paddingLeft: 5}}>                                        
+                                            <Card >
+                                                <Card.Img variant="top" src="assets/img/innova2.png" style={{height:200}} />
+                                                <Card.Body>
+                                                    <Card.Title>Mumbai To Auragabad</Card.Title>
+                                                    <div style={{color:'red'}}>
+                                                        <i className="fa fa-star" aria-hidden="true"></i>
+                                                        <i className="fa fa-star" aria-hidden="true"></i>
+                                                        <i className="fa fa-star" aria-hidden="true"></i>
+                                                        <i className="fa fa-star" aria-hidden="true"></i>
+                                                        <i className="fa fa-star-half-o" aria-hidden="true"></i>
+                                                    </div>
+                                                    <Card.Text>
+                                                    Mumbai To Auragabad
+                                                    </Card.Text>                                                
+                                                    <div className="row">
+                                                        <div className="col-3" style={{padding: "4px",fontSize: 12, textAlign: "center"}}><i className="fa fa-inr" aria-hidden="true"></i>***</div>
+                                                        <div className="col-3" style={{padding: "4px",fontSize: 12, textAlign: "center"}}>Luxury</div>
+                                                        <div className="col-6" style={{textAlign:"end"}}>
+                                                            <Button onClick={this.onClick} variant="primary" size='small' style={{padding: "4px",fontSize: 12, textAlign: "center"}}>Book Now</Button>
+                                                        </div>
+                                                    </div>
+                                                </Card.Body>
+                                            </Card>                                   
+                                        </div>  
+                                        <div className="col-lg-4 col-md-4" style={{marginTop:20,paddingRight: 5,paddingLeft: 5}}>                                        
+                                            <Card >
+                                                <Card.Img variant="top" src="assets/img/swiftd1.png" style={{height:200}} />
+                                                <Card.Body>
+                                                    <Card.Title>Mumbai To Surat</Card.Title>
+                                                    <div style={{color:'red'}}>
+                                                        <i className="fa fa-star" aria-hidden="true"></i>
+                                                        <i className="fa fa-star" aria-hidden="true"></i>
+                                                        <i className="fa fa-star" aria-hidden="true"></i>
+                                                        <i className="fa fa-star" aria-hidden="true"></i>
+                                                        <i className="fa fa-star-half-o" aria-hidden="true"></i>
+                                                    </div>
+                                                    <Card.Text>
+                                                    Mumbai To Surat
+                                                    </Card.Text>                                                
+                                                    <div className="row">
+                                                        <div className="col-3" style={{padding: "4px",fontSize: 12, textAlign: "center"}}><i className="fa fa-inr" aria-hidden="true"></i>
+                                                        ***</div>
+                                                        <div className="col-3" style={{padding: "4px",fontSize: 12, textAlign: "center"}}>Sedan</div>
+                                                        <div className="col-6" style={{textAlign:"end"}}>
+                                                            <Button onClick={this.onClick} variant="primary" size='small' style={{padding: "4px",fontSize: 12, textAlign: "center"}}>Book Now</Button>
+                                                        </div>
+                                                    </div>
+                                                </Card.Body>
+                                            </Card>                                   
+                                        </div>  
+                                        <div className="col-lg-4 col-md-4" style={{marginTop:20,paddingRight: 5,paddingLeft: 5}}>                                        
+                                            <Card>
+                                                <Card.Img variant="top" src="assets/img/ertiga2.png"  style={{height:200}} />
+                                                <Card.Body>
+                                                    <Card.Title>Mumbai To Bhopal</Card.Title>
+                                                    <div style={{color:'red'}}>
+                                                        <i className="fa fa-star" aria-hidden="true"></i>
+                                                        <i className="fa fa-star" aria-hidden="true"></i>
+                                                        <i className="fa fa-star" aria-hidden="true"></i>
+                                                        <i className="fa fa-star" aria-hidden="true"></i>
+                                                        <i className="fa fa-star-half-o" aria-hidden="true"></i>
+                                                    </div>
+                                                    <Card.Text>
+                                                    Mumbai To Bhopal
+                                                    </Card.Text>                                                
+                                                    <div className="row">
+                                                        <div className="col-3" style={{padding: "4px",fontSize: 12, textAlign: "center"}}><i className="fa fa-inr" aria-hidden="true"></i>****</div>
+                                                        <div className="col-3" style={{padding: "4px",fontSize: 12, textAlign: "center"}}>Luxury</div>
+                                                        <div className="col-6" style={{textAlign:"end"}}>
+                                                            <Button variant="primary" size='small' style={{padding: "4px",fontSize: 12, textAlign: "center"}}>Book Now</Button>
+                                                        </div>
+                                                    </div>
+                                                </Card.Body>
+                                            </Card>                                   
+                                        </div>        
+                        </div>
+
+                        </div>
+                        
+                    </section>
+                 
                     
                 </div>
                 <Footer/>
