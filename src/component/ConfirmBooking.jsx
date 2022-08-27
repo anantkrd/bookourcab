@@ -7,7 +7,7 @@ import  Header  from "./Header";
 import  Footer  from "./Footer";
 import { withRouter } from 'react-router-dom';
 import axios from "axios";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+//import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 class ConfirmBooking extends Component {
     //state = {  }
     /*

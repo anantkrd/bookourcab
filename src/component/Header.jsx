@@ -23,8 +23,8 @@ class Header extends Component {
     componentDidMount(){
         
        let userId=localStorage.getItem("userId");
-       console.log("UserId=="+localStorage.getItem("userType"));
-       console.log("UserId=="+global.config.apiUrl);
+       //console.log("UserId=="+localStorage.getItem("userType"));
+       //console.log("UserId=="+global.config.apiUrl);
         if(userId>0){
             let firstName =localStorage.getItem("firstName");
             let lastName=localStorage.getItem("lastName");

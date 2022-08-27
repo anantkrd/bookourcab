@@ -41,7 +41,7 @@ class Footer extends Component {
               &copy; Copyright <strong><span>BookOurCar</span></strong>. All Rights Reserved
             </div>
             <div className="credits">
-              Designed by <a href="https://bootstrapmade.com/">Ellipse Software Technology</a>
+              Designed by <a href="#">Ellipse Software Technology</a>
             </div>
           </div>
           <div className="social-links text-center text-md-right pt-3 pt-md-0">

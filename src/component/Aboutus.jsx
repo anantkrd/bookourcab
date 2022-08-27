@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
-import Card from 'react-bootstrap/Card'
-import { Button,Table } from 'react-bootstrap';
-import Slider from './Slider';
+//import Card from 'react-bootstrap/Card'
+//import { Button,Table } from 'react-bootstrap';
+//import Slider from './Slider';
 import  Header  from "./Header";
 import  Footer  from "./Footer";
 import { withRouter } from 'react-router-dom';
 import './../config';
-import { Link } from 'react-router-dom'
-import { useHistory } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+//import { Link } from 'react-router-dom'
+//import { useHistory } from 'react-router-dom';
+//import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 class AboutUs extends Component {
     state = {  };
     

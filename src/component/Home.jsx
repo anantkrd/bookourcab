@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import Card from 'react-bootstrap/Card'
-import { Button,Table } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 import Slider from './Slider';
 import  Header  from "./Header";
 import  Footer  from "./Footer";
 import { withRouter } from 'react-router-dom';
 import './../config';
-import { Link } from 'react-router-dom'
-import { useHistory } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+//import { Link } from 'react-router-dom'
+//import { useHistory } from 'react-router-dom';
+//import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 class Home extends Component {
     state = {  };
     handleClick() {
@@ -123,7 +123,7 @@ class Home extends Component {
                                         <div className="col-lg-4 col-md-4" style={{marginTop:20,paddingRight: 5,paddingLeft: 5}}>
                                             
                                             <Card>
-                                                <Card.Img variant="top" src="assets/img/ertiga1.png" style={{height:200}}/>
+                                                <Card.Img variant="top" src="assets/img/cars/dzire4.webp" style={{height:200}}/>
                                                 <Card.Body>
                                                     <Card.Title>Mumbai To Pune ..</Card.Title>
                                                     <div style={{color:'red'}}>
@@ -139,7 +139,7 @@ class Home extends Component {
                                                     
                                                     <div className="row">
                                                         <div className="col-3" style={{padding: "4px",fontSize: 12, textAlign: "center"}}><i className="fa fa-inr" aria-hidden="true"></i>***</div>
-                                                        <div className="col-3" style={{padding: "4px",fontSize: 12, textAlign: "center"}}>Luxury</div>
+                                                        <div className="col-3" style={{padding: "4px",fontSize: 12, textAlign: "center"}}>Sedan</div>
                                                         <div className="col-6" style={{textAlign:"end"}}>
                                                             <Button onClick={this.onClick} variant="primary" size='small' style={{padding: "4px",fontSize: 12, textAlign: "center"}}>Book Now</Button>
                                                         </div>
@@ -149,7 +149,7 @@ class Home extends Component {
                                         </div> 
                                         <div className="col-lg-4 col-md-4" style={{marginTop:20,paddingRight: 5,paddingLeft: 5}}>                                        
                                             <Card>
-                                                <Card.Img variant="top" src="assets/img/innova2.png" style={{height:200}}/>
+                                                <Card.Img variant="top" src="assets/img/cars/Crysta3.webp" style={{height:200}}/>
                                                 <Card.Body>
                                                     <Card.Title>Pune To Mumbai</Card.Title>
                                                     <div style={{color:'red'}}>
@@ -164,7 +164,7 @@ class Home extends Component {
                                                     </Card.Text>                                                
                                                     <div className="row">
                                                         <div className="col-3" style={{padding: "4px",fontSize: 12, textAlign: "center"}}><i className="fa fa-inr" aria-hidden="true"></i>***</div>
-                                                        <div className="col-3" style={{padding: "4px",fontSize: 12, textAlign: "center"}}>Luxury</div>
+                                                        <div className="col-3" style={{padding: "4px",fontSize: 12, textAlign: "center"}}>Innova Crysta</div>
                                                         <div className="col-6" style={{textAlign:"end"}}>
                                                             <Button onClick={this.onClick} variant="primary" size='small' style={{padding: "4px",fontSize: 12, textAlign: "center"}}>Book Now</Button>
                                                         </div>
@@ -174,7 +174,7 @@ class Home extends Component {
                                         </div>  
                                         <div className="col-lg-4 col-md-4" style={{marginTop:20,paddingRight: 5,paddingLeft: 5}}>                                        
                                             <Card>
-                                                <Card.Img variant="top" src="assets/img/swft1.jpg" style={{height:200}} />
+                                                <Card.Img variant="top" src="assets/img/cars/ertiga3.webp" style={{height:200}} />
                                                 <Card.Body>
                                                     <Card.Title>Pune To Aurangabad</Card.Title>
                                                     <div style={{color:'red'}}>
@@ -189,7 +189,7 @@ class Home extends Component {
                                                     </Card.Text>                                                
                                                     <div className="row">
                                                         <div className="col-3" style={{padding: "4px",fontSize: 12, textAlign: "center"}}><i className="fa fa-inr" aria-hidden="true"></i>***</div>
-                                                        <div className="col-3" style={{padding: "4px",fontSize: 12, textAlign: "center"}}>Compact</div>
+                                                        <div className="col-3" style={{padding: "4px",fontSize: 12, textAlign: "center"}}>Ertiga</div>
                                                         <div className="col-6" style={{textAlign:"end"}}>
                                                             <Button onClick={this.onClick} variant="primary" size='small' style={{padding: "4px",fontSize: 12, textAlign: "center"}}>Book Now</Button>
                                                         </div>
@@ -199,7 +199,7 @@ class Home extends Component {
                                         </div>  
                                         <div className="col-lg-4 col-md-4" style={{marginTop:20,paddingRight: 5,paddingLeft: 5}}>                                        
                                             <Card >
-                                                <Card.Img variant="top" src="assets/img/innova2.png" style={{height:200}} />
+                                                <Card.Img variant="top" src="assets/img/cars/innova5.webp" style={{height:200}} />
                                                 <Card.Body>
                                                     <Card.Title>Mumbai To Auragabad</Card.Title>
                                                     <div style={{color:'red'}}>
@@ -214,7 +214,7 @@ class Home extends Component {
                                                     </Card.Text>                                                
                                                     <div className="row">
                                                         <div className="col-3" style={{padding: "4px",fontSize: 12, textAlign: "center"}}><i className="fa fa-inr" aria-hidden="true"></i>***</div>
-                                                        <div className="col-3" style={{padding: "4px",fontSize: 12, textAlign: "center"}}>Luxury</div>
+                                                        <div className="col-3" style={{padding: "4px",fontSize: 12, textAlign: "center"}}>Innova</div>
                                                         <div className="col-6" style={{textAlign:"end"}}>
                                                             <Button onClick={this.onClick} variant="primary" size='small' style={{padding: "4px",fontSize: 12, textAlign: "center"}}>Book Now</Button>
                                                         </div>
@@ -224,7 +224,7 @@ class Home extends Component {
                                         </div>  
                                         <div className="col-lg-4 col-md-4" style={{marginTop:20,paddingRight: 5,paddingLeft: 5}}>                                        
                                             <Card >
-                                                <Card.Img variant="top" src="assets/img/swiftd1.png" style={{height:200}} />
+                                                <Card.Img variant="top" src="assets/img/cars/dzire5.webp" style={{height:200}} />
                                                 <Card.Body>
                                                     <Card.Title>Mumbai To Surat</Card.Title>
                                                     <div style={{color:'red'}}>
@@ -250,7 +250,7 @@ class Home extends Component {
                                         </div>  
                                         <div className="col-lg-4 col-md-4" style={{marginTop:20,paddingRight: 5,paddingLeft: 5}}>                                        
                                             <Card>
-                                                <Card.Img variant="top" src="assets/img/ertiga2.png"  style={{height:200}} />
+                                                <Card.Img variant="top" src="assets/img/cars/ertiga1.webp"  style={{height:200}} />
                                                 <Card.Body>
                                                     <Card.Title>Mumbai To Bhopal</Card.Title>
                                                     <div style={{color:'red'}}>
@@ -265,7 +265,7 @@ class Home extends Component {
                                                     </Card.Text>                                                
                                                     <div className="row">
                                                         <div className="col-3" style={{padding: "4px",fontSize: 12, textAlign: "center"}}><i className="fa fa-inr" aria-hidden="true"></i>****</div>
-                                                        <div className="col-3" style={{padding: "4px",fontSize: 12, textAlign: "center"}}>Luxury</div>
+                                                        <div className="col-3" style={{padding: "4px",fontSize: 12, textAlign: "center"}}>Ertiga</div>
                                                         <div className="col-6" style={{textAlign:"end"}}>
                                                             <Button variant="primary" size='small' style={{padding: "4px",fontSize: 12, textAlign: "center"}}>Book Now</Button>
                                                         </div>
