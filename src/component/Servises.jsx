@@ -51,7 +51,7 @@ class Servises extends Component {
                             <i className="fa fa-road"></i>
                         </div>
                         <h4><a href="">One way cabs</a></h4>
-                            <p style={{textAlign:'justify'}}>We proivde one way pickup and drop service from any location in india</p>
+                            <p style={{textAlign:'justify'}}>We proivde one way pickup and drop service from any location in india.</p>
                             
                         </div>
                     </div>

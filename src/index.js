@@ -4,11 +4,6 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import "bootstrap/dist/css/bootstrap.css";
-//import Contact from './component/contact';
-//import Home from './component/Home';
-//import Header from './component/Header';
-//import Footer from './component/Footer';
-//import Slider from './component/slider';
 import { BrowserRouter } from "react-router-dom"; 
 ReactDOM.render(
   
