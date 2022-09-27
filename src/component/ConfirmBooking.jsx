@@ -405,7 +405,7 @@ class ConfirmBooking extends Component {
                                         <div className="col-4" style={{textAlign:'center',padding:20}}>
                                             <i style={{padding:10,borderStyle:'ridge',borderRadius:'20%'}} className="fa fa-product-hunt" aria-hidden="true"></i> Parking</div>
                                         <div className="col-4" style={{textAlign:'center',padding:20}}>
-                                            <i style={{padding:10,borderStyle:'ridge',borderRadius:'20%'}} className="fa fa-road" aria-hidden="true"></i> Pay ₹{this.state.item.originalRate}/km after {this.state.item.distance} km</div>
+                                            <i style={{padding:10,borderStyle:'ridge',borderRadius:'20%'}} className="fa fa-road" aria-hidden="true"></i> Pay ₹{this.state.item.extraRate}/km after {this.state.item.distance} km</div>
                                     </div>
                                 </Tab>
                                 <Tab eventKey="tnc" title="T&C">
