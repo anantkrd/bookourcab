@@ -90,25 +90,25 @@ class Home extends Component {
                                 <div className="col-lg-3 col-md-4">
                                     <div className="icon-box">
                                     <i className="bx bxs-car" style={{color: '#ffbb2c'}}></i>
-                                    <h3><a href="">Sanitized cars</a></h3>
+                                    <h3><a href="">Sanitized Cars</a></h3>
                                     </div>
                                 </div>
                                 <div className="col-lg-3 col-md-4">
                                     <div className="icon-box">
                                     <i className="fa fa-user" style={{color: '#ffbb2c'}}></i>
-                                    <h3><a href="">Fully vaccinated drivers</a></h3>
+                                    <h3><a href="">Fully Vaccinated Drivers</a></h3>
                                     </div>
                                 </div>
                                 <div className="col-lg-3 col-md-4">
                                     <div className="icon-box">
                                     <i className="fa fa-server" style={{color: '#ffbb2c'}}></i>
-                                    <h3><a href="">best service</a></h3>
+                                    <h3><a href="">Best Service</a></h3>
                                     </div>
                                 </div>
                                 <div className="col-lg-3 col-md-4">
                                     <div className="icon-box">
                                     <i className="fa fa-inr" style={{color: '#ffbb2c'}}></i>
-                                    <h3><a href="">pay cashless</a></h3>
+                                    <h3><a href="">Pay Cashless</a></h3>
                                     </div>
                                 </div>
                             </div>                      
