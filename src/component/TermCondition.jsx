@@ -31,7 +31,7 @@ class TermCondition extends Component {
                                <div>
                                     <div style={{color: '#ffbb2c', fontStyle:'bold'}}>Ownership</div>
                                     <div>
-                                        The term 'Bookourcar' or 'us' or 'we' refers to the prayag Tours and Travels whose registered office is 'BookOurCar Service LLP., Shree Vishal Chs Ltd. PlotNo 17
+                                        The term 'Bookourcar' or 'us' or 'we' refers to the Prayag Tours and Travels whose registered office is 'BookOurCar Service LLP., Shree Vishal Chs Ltd. PlotNo 17
                                         Sectore -18 Koperkhairane New Mumbai.' The term 'you' refers to the user or viewer of our website.
                                     </div>
                                </div>
