@@ -8,6 +8,7 @@ import { Link,withRouter } from 'react-router-dom'
 import { useHistory } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ClipLoader from "react-spinners/ClipLoader";
+import {Helmet} from "react-helmet";
 import axios from "axios";
 class Search extends Component {
     //state = {  }
@@ -117,6 +118,14 @@ class Search extends Component {
                 <Header/> 
                 <ClipLoader color={this.state.loadingColor} loading={this.state.isLoading}  size={150} css={override} />
                 <div> 
+                <Helmet>
+                    <title>Booking For {this.state.pickup} To {this.state.destination}</title>
+                    <meta name="Title" content="Book Local and Outstation Cabs, Local & Airport Taxi Service - India's Chepeast Car Rentals service" />
+                    <meta name="Keywords" content="Cheap car rental, Sasta car rental, Car Rental , Car Hire, Taxi Service, Cab Service, Cab Hire, Taxi Hire ,Cab Rental, Taxi Booking, Rent A Car, Car Rental India, Online Cab Booking, Taxi Cab , Car Rental Service, Online Taxi Booking, Local Taxi Service, Cheap Car Rental, Cab , Taxi , Car Rental, Car Hire Services , Car Rentals India, Taxi Booking India, Cab Booking India Car For Hire,  Taxi Services, Online Car Rentals , Book A Taxi  , Book A Cab, Car Rentals Agency India, Rental Cars In India, Car Hire India, India Car Hire, Car Hire In India, India Car Rentals, Car Rent In India, India Rental Cars, India Cabs, Rent Car In India, Car Rental India, India Car Rental, Rent A Car India, Car Rental In India, Rent A Car In India, India Car Rental Company, Corporate Car Rental India, City Cabs India, Car Rental Company In India" />
+                    <meta name="Keywords" content="Mumbai to Pune, Pune To Mumbai,Mumbai To Goa,Goa To Mumbai, Pune To Goa,Goa To Pune,Pune To Nashik,Mumbai To Nashik, Navi Mumbai To Pune" />
+                    <meta name="description" content="India's chepeast Car Rentals | India's Largest Intercity/outercity Car Rentals | Hire Outstation and Local AC cabs with Attractive Rates, Clean Cars, Courteous Drivers & Transparent Billing" />
+
+                </Helmet>  
                 <section id="pricing" className="pricing">
                 <div className="container align-items-center" data-aos="fade-up" style={{width:'95%!important',backgroundColor: 'white',padding:16}}>
                     <div className="row">

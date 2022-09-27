@@ -61,12 +61,14 @@ class PendingBookingList extends Component {
     }
     
     setShowDriverDialog=(objectData)=>{
+        this.setState({error:''})
         this.setState({bookingId:objectData.orderId});
         let currentState = this.state.showDriverDialog;
         
         this.setState({showDriverDialog:!currentState});
     }
     setHideDriverDialog=()=>{
+        this.setState({error:''})
         let currentState = this.state.showDriverDialog;
         
         this.setState({showDriverDialog:!currentState});
@@ -78,6 +80,7 @@ class PendingBookingList extends Component {
         this.setState({driverMobile:driverMobile.target.value});
     }  
     searchDriver=async()=>{
+        this.setState({error:''})
         let token=localStorage.getItem("token");
         const headers = {'Authorization':`Bearer ${token}`} ;
           let urlData="&driverMobile="+this.state.driverMobile;
@@ -92,12 +95,13 @@ class PendingBookingList extends Component {
               
               //console.log("++++driverData===="+this.state.driverData);
           }else{              
-              this.setState({error:'some internal error please try later'})
+              this.setState({error:'Driver not found'})
           }
           
           this.setState({isLoading:false});
     }  
     searchCar=async()=>{
+        this.setState({error:''})
         let token=localStorage.getItem("token");
         const headers = {'Authorization':`Bearer ${token}`} ;
           let urlData="&carno="+this.state.carNo;
@@ -110,12 +114,14 @@ class PendingBookingList extends Component {
               
               this.setState({carData:dataRes.data});
           }else{              
-              this.setState({error:'some internal error please try later'})
+              this.setState({error:'Car not found'})
           }
           
           this.setState({isLoading:false});
     }
     selectDriver=async(objectData)=>{
+        this.setState({error:''})
+        this.setState({isLoading:true});
         let token=localStorage.getItem("token");
         const headers = {'Authorization':`Bearer ${token}`} ;
         let driverName=objectData.firstName+" "+objectData.lastName;
@@ -134,14 +140,15 @@ class PendingBookingList extends Component {
             this.setHideDriverDialog();            
             this.getBooking(this.state.userId);
         }else{             
-             console.log("errorr")
-            this.setState({error:'some internal error please try later'})
+             console.log("errorr:"+result.data.msg)
+            this.setState({error:result.data.msg})
         }          
         this.setState({isLoading:false}); 
     }
     
     selectCar=async(objectData)=>{
-       
+        this.setState({error:''})
+        this.setState({isLoading:true});
         let token=localStorage.getItem("token");
         const headers = {'Authorization':`Bearer ${token}`} ;
         const data = {
@@ -161,7 +168,7 @@ class PendingBookingList extends Component {
             this.getBooking(this.state.userId);
         }else{             
              //console.log("errorr")
-            this.setState({error:'some internal error please try later'})
+            this.setState({error:result.data.msg})
         }          
         this.setState({isLoading:false}); 
     }
@@ -281,33 +288,34 @@ class PendingBookingList extends Component {
                     
                 </div>
                 <Modal show={this.state.showCarDialog} onHide={this.setHideCarDialog.bind(this.state.showCarDialog)} dialogClassName="modal-90w"  aria-labelledby="example-custom-modal-styling-title">
-                        <Modal.Header closeButton>
+                    <Modal.Header closeButton>
                         <Modal.Title id="example-custom-modal-styling-title">
                             Select Car
                         </Modal.Title>
                         </Modal.Header>
                         <Modal.Body>
                         <section id="pricing" className="pricing">
-                        <div className="container" data-aos="fade-up" style={{width:'95%!important'}}>                        
-                            <div className="row">  
-                                <div className="col-12" style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gridGap: 5 }}>
-                                    <div>
-                                        <Form.Group controlId="formBasicEmail" >
-                                            <Form.Control type="text" placeholder="Search by Number" value={this.state.carNo} onChange={this.setCarNo}/>                                                                                                        
-                                        </Form.Group>
-                                    </div>
-                                    <div >
-                                        <Form.Group controlId="formBasicEmail" style={{float:'right'}}>
-                                            <Button variant="primary" type="button" onClick={this.searchCar.bind(this)}>
-                                                Search
-                                            </Button>                                                                                                       
-                                        </Form.Group>
-                                    </div>
-                                </div>        
+                            <div>{this.state.error}</div>
+                            <div className="container" data-aos="fade-up" style={{width:'95%!important'}}>                        
+                                <div className="row">  
+                                    <div className="col-12" style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gridGap: 5 }}>
+                                        <div>
+                                            <Form.Group controlId="formBasicEmail" >
+                                                <Form.Control type="text" placeholder="Search by Number" value={this.state.carNo} onChange={this.setCarNo}/>                                                                                                        
+                                            </Form.Group>
+                                        </div>
+                                        <div >
+                                            <Form.Group controlId="formBasicEmail" style={{float:'right'}}>
+                                                <Button variant="primary" type="button" onClick={this.searchCar.bind(this)}>
+                                                    Search
+                                                </Button>                                                                                                       
+                                            </Form.Group>
+                                        </div>
+                                    </div>        
+                                </div>
                             </div>
-                        </div>
-                        
-                    </section>
+                            
+                        </section>
                     <section id="pricing" className="pricing">
                         <div className="container" data-aos="fade-up" style={{width:'95%!important'}}>                        
                             <div className="row">  
@@ -355,6 +363,7 @@ class PendingBookingList extends Component {
                         </Modal.Header>
                         <Modal.Body>
                         <section id="pricing" className="pricing">
+                            <div>{this.state.error}</div>
                             <div className="container" data-aos="fade-up" style={{width:'95%!important'}}>                        
                                 <div className="row">  
                                     <div className="col-12" style={{ display: "grid", gridTemplateColumns: "repeat(2)", gridGap: 5 }}>

@@ -35,10 +35,11 @@ class ConfirmBooking extends Component {
             dataObjRes=localStorage.getItem("dataObj");
             
             dataObjRes=JSON.parse(dataObjRes);
-            //console.log("++pickup**********==="+JSON.stringify(dataObjRes));
+            console.log("++request Data**********==="+JSON.stringify(dataObjRes));
             this.setState({item:dataObjRes});
         }else{
             dataObjRes=this.props.location.dataObj;
+            console.log("++request Data**********==="+JSON.stringify(dataObjRes));
             localStorage.setItem("dataObj",JSON.stringify(dataObjRes));
             
             this.setState({item:dataObjRes});
@@ -123,7 +124,10 @@ class ConfirmBooking extends Component {
         const result = await axios.post(global.config.apiUrl+"booking/success", data);
     }
     async payNow(){
+        console.log("In Pay now")
         let bookingId=this.state.item.bookingId;
+        console.log("In Pay bookingId:"+bookingId);
+        console.log("payment_orderId:"+this.state.payment_orderId)
         const options = {
             key: global.config.paymentKey,//"rzp_test_8KHr7ine3uj7uk", // Enter the Key ID generated from the Dashboard
             amount: this.state.bookingAmount*100,
@@ -133,6 +137,7 @@ class ConfirmBooking extends Component {
             image: '',
             order_id: this.state.payment_orderId,
             handler: async function (response) {
+                console.log("Razor pay response:"+JSON.stringify(response));
                 const data = {
                     razorpayPaymentId: response.razorpay_payment_id,
                     razorpayOrderId: response.razorpay_order_id,
@@ -182,13 +187,65 @@ class ConfirmBooking extends Component {
             return false;
         }
         
-          let urlData="&fname="+this.state.firstName+"&lname="+this.state.lastName+"&email="+this.state.email+"&cabId="+this.state.item.id+"&pickup="+this.state.item.pickupCity+"&destination="+this.state.item.destinationCity+"&pickupDate="+this.state.item.pickupDate+"&returnDate="+returnDate+"&isReturn="+isReturn+"&pickupLat="+this.state.item.originlat+"&pickupLong="+this.state.item.originlng+"&destinationLat="+this.state.item.destinationlat+"&destinationLong="+this.state.item.destinationlng+"&distance="+this.state.item.distance+"&journyTime="+this.state.item.journyTime+"&cabType="+this.state.item.cabType+"&ac="+this.state.item.ac+"&bags="+this.state.item.bags+"&cars="+this.state.item.cars+"&capacity="+this.state.item.capacity+"&note="+this.state.item.note+"&rate="+this.state.item.rate+"&amount="+this.state.item.amount+"&discountAmount="+this.state.item.discountAmount+"&finalAmount="+this.state.item.finalAmount+"&mobileNo="+this.state.item.mobileNo+"&bookingId="+this.state.item.bookingId
-          +"&payment_orderId="+this.state.payment_orderId+"&pickupCityName="+this.state.item.pickupCityName+"&pickupDistrict="+this.state.item.pickupDistrict+"&pickupState="+this.state.item.pickupState+"&dropCityName="+this.state.item.dropCityName+"&dropDistrict="+this.state.item.dropDistrict+"&dropState="+this.state.item.dropState;
+          let urlData="&fname="+this.state.firstName+"&lname="+this.state.lastName+"&email="+this.state.email+"&cabId="+this.state.item.id+"&pickup="+this.state.item.pickupCity+"&destination="+this.state.item.destinationCity+"&pickupDate="+this.state.item.pickupDate+"&returnDate="+returnDate+"&isReturn="+isReturn+"&pickupLat="+this.state.item.originlat+"&pickupLong="+this.state.item.originlng
+          +"&destinationLat="+this.state.item.destinationlat+"&destinationLong="+this.state.item.destinationlng+"&distance="+this.state.item.distance+"&journyTime="+this.state.item.journyTime+"&cabType="+this.state.item.cabType+"&ac="+this.state.item.ac+"&bags="+this.state.item.bags+"&cars="+this.state.item.cars+"&capacity="+this.state.item.capacity+"&note="+this.state.item.note+"&rate="+this.state.item.rate
+          +"&amount="+this.state.item.amount+"&discountAmount="+this.state.item.discountAmount+"&finalAmount="+this.state.item.finalAmount+"&mobileNo="+this.state.item.mobileNo+"&bookingId="+this.state.item.bookingId
+          +"&payment_orderId="+this.state.payment_orderId+"&pickupCityName="+this.state.item.pickupCityName+"&pickupDistrict="+this.state.item.pickupDistrict+"&pickupState="+this.state.item.pickupState+"&dropCityName="
+          +this.state.item.dropCityName+"&dropDistrict="+this.state.item.dropDistrict+"&dropState="+this.state.item.dropState+"&extraRate="+this.state.item.extraRate;
           //const response = await fetch('http://localhost:3001/booking/getCabs?originObj='+originObj+'&destinationObj='+destinationObj, { headers });
-          
+        const bookReqPost = {
+            fname: this.state.firstName,
+            lname: this.state.lastName,
+            email: this.state.email,
+            cabId: this.state.item.id,
+            pickup: this.state.item.pickupCity,
+            destination: this.state.item.destinationCity,
+            pickupDate: this.state.item.pickupDate,
+            returnDate: returnDate,
+            isReturn: isReturn,
+            pickupLat: this.state.item.originlat,
+            pickupLong: this.state.item.originlng,
+            destinationLat: this.state.item.destinationlat,
+            destinationLong: this.state.item.destinationlng,
+            distance: this.state.item.distance,
+            journyTime: this.state.item.journyTime,
+            cabType: this.state.item.cabType,
+            ac: this.state.item.ac,
+            bags: this.state.item.bags,
+            cars: this.state.item.cars,
+            capacity: this.state.item.capacity,
+            note: this.state.item.note,
+            rate: this.state.item.rate,
+            amount: this.state.item.amount,
+            discountAmount: this.state.item.discountAmount,
+            finalAmount: this.state.item.finalAmount,
+            mobileNo: this.state.item.mobileNo,
+            bookingId: this.state.item.bookingId,
+            payment_orderId: this.state.payment_orderId,
+            pickupCityName: this.state.item.pickupCityName,
+            pickupDistrict: this.state.item.pickupDistrict,
+            pickupState: this.state.item.pickupState,
+            dropCityName: this.state.item.dropCityName,
+            dropDistrict: this.state.item.dropDistrict,
+            dropState: this.state.item.dropState,
+            extraRate: this.state.item.extraRate,
+        };
+        let resultBooking = await axios.post(global.config.apiUrl+"booking/book_cab",bookReqPost,{ headers });
+        console.log("response:"+JSON.stringify(resultBooking));
+        const data = resultBooking.data;//await resultBooking.json();
+          console.log("data=="+JSON.stringify(data));
+          if(data.code==200){
+              //alert("Thank you, Your bokking is confimed");
+              
+              await this.payNow();
+              
+          }else{
+              this.setState({error:'some internal error please try later'})
+          }
+        return true;
           const response = await fetch(global.config.apiUrl+'booking/book_cab?'+urlData, { headers });
           console.log("response:"+JSON.stringify(response));
-          const data = await response.json();
+          const data1 = await response.json();
           //console.log("data=="+JSON.stringify(data));
           if(data.code==200){
               //alert("Thank you, Your bokking is confimed");
@@ -348,7 +405,7 @@ class ConfirmBooking extends Component {
                                         <div className="col-4" style={{textAlign:'center',padding:20}}>
                                             <i style={{padding:10,borderStyle:'ridge',borderRadius:'20%'}} className="fa fa-product-hunt" aria-hidden="true"></i> Parking</div>
                                         <div className="col-4" style={{textAlign:'center',padding:20}}>
-                                            <i style={{padding:10,borderStyle:'ridge',borderRadius:'20%'}} className="fa fa-road" aria-hidden="true"></i> Pay ₹{this.state.item.rate}/km after {this.state.item.distance} km</div>
+                                            <i style={{padding:10,borderStyle:'ridge',borderRadius:'20%'}} className="fa fa-road" aria-hidden="true"></i> Pay ₹{this.state.item.originalRate}/km after {this.state.item.distance} km</div>
                                     </div>
                                 </Tab>
                                 <Tab eventKey="tnc" title="T&C">
