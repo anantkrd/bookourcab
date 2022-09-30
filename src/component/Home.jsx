@@ -28,6 +28,7 @@ class Home extends Component {
                     <meta name="Title" content="Book Local and Outstation Cabs, Local & Airport Taxi Service - India's Chepeast Car Rentals service" />
                     <meta name="Keywords" content="Cheap car rental, Sasta car rental, Car Rental , Car Hire, Taxi Service, Cab Service, Cab Hire, Taxi Hire ,Cab Rental, Taxi Booking, Rent A Car, Car Rental India, Online Cab Booking, Taxi Cab , Car Rental Service, Online Taxi Booking, Local Taxi Service, Cheap Car Rental, Cab , Taxi , Car Rental, Car Hire Services , Car Rentals India, Taxi Booking India, Cab Booking India Car For Hire,  Taxi Services, Online Car Rentals , Book A Taxi  , Book A Cab, Car Rentals Agency India, Rental Cars In India, Car Hire India, India Car Hire, Car Hire In India, India Car Rentals, Car Rent In India, India Rental Cars, India Cabs, Rent Car In India, Car Rental India, India Car Rental, Rent A Car India, Car Rental In India, Rent A Car In India, India Car Rental Company, Corporate Car Rental India, City Cabs India, Car Rental Company In India" />
                     <meta name="Keywords" content="Mumbai to Pune, Pune To Mumbai,Mumbai To Goa,Goa To Mumbai, Pune To Goa,Goa To Pune,Pune To Nashik,Mumbai To Nashik, Navi Mumbai To Pune" />
+                    <meta name="Keywords" content="Book Now, car on rent, bookcar on rent,hire car,hire car from pune,hire car from mumbai,hire gaadi" />
                     <meta name="description" content="India's chepeast Car Rentals | India's Largest Intercity/outercity Car Rentals | Hire Outstation and Local AC cabs with Attractive Rates, Clean Cars, Courteous Drivers & Transparent Billing" />
 
                 </Helmet>    
@@ -131,7 +132,7 @@ class Home extends Component {
                                         <div className="col-lg-4 col-md-4" style={{marginTop:20,paddingRight: 5,paddingLeft: 5}}>
                                             
                                             <Card>
-                                                <Card.Img variant="top" src="assets/img/cars/dzire4.png" style={{height:200}}/>
+                                                <Card.Img variant="top" src="assets/img/cars/dzire4.png" alt="Car Image" style={{height:200}}/>
                                                 <Card.Body>
                                                     <Card.Title><h5>Mumbai To Pune </h5></Card.Title>
                                                     <div style={{color:'red'}}>
@@ -157,7 +158,7 @@ class Home extends Component {
                                         </div> 
                                         <div className="col-lg-4 col-md-4" style={{marginTop:20,paddingRight: 5,paddingLeft: 5}}>                                        
                                             <Card>
-                                                <Card.Img variant="top" src="assets/img/cars/crysta2.png" style={{height:200}}/>
+                                                <Card.Img variant="top" src="assets/img/cars/crysta2.png" alt="Car Image" style={{height:200}}/>
                                                 <Card.Body>
                                                     <Card.Title>Pune To Mumbai</Card.Title>
                                                     <div style={{color:'red'}}>
@@ -182,7 +183,7 @@ class Home extends Component {
                                         </div>  
                                         <div className="col-lg-4 col-md-4" style={{marginTop:20,paddingRight: 5,paddingLeft: 5}}>                                        
                                             <Card>
-                                                <Card.Img variant="top" src="assets/img/cars/ertiga1.webp" style={{height:200}} />
+                                                <Card.Img variant="top" src="assets/img/cars/ertiga1.webp" alt="Car Image" style={{height:200}} />
                                                 <Card.Body>
                                                     <Card.Title>Pune To Aurangabad</Card.Title>
                                                     <div style={{color:'red'}}>
@@ -207,7 +208,7 @@ class Home extends Component {
                                         </div>  
                                         <div className="col-lg-4 col-md-4" style={{marginTop:20,paddingRight: 5,paddingLeft: 5}}>                                        
                                             <Card >
-                                                <Card.Img variant="top" src="assets/img/cars/innova2.png" style={{height:200}} />
+                                                <Card.Img variant="top" src="assets/img/cars/innova2.png" alt="Car Image" style={{height:200}} />
                                                 <Card.Body>
                                                     <Card.Title>Mumbai To Auragabad</Card.Title>
                                                     <div style={{color:'red'}}>
@@ -232,7 +233,7 @@ class Home extends Component {
                                         </div>  
                                         <div className="col-lg-4 col-md-4" style={{marginTop:20,paddingRight: 5,paddingLeft: 5}}>                                        
                                             <Card >
-                                                <Card.Img variant="top" src="assets/img/cars/dzire1.png" style={{height:200}} />
+                                                <Card.Img variant="top" src="assets/img/cars/dzire1.png" alt="Car Image" style={{height:200}} />
                                                 <Card.Body>
                                                     <Card.Title>Mumbai To Surat</Card.Title>
                                                     <div style={{color:'red'}}>
@@ -258,7 +259,7 @@ class Home extends Component {
                                         </div>  
                                         <div className="col-lg-4 col-md-4" style={{marginTop:20,paddingRight: 5,paddingLeft: 5}}>                                        
                                             <Card>
-                                                <Card.Img variant="top" src="assets/img/cars/ertiga1.webp"  style={{height:200}} />
+                                                <Card.Img variant="top" src="assets/img/cars/ertiga1.webp" alt="Car Image" style={{height:200}} />
                                                 <Card.Body>
                                                     <Card.Title>Mumbai To Bhopal</Card.Title>
                                                     <div style={{color:'red'}}>
