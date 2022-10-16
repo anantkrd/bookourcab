@@ -72,10 +72,10 @@ class AddCar extends Component {
             return false;
         }
         
-        if(this.state.rcBook=="" || this.state.rcBook==null){
+        /*if(this.state.rcBook=="" || this.state.rcBook==null){
             this.setState({error:"Please upload rc book"})
             return false;
-        }
+        }*/
           let urlData="&userId="+this.state.userId+"&carModelNo="+this.state.carModelName+"&carNo="+this.state.carNo+"&carType="+this.state.carType+"&rcBook="+this.state.rcBook;
           //const response = await fetch('http://localhost:3001/booking/getCabs?originObj='+originObj+'&destinationObj='+destinationObj, { headers });
           
@@ -168,12 +168,12 @@ class AddCar extends Component {
                                                         <Form.Control name="carType" type="text" placeholder="sedan, conpact, luxury" value={this.state.carType} onChange={this.setCarType} />                                                                                                        
                                                     </Form.Group>
                                                 </div>
-                                                <div>
+                                                {/*<div>
                                                     <Form.Group controlId="formBasicEmail" >
                                                         <Form.Label>RC Book <spam style={{color:'red'}}>*</spam></Form.Label>
                                                         <Form.Control name="rcBook" type="file" accept="image/*" placeholder="RC Book" value={this.state.rcBook} onChange={this.setRcBook}/>                                                                                                        
                                                     </Form.Group>
-                                                </div>
+                                                </div>*/}
                                             </div>
                                             <div className="col-12">        
                                                 

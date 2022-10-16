@@ -10,9 +10,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ClipLoader from "react-spinners/ClipLoader";
 import axios from "axios";
 import { withRouter } from 'react-router-dom';
+import { faCommentSlash } from '@fortawesome/free-solid-svg-icons';
 class AddDriver extends Component {
     
-    state = {userId:'',item:[],error:'',isLoading:false,loadingColor:'#ffffff',pageNo:0,firstName:'',lastName:'',mobileNo:'',email:'',licenseNo:'',licenseUrl:'',licenseFile:''};
+    state = {userId:'',item:[],error:'',isLoading:false,loadingColor:'#ffffff',pageNo:0,firstName:'',lastName:'',mobileNo:'',email:'',licenseNo:'',
+    licenseUrl:'',licenseFile:'',licenseFileName:'',imageData:''};
     constructor(props) {
         super(props);    
         //console.log("++pickup**********==="+JSON.stringify(this.props));    
@@ -39,17 +41,21 @@ class AddDriver extends Component {
         const headers = {'Authorization':`Bearer ${token}`} ;
           let urlData="&userId="+userId+"&pageId="+pageNo;
           //const response = await fetch('http://localhost:3001/booking/getCabs?originObj='+originObj+'&destinationObj='+destinationObj, { headers });
-         
-          const response = await fetch(global.config.apiUrl+'agent/get_drivers?'+urlData, { headers });
-          //console.log("+++response=="+JSON.stringify(response))
-          const dataRes = await response.json();
-          
-          
-          if(dataRes.code==200){
-              
-              this.setState({item:dataRes.data});
-          }else{              console.log("errorr")
-              //this.setState({error:'some internal error please try later'})
+         try{
+            const response = await fetch(global.config.apiUrl+'agent/get_drivers?'+urlData, { headers });
+            //console.log("+++response=="+JSON.stringify(response))
+            const dataRes = await response.json();
+            
+            
+            if(dataRes.code==200){
+                
+                this.setState({item:dataRes.data});
+            }else{              console.log("errorr")
+                //this.setState({error:'some internal error please try later'})
+            }
+            
+         }catch(error) {
+            console.log(error)
           }
           
           this.setState({isLoading:false});
@@ -78,10 +84,10 @@ class AddDriver extends Component {
             this.setState({error:"Please enter license number"})
             return false;            
         }
-        if(this.state.licenseUrl=="" || this.state.licenseUrl==null){
+        /*if(this.state.licenseUrl=="" || this.state.licenseUrl==null){
             this.setState({error:"Please upload license photo"})
             return false;
-        }
+        }*/
           let urlData="&userId="+this.state.userId+"&firstName="+this.state.firstName+"&lastName="+this.state.lastName+"&mobileNo="+this.state.mobileNo+"&email="+this.state.email+"&licenseNo="+this.state.licenseNo+"&licenseUrl="+this.state.licenseUrl;
           //const response = await fetch('http://localhost:3001/booking/getCabs?originObj='+originObj+'&destinationObj='+destinationObj, { headers });
           
@@ -102,9 +108,9 @@ class AddDriver extends Component {
           if(result.data.code==200){            
               this.setState({error:result.data.msg});
               this.getDrivers(this.state.userId);
-          }else{             
+          }else{            
                
-              this.setState({error:'some internal error please try later'})
+              this.setState({error:result.data.msg})
           }          
           this.setState({isLoading:false});     
     }
@@ -127,30 +133,78 @@ class AddDriver extends Component {
     setLicenseUrl =async(event)=>{
         this.setState({error:""});
         
-        console.log("File Details=="+JSON.stringify(event.target.files[0]));
-        console.log("size=="+event.target.files[0].size);
+        console.log("File Details=="+event.target.files[0]);
+        console.log("size=="+JSON.stringify(event.target.files[0]));
+        console.log("name=="+event.target.files[0].name);
         if(event.target.files[0].size>512000){
             this.setState({error:"Max file size allowed 500KB"});
             return false;
         }
+        
         this.setState({licenseFile:event.target.files[0]});
+        this.setState({licenseUrl:event.target.files[0].name});
+        this.setState({licenseFileName:event.target.files[0].name});
+        /*
+            try {
+                const formData = new FormData();
+                //formData.append("fileName", event.target.files[0].name);
+                formData.append("file", event.target.files[0]);
+                console.log(":"+formData);
+                const configData = {
+                    headers: {              
+                      'content-type': 'multipart/form-data',              
+                    },              
+                  };
+                  let res = await fetch(
+                    global.config.apiUrl+"agent/uploadfile",
+                    {
+                      method: 'post',
+                      body: formData,
+                      headers: {
+                        'Content-Type': 'multipart/form-data; ',
+                      },
+                    }
+                  );
+                  let responseJson = await res.json();
+                  if (responseJson.status == 1) {
+                    alert('Upload Successful');
+                  }else{
+
+                  }
+              } catch (ex) {
+                console.log(ex);
+              }*/
 
     }
     UploadImage =async (event) => {
-        console.log("licenseFile==="+this.state.licenseFile.name);
-        event.preventDefault()
-        const formData = new FormData();
-        formData.append("licenseIamge", this.state.licenseFile);
-        /*try {
+        console.log("licenseFile=="+this.state.licenseFile.name);
+        //event.preventDefault()
+        
+        try {
+            //const result = await axios.post(global.config.apiUrl+"agent/add_driver", data,{ headers });
+            let formData = new FormData();
+            formData.append("fileName", this.state.licenseFileName);
+            formData.append("file", this.state.licenseFile);
+            console.log(":"+JSON.stringify(formData));
+            try {
+                const res = await axios.post(
+                    global.config.apiUrl+"agent/uploadfile",
+                    formData
+                );
+                console.log("Response:"+res);
+              } catch (ex) {
+                console.log(ex);
+              }
+              return false;
           const response = await axios({
             method: "post",
-            url: "/api/upload/file",
+            url: global.config.apiUrl+"agent/uploadfile",
             data: formData,
             headers: { "Content-Type": "multipart/form-data" },
           });
         } catch(error) {
           console.log(error)
-        }*/
+        }
     }
     render() { 
         const override =`
@@ -188,13 +242,13 @@ class AddDriver extends Component {
                                             <div className="col-12" style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gridGap: 10 }}>
                                                 <div>
                                                     <Form.Group controlId="formBasicEmail" >
-                                                        <Form.Label>First Name<spam style={{color:'red'}}>*</spam></Form.Label>
+                                                        <Form.Label>First Name<span style={{color:'red'}}>*</span></Form.Label>
                                                         <Form.Control type="text" placeholder="First Name" value={this.state.firstName} onChange={this.setFirstName}/>                                                                                                        
                                                     </Form.Group>
                                                 </div>
                                                 <div >
                                                     <Form.Group controlId="formBasicEmail">
-                                                        <Form.Label>Last Name<spam style={{color:'red'}}>*</spam></Form.Label>
+                                                        <Form.Label>Last Name<span style={{color:'red'}}>*</span></Form.Label>
                                                         <Form.Control type="text" placeholder="Last Name" value={this.state.lastName} onChange={this.setLastName} />                                                                                                        
                                                     </Form.Group>
                                                 </div>
@@ -203,7 +257,7 @@ class AddDriver extends Component {
                                             <div className="col-12" style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gridGap: 10 }}>
                                                     <div>
                                                     <Form.Group controlId="formBasicEmail" >
-                                                        <Form.Label>Mobile No<spam style={{color:'red'}}>*</spam></Form.Label>
+                                                        <Form.Label>Mobile No<span style={{color:'red'}}>*</span></Form.Label>
                                                         <Form.Control type="number" placeholder="Mobile No" value={this.state.mobileNo} onChange={this.setMobileNo} />                                                                                                        
                                                     </Form.Group>
                                                 </div>
@@ -218,20 +272,18 @@ class AddDriver extends Component {
                                             <div className="col-12" style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gridGap: 10 }}>
                                                     <div>
                                                     <Form.Group controlId="formBasicEmail" >
-                                                        <Form.Label>License No.<spam style={{color:'red'}}>*</spam></Form.Label>
+                                                        <Form.Label>License No.<span style={{color:'red'}}>*</span></Form.Label>
                                                         <Form.Control type="text" placeholder="License No" value={this.state.licenseNo} onChange={this.setLicenseNo} />                                                                                                        
                                                     </Form.Group>
                                                 </div>
-                                                <div>
+                                                {/*<div>
                                                     <Form.Group controlId="formBasicEmail" >
-                                                        <Form.Label>License<spam style={{color:'red'}}>*</spam></Form.Label>
-                                                        <Form.Control type="file" accept="image/*" placeholder="upload license" value={this.state.licenseUrl} onChange={this.setLicenseUrl} />                                                                                                        
+                                                        <Form.Label>License<span style={{color:'red'}}>*</span></Form.Label>
+                                                        <Form.Control type="file" accept="image/*" placeholder="upload license" onChange={this.setLicenseUrl} />                                                                                                        
                                                         
-                                                        <Button variant="primary" type="button" onClick={this.UploadImage.bind(this)}>
-                                                            Upload Now
-                                                        </Button>
+                                                        
                                                     </Form.Group>
-                                                </div>
+                                                </div>*/}
                                             </div>
                                             <div className="col-12">        
                                                 
@@ -254,7 +306,7 @@ class AddDriver extends Component {
                                     <Card>
                                             <Card.Title style={{fontSize:16,padding:10,color:'white',backgroundColor:'gray'}}>My Drivers </Card.Title>
                                         <Card.Body>
-                                            <div style={{color:'red'}}>0
+                                            <div style={{color:'red'}}>
                                             <Table striped bordered hover responsive>
                                                 <thead>
                                                     <tr>
