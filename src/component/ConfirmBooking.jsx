@@ -80,7 +80,7 @@ class ConfirmBooking extends Component {
         });
     }
     prePayment=async()=>{
-         
+         console.log("PrePayment====")
         const res = await this.loadScript(
             "https://checkout.razorpay.com/v1/checkout.js"
         );
@@ -97,8 +97,9 @@ class ConfirmBooking extends Component {
             bookingId: this.state.item.bookingId,
             mobileNo: this.state.item.mobileNo,
         };
+        console.log("dataPay="+JSON.stringify(dataPay));
         const resultpay = await axios.post(global.config.apiUrl+"booking/payment",dataPay);
-        
+        console.log("resultpay=="+resultpay);
         if (!resultpay) {
             alert("Server error. Are you online?");
             return;
@@ -106,7 +107,7 @@ class ConfirmBooking extends Component {
 
         
         this.setState({payment_orderId:resultpay.data.id,currency:resultpay.data.currency,receipt:resultpay.data.receipt});
-        //console.log("payment_orderId==="+this.state.payment_orderId);
+        console.log("payment_orderId==="+this.state.payment_orderId);
         // Getting the order details back
         const { amount, id, currency } = resultpay.data;
 
@@ -230,6 +231,7 @@ class ConfirmBooking extends Component {
             dropState: this.state.item.dropState,
             extraRate: this.state.item.extraRate,
         };
+        console.log("bookReqPost="+JSON.stringify(bookReqPost));
         let resultBooking = await axios.post(global.config.apiUrl+"booking/book_cab",bookReqPost,{ headers });
         console.log("response:"+JSON.stringify(resultBooking));
         const data = resultBooking.data;//await resultBooking.json();
@@ -271,7 +273,7 @@ class ConfirmBooking extends Component {
                         
                         <div className="row">   
                     
-                            <div className="col-lg-7 col-md-7">
+                            <div className="col-lg-7 col-md-7" style={{marginBottom:5}}>
                                     
                                     <Card>
                                             <Card.Title style={{fontSize:16,padding:10,color:'white',backgroundColor:'gray'}}>Booking Confirmation </Card.Title>
@@ -318,7 +320,7 @@ class ConfirmBooking extends Component {
                                         </Card.Body>
                                     </Card>                                   
                             </div>             
-                            <div className="col-lg-5 col-md-5">
+                            <div className="col-lg-5 col-md-5" style={{marginBottom:5}}>
                             <Card>
                                     <Card.Title style={{fontSize:16,padding:10,color:'white',backgroundColor:'gray'}}>Booking Details </Card.Title>
                                         <Card.Body>
@@ -386,7 +388,7 @@ class ConfirmBooking extends Component {
                                     </Card>
                             </div>
                         </div>
-                        <div className="bookingConfirmTabs">
+                        <div className="bookingConfirmTabs" style={{marginBottom:5}}>
                             <Tabs defaultActiveKey="tnc" id="uncontrolled-tab-example" className="mb-12">
                                 <Tab eventKey="includes" title="Includes">
                                     <div className="row">

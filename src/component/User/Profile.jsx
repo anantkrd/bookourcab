@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import Card from 'react-bootstrap/Card'
-import { Button,Table } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 import Form from 'react-bootstrap/Form';
 import  Header  from "../Header";
-import  Footer  from "../Footer";
-import { Link } from 'react-router-dom'
-import { useHistory } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+//import  Footer  from "../Footer";
+//import { Link } from 'react-router-dom'
+//import { useHistory } from 'react-router-dom';
+//import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ClipLoader from "react-spinners/ClipLoader";
 import axios from "axios";
 import { withRouter } from 'react-router-dom';
@@ -44,7 +44,7 @@ class UserProfile extends Component {
           //console.log("+++response=="+JSON.stringify(response))
           const dataRes = await response.json();
                     
-          if(dataRes.code==200){
+          if(dataRes.code===200){
              
               this.setState({item:dataRes.data[0]});
           }else{              console.log("errorr")
@@ -80,8 +80,8 @@ class UserProfile extends Component {
             return;
         }
         // creating a new order
-        const headers = { 'Content-Type': 'application/json' }  
-        let UrlData="amount=";
+        //const headers = { 'Content-Type': 'application/json' }  
+        //let UrlData="amount=";
         let advance=(object.agentPrice*20)/100;
         let userAmount=object.finalAmount-object.paid;
         const dataPay = {
@@ -105,7 +105,7 @@ class UserProfile extends Component {
         this.setState({payment_orderId:resultpay.data.id,currency:resultpay.data.currency,receipt:resultpay.data.receipt});
         //console.log("payment_orderId==="+this.state.payment_orderId);
         // Getting the order details back
-        const { amount, id, currency } = resultpay.data;
+        //const { amount, id, currency } = resultpay.data;
         this.payNow(advance,resultpay.data.id,resultpay.data.currency)
         return false;
         

@@ -21,7 +21,7 @@ class History extends Component {
       componentDidMount() {
         this.setState({isLoading:true});
        let userId=localStorage.getItem("userId");
-       let token=localStorage.getItem("token");
+       //let token=localStorage.getItem("token");
        this.setState({userId:userId});
         
         if(userId=="" || userId==null)
@@ -68,7 +68,7 @@ class History extends Component {
                 <Header/> 
                 <div> 
                 <ClipLoader css={override} style={{borderColor:'red'}} color={this.state.loadingColor} loading={this.state.isLoading} 
-                css={override} size={150} >  </ClipLoader>
+                size={150} >  </ClipLoader>
                 <section id="pricing" className="pricing">
 
                     <div className="container" data-aos="fade-up" style={{width:'95%!important'}}>

@@ -2325,3 +2325,23 @@ body {
   border-bottom-style: inset;
   margin-bottom: 10px;
 }
+.card{
+  border:1px solid rgb(71 164 247 / 63%) !important;
+  border-radius:8px !important;
+}
+.card-body{
+  background-color:aqua !important;
+}
+.bestPrice{
+  background-color:#29b1fd !important;
+}
+
+.customerCare{
+  background-color:#f9165e !important;
+}
+.homePickup{
+  background-color:#0bb85f !important;
+}
+.easyBooking{
+  background-color:#e7521e !important;
+}

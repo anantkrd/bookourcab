@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Card from 'react-bootstrap/Card'
 import { Button,Table } from 'react-bootstrap';
+import Form from 'react-bootstrap/Form'
 import Slider from './Slider';
 import  Header  from "./Header";
 import  Footer  from "./Footer";
@@ -10,15 +11,36 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ClipLoader from "react-spinners/ClipLoader";
 import {Helmet} from "react-helmet";
 import axios from "axios";
+
+import 'react-calendar/dist/Calendar.css';
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import GooglePlacesAutocomplete from 'react-google-places-autocomplete';
+import { geocodeByPlaceId } from 'react-google-places-autocomplete';
+import { getDistance,getPreciseDistance } from 'geolib';
+import timespan from 'jsonwebtoken/lib/timespan';
+import moment from 'moment';
 class Search extends Component {
     //state = {  }
     
-    state = {cabsList: [],pickup:'',destination:'',pickdate:'',returnDate:'',distance:0,locationUrl:'',isLoading:false,loadingColor:'#ffffff'};
+    state = {cabsList: [],pickup:'',destination:'',pickdate:'',returnDate:'',distance:0,locationUrl:'',isLoading:false,loadingColor:'#ffffff',pickupTime:new Date(),returnTime:new Date(),pickupTimeSelected:'',
+        returnTimeSelected:'',history:'',handleColor:'',pickupPlace:'',destinationPlace:'',pickupLatlng:{},destinationLatlng:{},
+      distance:'',pickupLat:0.0,pickupLng:0.0,destinationLat:0.0,destinationLng:0.0,mobileNo:'',isReturn:'N',pickupCity:'',pickupDistrict:'',pickupState:'',
+      dropCity:'',dropDistrict:'',dropState:'',showBooking:false}
     constructor(props) {
         super(props);        
       }
     
       componentDidMount(props) {
+        let  handleColor1 = time => {
+            return time.getHours() > 12 ? "text-success" : "text-error";
+          };
+          this.setState({handleColor:handleColor1});
+          
+          var new_date = moment(moment.now()).format("YYYY-MM-DD H:mm:ss");
+          var new_dateTime = moment(new_date).add(5, 'hours');
+          var new_dateTime1 = moment(new_dateTime).format("YYYY-MM-DD H:mm:ss");
+          console.log("new_date-="+new_date+"====new_dateTime==="+new_dateTime1);
           this.setState({isLoading:true});
         //console.log("++pickup**********==="+JSON.stringify(this.props));
         //console.log("useParams()==="+JSON.stringify(props));
@@ -29,6 +51,7 @@ class Search extends Component {
         //console.log("here*********destinationDistObj***********"+JsonObj['destinationDistObj']);
         let destinationPlace=JsonObj['destinationPlace'];
         let pickupTimeSelected=JsonObj['pickupTimeSelected'];
+       
         let returnTimeSelected=JsonObj['returnTimeSelected'];
         let pickupDistObj=JsonObj['pickupDistObj'];
         let destinationDistObj=JsonObj['destinationDistObj'];
@@ -43,6 +66,8 @@ class Search extends Component {
         let destinationCity=destinationPlace;
         let pickdateTime=pickupTimeSelected;
         let returnDateTime=returnTimeSelected;
+        
+        this.setState({mobileNo:mobileNo});
         this.setState({pickup:pickupLocation[0]});
         this.setState({destination:destinationLocation[0]});
         this.setState({pickdate:pickupTimeSelected});
@@ -99,6 +124,209 @@ class Search extends Component {
         
         window.location.href="/ConfirmBooking/"+dataObj;
     }
+    onpickTimeChange=(date)=>{ 
+        let picktime=date;
+        let timeNow=moment(moment.now()).format("YYYY-MM-DD H:mm:ss");
+        let timeOnly=moment(date).format("H:mm:ss");
+        console.log(date+"==timeOnly=="+timeOnly);
+        
+        let formattedDate=moment(date).format("YYYY-MM-DD H:mm:ss");
+        console.log(timeNow+"==pickdate ="+moment(date).format("YYYY-MM-DD H:mm:ss"));
+        let tripBookingBEforHours=moment(formattedDate).diff(moment(timeNow), 'hours');
+        let tripBookingBEforDays=moment(formattedDate).diff(moment(timeNow), 'days');
+        console.log("Diff="+moment(formattedDate).diff(moment(timeNow), 'hours'));
+        if(tripBookingBEforHours<=0 && timeOnly!='0:00:00'){
+          alert("Please select valid time");
+          this.setState({pickupTime:''});
+          return false;
+        }
+        if(tripBookingBEforHours>0 && tripBookingBEforHours<3 && timeOnly!='0:00:00'){
+          alert("Please plan your trip 2 Hours in advance");
+          this.setState({pickupTime:''});
+          return false;
+        }
+        console.log("pickupTimeSelected=="+formattedDate);
+        this.setState({pickupTimeSelected:formattedDate});
+        //console.log("picktime=="+picktime);
+         this.setState({pickupTime:date});
+       }
+       onEndTimeChange=(date)=>{     
+        this.setState({returnTime:date});
+        //let dateNew=Moment(date).format('YYYY-MM-DD HH:MM:SS');
+        // console.log("dateNew=="+dateNew);
+        let formattedDate=moment(date).format("YYYY-MM-DD H:mm:ss");
+        
+        this.setState({returnTimeSelected:formattedDate});
+      }
+      searchCabs=()=>{
+        
+       // console.log(this.state.pickupPlace+"*****"+this.state.pickupTimeSelected+"**pickupLatlng"+JSON.stringify(this.state.pickupLatlng)+"===destinationLatlng=="+JSON.stringify(this.state.destinationLatlng));
+        if(this.state.pickupPlace=="" || this.state.pickupPlace==undefined || this.state.destinationPlace=="" || this.state.destinationPlace==undefined){
+          alert("Please enter pickup and destionation");
+          return false;
+        }
+        if(this.state.mobileNo==""  || isNaN(this.state.mobileNo)){
+          alert("Invalid mobile no.");
+          return false;
+        }
+        if(this.state.mobileNo.length!=10){
+          alert("Invalid mobile no.");
+          return false;
+        }
+        
+        if(this.state.pickupTimeSelected=="" || this.state.pickupTimeSelected==undefined){
+          alert("Please select pickup date");
+          return false;
+        }
+        if(this.state.isReturn=='Y' && (this.state.returnTimeSelected=="" || this.state.returnTimeSelected==undefined)){
+          alert("Please select return date");
+          return false;
+        }
+        let returnTimeSelected='';
+        if(this.state.isReturn=='N'){
+            returnTimeSelected='';
+        }else{
+            returnTimeSelected=this.state.returnTimeSelected;
+        }
+        let distance=getPreciseDistance(
+          { latitude: this.state.pickupLat, longitude: this.state.pickupLng },
+          { latitude: this.state.destinationLat, longitude: this.state.destinationLng }
+        );
+        if(distance<0){
+          alert("Invalid locations");
+          return false;
+        }
+        //console.log("distance==="+distance);
+        
+        //console.log(this.state.pickupLat+"=pickup==="+this.state.pickupLng);
+        //console.log(this.state.destinationLat+"=destination==="+this.state.destinationLng);
+        //console.log("*****"+JSON.stringify(this.state.destinationLatlng));
+        let pickupDistObj=JSON.stringify(this.state.pickupLatlng);
+        let destinationDistObj=JSON.stringify(this.state.destinationLatlng);
+        let dataObj={pickupPlace:this.state.pickupPlace,
+          destinationPlace:this.state.destinationPlace,
+          pickupTimeSelected:this.state.pickupTimeSelected,
+          returnTimeSelected:returnTimeSelected,
+          pickupDistObj:this.state.pickupLatlng,
+          destinationDistObj:this.state.destinationLatlng,
+          mobileNo:this.state.mobileNo,
+          pickupCity:this.state.pickupCity,
+          pickupDistrict:this.state.pickupDistrict,
+          pickupState:this.state.pickupState,
+          dropCity:this.state.dropCity,
+          dropDistrict:this.state.dropDistrict,
+          dropState:this.state.dropState,
+          isReturn:this.state.isReturn,
+        };
+        let data=JSON.stringify(dataObj);
+        console.log("data==="+data);
+        //return false;
+        //window.location.href="/Search/"+this.state.pickupPlace+"/"+this.state.destinationPlace+"/"+this.state.pickupTimeSelected+"/"+this.state.returnTimeSelected+"/"+pickupDistObj+"/"+destinationDistObj+"/"+this.state.mobileNo;
+        window.location.href="/Search/"+data;
+      }
+      setDestination=(dest)=>{
+        this.setState({destination:dest.target.value})
+      }
+      setMobile=(mobile)=>{
+        this.setState({mobileNo:mobile.target.value})
+      }
+      setPickupData=(dataApi)=>{
+        //console.log(JSON.stringify(dataApi));
+        let placeId=dataApi.value.place_id;
+        let placeLabel=dataApi.label;
+        this.setState({pickupPlace:placeLabel});
+        //console.log("placeLabel=="+placeLabel);
+        geocodeByPlaceId(placeId)
+        .then(results => {
+          //console.log("resut=="+JSON.stringify(results));
+          //console.log("resut=="+JSON.stringify(results[0].geometry.location));
+          
+          let address_components=JSON.parse(JSON.stringify(results[0].address_components));
+          let addressLength=address_components.length;
+          let i=0;
+          let state='';
+          let disctrict='';
+          let city='';
+          while(i<addressLength){
+            let addressType=address_components[i]['types'][0];
+            if(addressType=="administrative_area_level_1"){
+              state=address_components[i]['long_name'];
+            }
+            if(addressType=="administrative_area_level_2"){
+              disctrict=address_components[i]['long_name'];
+            }
+            if(addressType=="locality"){
+              city=address_components[i]['long_name'];
+            }
+            i++;
+          }     
+          
+          
+          this.setState({pickupCity:city,pickupDistrict:disctrict,pickupState:state});
+          //console.log("addressLength==="+addressLength+"===state=="+state+"==disctrict=="+disctrict+"=====city===="+city);
+          let locationObj=JSON.parse(JSON.stringify(results[0].geometry.location));
+    
+          var lat=results[0].geometry.location.lat;
+          var lng=results[0].geometry.location.lng;
+    
+          this.setState({pickupLat:locationObj.lat});
+          this.setState({pickupLng:locationObj.lng});
+    
+           this.setState({pickupLatlng:results[0].geometry.location});
+        }).catch(error => console.error(error));
+      }
+      
+      setDestination=(dataApi)=>{
+        //console.log(JSON.stringify(dataApi));
+        let placeId=dataApi.value.place_id;    
+        let placeLabel=dataApi.label;
+        this.setState({destinationPlace:placeLabel});
+        geocodeByPlaceId(placeId)
+        .then(results => {
+          //console.log("resut=="+JSON.stringify(results[0].geometry));
+          //console.log("resut=location="+JSON.stringify(results[0].geometry.location));
+          let address_components=JSON.parse(JSON.stringify(results[0].address_components));
+          let addressLength=address_components.length;
+          let i=0;
+          let state='';
+          let disctrict='';
+          let city='';
+          while(i<addressLength){
+            let addressType=address_components[i]['types'][0];
+            if(addressType=="administrative_area_level_1"){
+              state=address_components[i]['long_name'];
+            }
+            if(addressType=="administrative_area_level_2"){
+              disctrict=address_components[i]['long_name'];
+            }
+            if(addressType=="locality"){
+              city=address_components[i]['long_name'];
+            }
+            i++;
+          }  
+          this.setState({dropCity:city,dropDistrict:disctrict,dropState:state});
+          //console.log("addressLength==="+addressLength+"===state=="+state+"==disctrict=="+disctrict+"=====city===="+city);
+          let locationObj=JSON.parse(JSON.stringify(results[0].geometry.location));
+          var lat=results[0].geometry.location.lat;
+          var lng=results[0].geometry.location.lng;
+    
+          this.setState({destinationLat:locationObj.lat});
+          this.setState({destinationLng:locationObj.lng});
+           
+          this.setState({destinationLatlng:locationObj});
+        }).catch(error => console.error(error));
+      }
+      onTypeChange=(val)=>{
+        var value=val.target.value;    
+        //console.log(value);
+        this.setState({isReturn:value})
+      }
+      modify=()=>{
+        let showBooking=!this.state.showBooking;
+        this.setState({showBooking:showBooking});
+        //this.setState({pickupTimeSelected:''});
+        
+      }
     render() { 
         const override =`
         display: block;
@@ -127,16 +355,144 @@ class Search extends Component {
                     <meta name="Keywords" content="Book Now, car on rent, bookcar on rent,hire car,hire car from pune,hire car from mumbai,hire gaadi" />
                 </Helmet>  
                 <section id="pricing" className="pricing">
-                <div className="container align-items-center" data-aos="fade-up" style={{width:'95%!important',backgroundColor: 'white',padding:16}}>
+                <div className="container align-items-center" data-aos="fade-up" style={{width:'95%!important',backgroundColor: 'rgb(83, 181, 235)',padding:16,borderRadius:'10px',marginBottom:20}}>
                     <div className="row">
-                        <div className="col-md-6">Pickup: <h5>{this.state.pickup}</h5></div>
-                        <div className="col-md-6">Drop: <h5>{this.state.destination}</h5></div>
+                        <div className="col-md-5">Pickup: <h5>{this.state.pickup}</h5></div>
+                        <div className="col-md-5">Drop: <h5>{this.state.destination}</h5></div>
+                        <div className="col-md-2"></div>
                     </div>
                     <div className="row">
-                        <div className="col-md-6">Pickup Time: {this.state.pickdate}</div>
-                        <div className="col-md-6">Return Time: {this.state.returnDate}</div>
+                        <div className="col-md-5">Pickup Time: {this.state.pickdate}</div>
+                        <div className="col-md-5">{ this.state.isReturn=="Y" ? <spam>Return Time: {this.state.returnDate}</spam>:''}</div>
+                        <div className="col-md-2">
+                            <Button variant="primary" type="button" onClick={this.modify}>
+                                Modify
+                            </Button>
+                        </div>
+                    </div>
+                    
+                    <div className="row">
+                        <div className="col-md-4">
+                            
+                        </div>
                     </div>
                 </div>
+                {this.state.showBooking?<div className=" bookingOption container align-items-center" data-aos="fade-up" style={{width:'95%!important',backgroundColor: 'rgb(225 92 139)',padding:16,borderRadius:'10px',color:'white',fontWeight:'bold'}}>
+                        <div className="col-12" style={{width:"50vh",height:"515px",left:'0',right:'0',margin:'auto',border:'solid rgb(243 245 167)',borderRadius:'2%'}}>
+                            
+                            <div className="row" style={{marginTop:10}}>
+                                <div className="col-12">
+                                <span className="">Single : <input type="radio" checked={this.state.isReturn=='N'} name="bookingType" value="N" onChange={this.onTypeChange}/></span>
+                                <span style={{marginLeft:10}}>Return : <input type="radio" name="bookingType" value="Y" onChange={this.onTypeChange}/></span>
+                                
+                                </div>
+                                <div className="col-12">
+                                
+                                <Form.Group controlId="formBasicEmail">
+                                    <Form.Label>Pickup</Form.Label>
+                                    <GooglePlacesAutocomplete
+                                    apiKey="AIzaSyDzlGIoqMbQKaNwu1tCMXCtW3UEjzCfUvs"                              
+                                    autocompletionRequest={{                                
+                                        componentRestrictions: {
+                                        country: ['in'],
+                                        }
+                                    }}
+                                    selectProps={{
+                                        placeholder: 'Pickup Location',
+                                        onChange: this.setPickupData,
+                                        styles: {
+                                        input: (provided) => ({
+                                            ...provided,
+                                            color: 'blue',
+                                        }),
+                                        option: (provided) => ({
+                                            ...provided,
+                                            color: 'blue',
+                                        }),
+                                        singleValue: (provided) => ({
+                                            ...provided,
+                                            color: 'blue',
+                                        }),
+                                        },
+                                    }}
+                                    />
+                                </Form.Group>
+                                </div>
+                                <div className="col-12">
+                                <Form.Group controlId="formBasicEmail" >                            
+                                    <Form.Label>Destination</Form.Label>
+                                    <GooglePlacesAutocomplete
+                                    apiKey="AIzaSyDzlGIoqMbQKaNwu1tCMXCtW3UEjzCfUvs"
+                                    autocompletionRequest={{                                
+                                        componentRestrictions: {
+                                        country: ['in'],
+                                        }
+                                    }}
+                                    selectProps={{
+                                        placeholder: 'Destination Location',
+                                        onChange: this.setDestination,
+                                        styles: {
+                                        input: (provided) => ({
+                                            ...provided,
+                                            color: 'blue',
+                                        }),
+                                        option: (provided) => ({
+                                            ...provided,
+                                            color: 'blue',
+                                        }),
+                                        singleValue: (provided) => ({
+                                            ...provided,
+                                            color: 'blue',
+                                        }),
+                                        },
+                                    }}
+                                    />
+                                </Form.Group>
+                                </div>
+                                
+                                <div className="col-12">
+                                <Form.Group controlId="formBasicEmail" >
+                                    <Form.Label>PickupTime</Form.Label>
+                                    <DatePicker popperPlacement="auto" showTimeSelect dateFormat="yyyy-MM-dd h:mm aa" className="form-control"
+                                    selected={this.state.pickupTime}
+                                    minDate={new Date()}                             
+                                    onChange={date => this.onpickTimeChange(date)} />
+                                                                                        
+                                </Form.Group>
+                                </div> 
+                                { this.state.isReturn=="Y" ? <div className="col-12" >
+                                <Form.Group controlId="formBasicEmail" >                           
+                                    <Form.Label>Return Time</Form.Label>
+                                    <DatePicker minDate={new Date()}
+                                    className="form-control"
+                                    popperPlacement="auto"
+                                    dateFormat="yyyy-MM-dd h:mm aa"
+                                    showTimeSelect
+                                    selected={this.state.returnTime}
+                                    onChange={date => this.onEndTimeChange(date)}
+                                    />
+                                </Form.Group>
+                                </div> : null }
+                                                
+                                <div className="col-12">
+                                <Form.Group controlId="formBasicEmail" >
+                                    <Form.Label>Mobile No</Form.Label>
+                                    <Form.Control type="text" value={this.state.mobileNo} placeholder="Mobile No" onChange={this.setMobile} />
+                                                                                        
+                                </Form.Group>
+                                </div>
+                                <div className="col-12" style={{textAlign:'end'}} >
+                                <Form.Group controlId="formBasicEmail" >
+                                    <Button variant="primary" type="button" onClick={this.searchCabs}>
+                                    Search Cabs
+                                    </Button>
+                                </Form.Group>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>:null
+                }
                     <div className="container" data-aos="fade-up" style={{width:'95%!important'}}>
                         
                         <div className="row">   
