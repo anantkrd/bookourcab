@@ -235,7 +235,7 @@ class Header extends Component {
                     </div>
                 </li> 
 
-                <li><a href="#"onClick={this.signOut.bind(this)}><span>Sign Out</span></a></li>
+                <li><a href="#" onClick={this.signOut}><span>Sign Out</span></a></li>
             </ul>
         }else if(this.state.userType=='user'){
             return <ul>
@@ -312,12 +312,12 @@ class Header extends Component {
                     <a class="dropdown-item" href="#">My Assign</a>
                     </div>
                 </li>                               
-                <li><a href="#" onClick={this.signOut}><span>Sign Out</span></a></li>
+                <li><a href="#" onClick={this.signOut.bind(this)}><span>Sign Out</span></a></li>
             </ul>);
         }else{
             return (<ul>
                 <li className="nav-item"><a href="/Home" >Home</a></li>                                
-                <li><a href="#" onClick={this.setShow.bind(this.state.show)}><span>Sign In</span></a></li>
+                <li><a href="/Login" ><span>Sign In</span></a></li>
                 <li className="nav-item"><a href="/agent/Login" >Partner</a></li> 
             </ul> );
         }
@@ -381,7 +381,7 @@ class Header extends Component {
                                                 /*
                                                     this.state.isOtpSent=='N'?<div >
                                                         <div className="col-12">
-                                                            <Form.Group controlId="formBasicEmail" >
+                                                                <Form.Group controlId="formBasicEmail" >
                                                                 <Form.Label>Mobile No</Form.Label>
                                                                 <Form.Control name="mobileNo" value={this.state.mobileNo} type="text" placeholder="Mobile No" onChange={this.setMobile} />
                                                             </Form.Group>
