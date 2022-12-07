@@ -177,6 +177,10 @@ class Login extends Component {
                                                                 <Button variant="primary" type="button" onClick={this.loginWithPassword.bind(this)}>
                                                                    Login
                                                                 </Button>                                                                                                       
+                                                            </Form.Group><Form.Group controlId="formBasicEmail" style={{float:'left',color:'white'}}>
+                                                                <Button variant="primary" type="button">
+                                                                <a style={{color:'white'}} href="/Home" ><span>Sign In</span></a>
+                                                                </Button>                                                                                                       
                                                             </Form.Group>
                                                         </div>
                                                         
