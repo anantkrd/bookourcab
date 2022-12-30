@@ -23,6 +23,9 @@ import BookingDetails from './component/User/BookingDetails';
 import AdminHome from './component/Admin/AdminHome';
 import Completed from './component/Admin/Completed';
 import ReadyToGo from './component/Admin/ReadyToGo';
+import AddCabs from './component/Admin/AddCabs';
+import AddCitySurge from './component/Admin/AddCitySurge';
+
 import WaitingForDriver from './component/Admin/WaitingForDriver';
 import WaitingForAgent from './component/Admin/WaitingForAgent';
 import Partner from './component/Partner/Home';
@@ -67,6 +70,10 @@ function App() {
         <Route exact path='/admin/agentWaiting' ><WaitingForAgent/></Route>  
         <Route exact path='/admin/AddCar' ><AddCar/></Route>   
         <Route exact path='/admin/AddDriver' ><AddDriver/></Route>  
+        <Route exact path='/admin/addSurge' ><AddCitySurge/></Route>  
+        <Route exact path='/admin/addCabs' ><AddCabs/></Route>  
+        
+
 
         <Route exact path='/BookingDetails/:bookingId' ><BookingDetails/></Route>  
         <Route exact path='/ConfirmBooking/:data' ><ConfirmBooking/></Route>  

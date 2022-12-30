@@ -11,7 +11,7 @@ import { withRouter } from 'react-router-dom';
 import ClipLoader from "react-spinners/ClipLoader";
 class BookingDetails extends Component {
     
-    state = {item:[],userType:'',id:'',error:'',bookingId:'',pickupDate:'0000-00-00 00:00:00',returnDate:'0000-00-00 00:00:00',isLoading:false,loadingColor:'#ffffff'};
+    state = {item:[],userType:'',userId:'',id:'',error:'',bookingId:'',pickupDate:'0000-00-00 00:00:00',returnDate:'0000-00-00 00:00:00',isLoading:false,loadingColor:'#ffffff'};
     constructor(props) {
         super(props);    
         //console.log("++pickup**********==="+JSON.stringify(this.props));    
@@ -26,7 +26,11 @@ class BookingDetails extends Component {
         this.geetDetails(this.props.match.params.bookingId);
         let userType=localStorage.getItem("userType");
         this.setState({userType:userType});
+        let userId=localStorage.getItem("userId");
+        this.setState({userId:userId});
       }
+      //ENUM('pending', 'approved', 'inprocess', 'completed', 'rejected')
+      //ENUM('pending', 'waiting', 'confirm', 'canceled', 'completed', 'returnInitiated', 'returnCompleted', 'returnRejected', 'started')
     
     async geetDetails(bookingId){ 
         let token=localStorage.getItem("token");
@@ -50,6 +54,10 @@ class BookingDetails extends Component {
     }
     sendBill(){
         console.log("Send bill");
+    }
+    cancelBooking(){
+        console.log("Send bill");
+        alert("Please call admin for cancel this booking");
     }
     render() {  
         const override =`
@@ -292,16 +300,17 @@ class BookingDetails extends Component {
                                                 </div>
                                                 <div className="col-lg-6 col-md-6 col-sm-6">
                                                     <div className='row'>
-                                                        <div className="col-4">Journy Status</div>
+                                                        <div className="col-4">Journy Status {this.state.item.canCancel}-{this.state.item.userId}-{this.state.userId}</div>
                                                         <div className="col-8" style={{fontWeight:700}}>{this.state.item.journyStatus}</div>
                                                     </div>
                                                 </div>
                                             </div>
                                             {
-                                                this.state.userType=='user'&& this.state.item.pending>0?<div className="row" style={{color:"red",fontSize:14}}>
+                                                //ENUM('pending', 'waiting', 'confirm', 'canceled', 'completed', 'returnInitiated', 'returnCompleted', 'returnRejected', 'started')
+                                                this.state.userType=='user' && this.state.item.canCancel=='Y' && this.state.item.userId==this.state.userId?<div className="row" style={{color:"red",fontSize:14}}>
                                                     <div className="col-12">
-                                                        <Button style={{float:'right'}} variant="primary" type="button" onClick={this.sendBill}>
-                                                           Pay {this.state.item.pending}
+                                                        <Button style={{float:'right'}} variant="primary" type="button" onClick={this.cancelBooking}>
+                                                           Cancel
                                                         </Button>
                                                     </div>
                                                 </div>:null

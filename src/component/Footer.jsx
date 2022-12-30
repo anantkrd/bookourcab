@@ -12,11 +12,12 @@ class Footer extends Component {
               <div className="col-lg-3 col-md-6 footer-contact">
                 <h3>Address</h3>
                 <p>
-                  BookOurCab <br/>
+                  BookOurCar <br/>
                   Shree Vishal Chs Ltd. PlotNo 17<br/>
-                  Sectore -18 Koperkhairane New Mumbai. <br/><br/>
-                  <strong>Mobile:</strong> +919821224861<br/>
-                  <strong>Email :</strong> dnyandev.nagare@gmail.com<br/>
+                  Sector -18 Koperkhairane New Mumbai. <br/><br/>
+                  <strong>Mobile:</strong> +919821224861,+918424927193<br/>
+                  <strong>Landline:</strong>02249784787 <br/>
+                  <strong>Email :</strong> bookourcar7193@gmail.com<br/>
                 </p>
               </div>
               <div className="col-lg-2 col-md-6 footer-links">

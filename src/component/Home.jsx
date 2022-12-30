@@ -131,6 +131,7 @@ class Home extends Component {
          dropCity:this.state.dropCity,
          dropDistrict:this.state.dropDistrict,
          dropState:this.state.dropState,
+         isReturn:this.state.isReturn,
        };
        let data=JSON.stringify(dataObj);
        //console.log("data==="+data);
@@ -227,7 +228,7 @@ class Home extends Component {
      }
      onTypeChange=(val)=>{
        var value=val.target.value;    
-       //console.log(value);
+       console.log(value);
        this.setState({isReturn:value})
      }  
     render() { 

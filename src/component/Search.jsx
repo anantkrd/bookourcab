@@ -47,7 +47,7 @@ class Search extends Component {
         let JsonObj=JSON.parse(this.props.match.params.data)
 
         let pickupPlace=JsonObj['pickupPlace'];
-        
+        //console.log("====JsonObj==="+JSON.stringify(JsonObj));
         //console.log("here*********destinationDistObj***********"+JsonObj['destinationDistObj']);
         let destinationPlace=JsonObj['destinationPlace'];
         let pickupTimeSelected=JsonObj['pickupTimeSelected'];
@@ -89,6 +89,9 @@ class Search extends Component {
         let dropCity=JsonObj['dropCity'];
         let dropDistrict=JsonObj['dropDistrict'];
         let dropState=JsonObj['dropState'];
+        let isReturn=JsonObj['isReturn'];
+        
+        this.setState({isReturn:isReturn});
         const locationUrl1 = {
             pathname: '/ConfirmBooking',
             state: { fromDashboard: true }
@@ -174,11 +177,11 @@ class Search extends Component {
           return false;
         }
         
-        if(this.state.pickupTimeSelected=="" || this.state.pickupTimeSelected==undefined){
+        if(this.state.pickupTimeSelected=="" || this.state.pickupTimeSelected==undefined || this.state.pickupTimeSelected=='Invalid date'){
           alert("Please select pickup date");
           return false;
         }
-        if(this.state.isReturn=='Y' && (this.state.returnTimeSelected=="" || this.state.returnTimeSelected==undefined)){
+        if(this.state.isReturn=='Y' && (this.state.returnTimeSelected=="" || this.state.returnTimeSelected==undefined || this.state.returnTimeSelected=='Invalid date')){
           alert("Please select return date");
           return false;
         }

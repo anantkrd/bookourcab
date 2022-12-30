@@ -3,15 +3,12 @@ import Card from 'react-bootstrap/Card'
 import { Table } from 'react-bootstrap';
 //import Form from 'react-bootstrap/Form';
 import  Header  from "../Header";
-//import  Footer  from "../Footer";
-//import { Link } from 'react-router-dom'
-//import { useHistory } from 'react-router-dom';
-//import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { withRouter } from 'react-router-dom';
 import ClipLoader from "react-spinners/ClipLoader";
+import Pagination from "@material-ui/lab/Pagination";
 class SearchLog extends Component {
     
-    state = {userId:'',item:[],error:'',isLoading:false,loadingColor:'#ffffff'};
+    state = {userId:'',item:[],error:'',isLoading:false,loadingColor:'#ffffff',pageId:0,rowCount:0,totalPage:0};
     constructor(props) {
         super(props);    
         //console.log("++pickup**********==="+JSON.stringify(this.props));    
@@ -21,18 +18,19 @@ class SearchLog extends Component {
         this.setState({isLoading:true});      
        let userId=localStorage.getItem("userId");
        this.setState({userId:userId});
+       this.setState({pageId:0});
         //console.log("++userId**********==="+userId);        
         //this.setState({item:this.props.match.params.data});
-        this.getBookingLog(userId);
+        this.getBookingLog(userId,1);
       }
     
-    async getBookingLog(userId){
+    async getBookingLog(userId,pageId){
         console.log("*****getHistory******");   
         
         //const headers = { 'Content-Type': 'application/json' } 
         let token=localStorage.getItem("token");
         const headers = {'Authorization':`Bearer ${token}`} ;
-          let urlData="&userId="+userId;
+          let urlData="&userId="+userId+"&pageId="+pageId;
           //const response = await fetch('http://localhost:3001/booking/getCabs?originObj='+originObj+'&destinationObj='+destinationObj, { headers });
           //console.log("urlData=="+urlData)
           const response = await fetch(global.config.apiUrl+'user/get_search_log?'+urlData, { headers });
@@ -40,12 +38,20 @@ class SearchLog extends Component {
           const data = await response.json();
           //console.log("Data="+JSON.stringify(data));
           if(data.code==200){
+            this.setState({totalPage:data.totalPage});
+            this.setState({rowCount:data.rowCount});
               this.setState({item:data.data});
           }else{
               this.setState({error:'some internal error please try later'})
           }
           this.setState({isLoading:false});
           //this.setState({cabsList:data.data});
+    }
+    handlePageChange=async(event, value)=>{
+        //this.setState({pageId:value});
+        let userId=this.state.userId;
+        let pageId=value;
+        this.getBookingLog(userId,pageId);
     }
     render() { 
         const override =`
@@ -122,12 +128,9 @@ class SearchLog extends Component {
                                                                 <td>
                                                                     {
                                                                         object.returnDate!="0000-00-00 00:00:00"?<span>
-                                                                        <label>Compact:{object.distance*object.compact*2}</label>
-                                                                        <label>Sedan:{object.distance*object.sedan*2}</label>
-                                                                        <label>Luxury:{object.distance*object.luxury*2}</label></span>:
-                                                                        <span><label>Compact:{object.distance*object.compact}</label>
-                                                                        <label>Sedan:{object.distance*object.sedan}</label>
-                                                                        <label>Luxury:{object.distance*object.luxury}</label></span>
+                                                                        <label>{object.note}</label>
+                                                                        </span>:
+                                                                        <span><label>{object.note}</label></span>
                                                                     }
                                                                 </td>
                                                             </tr>;
@@ -136,6 +139,16 @@ class SearchLog extends Component {
                                                     
                                                 </tbody>    
                                             </Table>
+                                            <Pagination
+                                                className="paging"
+                                                count={this.state.totalPage}
+                                                page={this.state.rowCount}
+                                                siblingCount={1}
+                                                boundaryCount={1}
+                                                variant="outlined"
+                                                shape="rounded"
+                                                onChange={this.handlePageChange.bind()}
+                                            />
                                             </div>
                                             
                                         </Card.Body>

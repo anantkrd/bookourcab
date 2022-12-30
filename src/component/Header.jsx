@@ -23,7 +23,7 @@ class Header extends Component {
     componentDidMount(){
         
        let userId=localStorage.getItem("userId");
-       //console.log("UserId=="+localStorage.getItem("userType"));
+       console.log("UserId=="+localStorage.getItem("userId"));
        //console.log("UserId=="+global.config.apiUrl);
         if(userId>0){
             let firstName =localStorage.getItem("firstName");
@@ -207,6 +207,8 @@ class Header extends Component {
                     <div className="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a className="dropdown-item" href="/admin/AddCar">My Cars</a>
                         <a className="dropdown-item" href="/admin/addDriver">My Driver</a>
+                        <a className="dropdown-item" href="/admin/addCabs">Add Cabs</a>
+                        <a className="dropdown-item" href="/admin/addSurge">District Surge</a>
                     </div>
                 </li>   
                 <li className="nav-item dropdown">
@@ -214,14 +216,11 @@ class Header extends Component {
                     Booking
                     </a>
                     <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a className="dropdown-item" href="/admin/newBooking">New Booking</a>
                         <a className="dropdown-item" href="/admin/agentWaiting">Waiting for Agent</a>
                         <a className="dropdown-item" href="/admin/driverWaiting">Waiting for Driver</a>
                         <a className="dropdown-item" href="/admin/ready">Ready</a>
                         <a className="dropdown-item" href="/admin/completed">Completed</a>
 
-                        <a className="dropdown-item" href="/agent/myPendingBookings">My Pending</a>
-                        <a className="dropdown-item" href="/agent/myCompletedBookings">My Completed</a>
                         
                     </div>
                 </li> 
