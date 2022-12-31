@@ -13,7 +13,7 @@ import Pagination from "@material-ui/lab/Pagination";
 import { withRouter } from 'react-router-dom';
 class WaitingForAgent extends Component {
     
-    state = {userId:'',item:[],error:'',isLoading:false,loadingColor:'#ffffff',show:false,error:'',agentAmont:0,bookingId:0,pageId:0,rowCount:0,totalPage:0};
+    state = {userId:'',item:[],error:'',isLoading:false,loadingColor:'#ffffff',show:false,error:'',agentAmont:0,bookingId:0,pageId:1,rowCount:0,totalPage:0};
     constructor(props) {
         super(props);    
         //console.log("++pickup**********==="+JSON.stringify(this.props));  
@@ -108,6 +108,7 @@ class WaitingForAgent extends Component {
         //this.setState({pageId:value});
         let userId=this.state.userId;
         let pageId=value;
+        this.setState({pageId:pageId});
         this.getBooking(userId,pageId);
     }
     render() { 
@@ -215,10 +216,12 @@ class WaitingForAgent extends Component {
                                                 <Pagination
                                                     className="paging"
                                                     count={this.state.totalPage}
-                                                    page={this.state.rowCount}
-                                                    siblingCount={1}
-                                                    boundaryCount={1}
-                                                    variant="outlined"
+                                                    page={this.state.pageId}
+                                                    defaultPage={this.state.pageId}
+                                                    siblingCount={2}
+                                                    boundaryCount={2}
+                                                    color="primary"
+                                                    showFirstButton showLastButton
                                                     shape="rounded"
                                                     onChange={this.handlePageChange.bind()}
                                                 />

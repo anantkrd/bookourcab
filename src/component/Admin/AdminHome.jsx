@@ -10,7 +10,7 @@ import Pagination from "@material-ui/lab/Pagination";
 import { withRouter } from 'react-router-dom';
 class AdminHome extends Component {
     
-    state = {agents:[],agentId:'',userId:'',item:[],error:'',isLoading:false,loadingColor:'#ffffff',show:false,showAgent:false,error:'',agentAmont:0,bookingId:0,pageId:0,rowCount:0,totalPage:0};
+    state = {agents:[],agentId:'',userId:'',item:[],error:'',isLoading:false,loadingColor:'#ffffff',show:false,showAgent:false,error:'',agentAmont:0,bookingId:0,pageId:1,rowCount:0,totalPage:0};
     constructor(props) {
         super(props);    
         
@@ -20,7 +20,7 @@ class AdminHome extends Component {
           this.setState({isLoading:true});      
        let userId=localStorage.getItem("userId");
        this.setState({userId:userId});
-       this.setState({pageId:0});
+       this.setState({pageId:1});
         //console.log("++userId**********==="+userId);        
         //this.setState({item:this.props.match.params.data});
         this.getBooking(userId,1);
@@ -162,6 +162,7 @@ class AdminHome extends Component {
         //this.setState({pageId:value});
         let userId=this.state.userId;
         let pageId=value;
+        this.setState({pageId:pageId});
         this.getBooking(userId,pageId);
     }
     setAgentId=(id)=>{
@@ -287,11 +288,12 @@ class AdminHome extends Component {
                                             <Pagination
                                                 className="paging"
                                                 count={this.state.totalPage}
-                                                page={this.state.rowCount}
-                                                siblingCount={1}
-                                                boundaryCount={1}
-                                                variant="outlined"
-                                                shape="rounded"
+                                                page={this.state.pageId}
+                                                defaultPage={this.state.pageId}
+                                                siblingCount={2}
+                                                boundaryCount={2}
+                                                color="primary"
+                                                showFirstButton showLastButton
                                                 onChange={this.handlePageChange.bind()}
                                             />
                                             </div>

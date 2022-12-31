@@ -8,7 +8,7 @@ import ClipLoader from "react-spinners/ClipLoader";
 import Pagination from "@material-ui/lab/Pagination";
 class SearchLog extends Component {
     
-    state = {userId:'',item:[],error:'',isLoading:false,loadingColor:'#ffffff',pageId:0,rowCount:0,totalPage:0};
+    state = {userId:'',item:[],error:'',isLoading:false,loadingColor:'#ffffff',pageId:1,rowCount:0,totalPage:0};
     constructor(props) {
         super(props);    
         //console.log("++pickup**********==="+JSON.stringify(this.props));    
@@ -18,7 +18,7 @@ class SearchLog extends Component {
         this.setState({isLoading:true});      
        let userId=localStorage.getItem("userId");
        this.setState({userId:userId});
-       this.setState({pageId:0});
+       this.setState({pageId:1});
         //console.log("++userId**********==="+userId);        
         //this.setState({item:this.props.match.params.data});
         this.getBookingLog(userId,1);
@@ -51,6 +51,7 @@ class SearchLog extends Component {
         //this.setState({pageId:value});
         let userId=this.state.userId;
         let pageId=value;
+        this.setState({pageId:pageId});
         this.getBookingLog(userId,pageId);
     }
     render() { 
@@ -91,6 +92,7 @@ class SearchLog extends Component {
                                                     <th>Distance</th>
                                                     <th>PickupDate</th>
                                                     <th>ReturnDate</th>
+                                                    <th>Searched On</th>
                                                     <th>Price</th>
                                                     </tr>
                                                 </thead>
@@ -124,7 +126,16 @@ class SearchLog extends Component {
                                                                     }).format(new Date(object.returnDate)):null
                                                                     }
                                                                 </td>
-                                                                
+                                                                <td> {object.createdTime!="0000-00-00 00:00:00"?new Intl.DateTimeFormat('en-GB', { 
+                                                                        month: 'short', 
+                                                                        day: '2-digit',
+                                                                        year: 'numeric', 
+                                                                        hour:'numeric',
+                                                                        minute:'numeric',
+                                                                        hour12:true
+                                                                    }).format(new Date(object.createdTime)):null
+                                                                    }
+                                                                </td>
                                                                 <td>
                                                                     {
                                                                         object.returnDate!="0000-00-00 00:00:00"?<span>
@@ -139,14 +150,16 @@ class SearchLog extends Component {
                                                     
                                                 </tbody>    
                                             </Table>
+                                            
                                             <Pagination
                                                 className="paging"
                                                 count={this.state.totalPage}
-                                                page={this.state.rowCount}
-                                                siblingCount={1}
-                                                boundaryCount={1}
-                                                variant="outlined"
-                                                shape="rounded"
+                                                page={this.state.pageId}
+                                                defaultPage={this.state.pageId}
+                                                siblingCount={2}
+                                                boundaryCount={2}
+                                                color="primary"
+                                                showFirstButton showLastButton
                                                 onChange={this.handlePageChange.bind()}
                                             />
                                             </div>

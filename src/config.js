@@ -1,5 +1,6 @@
 module.exports = global.config = {
-    apiUrl:'http://www.bookourcar.com:3000/',
+    apiUrl:'https://bookourcar.com:3000/',
+    //apiUrl:'http://www.bookourcar.com:3000/',
     //paymentKey:'rzp_test_QhvPLHYFPpPWuu'
     paymentKey:'rzp_live_RgDIuy4WfFpIas'
     
