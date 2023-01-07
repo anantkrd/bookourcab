@@ -208,7 +208,7 @@ class Header extends Component {
                         <a className="dropdown-item" href="/admin/AddCar">My Cars</a>
                         <a className="dropdown-item" href="/admin/addDriver">My Driver</a>
                         <a className="dropdown-item" href="/admin/addCabs">Add Cabs</a>
-                        <a className="dropdown-item" href="/admin/addSurge">District Surge</a>
+                        <a className="dropdown-item" href="/admin/addSurge">Surge</a>
                     </div>
                 </li>   
                 <li className="nav-item dropdown">
@@ -324,11 +324,11 @@ class Header extends Component {
     render() { 
         
         return (
-                <div className="container d-flex align-items-center" style={{backgroundColor:'white'}}>
+                <div className="container d-flex align-items-center" style={{backgroundColor:'#30e1f1ad'}}>
                    
                     <h1 className="logo mr-auto">
                         <a href="/Home">
-                            <img src="/logo1.png" style={{width:100}}></img>
+                            <img src="/logo.png" style={{width:100}}></img>
                         </a>
                     </h1>
                     <nav className="nav-menu d-none d-lg-block">

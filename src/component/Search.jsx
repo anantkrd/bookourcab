@@ -380,7 +380,7 @@ class Search extends Component {
                         </div>
                     </div>
                 </div>
-                {this.state.showBooking?<div className=" bookingOption container align-items-center" data-aos="fade-up" style={{width:'95%!important',backgroundColor: 'rgb(225 92 139)',padding:16,borderRadius:'10px',color:'white',fontWeight:'bold'}}>
+                {this.state.showBooking?<div className=" bookingOption container align-items-center bookingcontainer" data-aos="fade-up" style={{width:'95%!important',backgroundColor: 'rgb(225 92 139)',padding:16,borderRadius:'10px',color:'white',fontWeight:'bold'}}>
                         <div className="col-12" style={{width:"50vh",height:"515px",left:'0',right:'0',margin:'auto',border:'solid rgb(243 245 167)',borderRadius:'2%'}}>
                             
                             <div className="row" style={{marginTop:10}}>

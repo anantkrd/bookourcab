@@ -4,6 +4,7 @@
   "private": true,
   "homepage": "http://www.bookourcar.com/",
   "dependencies": {
+    "@coreui/react": "^4.5.0",
     "@fortawesome/fontawesome-svg-core": "^1.2.34",
     "@fortawesome/free-solid-svg-icons": "^5.15.2",
     "@fortawesome/react-fontawesome": "^0.1.14",
@@ -31,7 +32,9 @@
     "react-native-google-places-autocomplete": "^2.2.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.1",
+    "react-slick": "^0.29.0",
     "react-spinners": "^0.10.6",
+    "swiper": "^8.4.5",
     "web-vitals": "^0.2.4"
   },
   "scripts": {

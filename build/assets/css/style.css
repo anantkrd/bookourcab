@@ -2345,3 +2345,11 @@ body {
 .easyBooking{
   background-color:#e7521e !important;
 }
+.bookingcontainer{
+  background-image: url("../img/bg1.png");
+ background-color:#e7521e;
+ margin-top: 10px;
+}
+.headergb{
+  background-image: url("../img/bg1.png");
+}

@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import Card from 'react-bootstrap/Card'
 import { Button } from 'react-bootstrap';
-import Slider from './Slider';
+//import Slider from './Slider';
 import Form from 'react-bootstrap/Form'
+import Carousel from 'react-bootstrap/Carousel';
+
 import  Header  from "./Header";
 import  Footer  from "./Footer";
 import { withRouter } from 'react-router-dom';
@@ -13,9 +15,9 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import GooglePlacesAutocomplete from 'react-google-places-autocomplete';
 import { geocodeByPlaceId } from 'react-google-places-autocomplete';
-import { compareAsc, format } from 'date-fns'
 import { getDistance,getPreciseDistance } from 'geolib';
-import timespan from 'jsonwebtoken/lib/timespan';
+import { CCarousel,CCarouselItem,CImage,CCarouselCaption } from '@coreui/react';
+import Slider from "react-slick";
 import moment from 'moment';
 class Home extends Component {
     state = { pickupTime:new Date(),returnTime:new Date(),pickupTimeSelected:new Date(),
@@ -24,7 +26,8 @@ class Home extends Component {
       dropCity:'',dropDistrict:'',dropState:'' };
       constructor(props) {
         super(props);      
-        this.state = {cabsList: [],pickup:'',destination:'',isReturn:'N'};      
+        this.state = {cabsList: [],pickup:'',destination:'',isReturn:'N'};     
+         
       }
     handleClick() {
         //alert("Here");
@@ -232,6 +235,13 @@ class Home extends Component {
        this.setState({isReturn:value})
      }  
     render() { 
+        const settings = {
+            dots: false,
+            infinite: true,
+            speed: 100,
+            slidesToShow: 1,
+            slidesToScroll: 1
+          };
         return (
             <div> 
                 <Header/>    
@@ -245,7 +255,23 @@ class Home extends Component {
                     <meta name="description" content="India's chepeast Car Rentals | India's Largest Intercity/outercity Car Rentals | Hire Outstation and Local AC cabs with Attractive Rates, Clean Cars, Courteous Drivers & Transparent Billing" />
 
                 </Helmet>  
-                <div className=" container align-items-center" data-aos="fade-up" style={{width:'95%!important',backgroundColor: 'rgb(225 92 139)',padding:16,borderRadius:'10px',color:'white',fontWeight:'bold'}}>
+                <div class="container" style={{width:"100%",margin:"auto",padding:0}}>
+                        <Carousel  fade="true" controls="false">
+                            <Carousel.Item>
+                                <img style={{width:"100%"}} src="assets/img/slide/slide.png" alt="First slide" />
+                            </Carousel.Item>
+                            <Carousel.Item>
+                                <img style={{width:"100%"}} src="assets/img/slide/slide1.png" alt="First slide" />
+                            </Carousel.Item>
+                            <Carousel.Item>
+                                <img style={{width:"100%"}} src="assets/img/slide/slide2.png" alt="First slide" />
+                            </Carousel.Item>
+                        </Carousel>
+
+                        
+                    </div>
+                <div className=" container align-items-center bookingcontainer" data-aos="fade-up" style={{width:'95%!important',backgroundColor: 'rgb(225 92 139)',padding:16,borderRadius:'0px',color:'white',fontWeight:'bold'}}>
+                    
                     <div className="col-12" style={{width:"50vh",height:"515px",left:'0',right:'0',margin:'auto',border:'solid rgb(243 245 167)',borderRadius:'2%'}}>
                         
                         <div className="row" style={{marginTop:10}}>
@@ -460,7 +486,7 @@ class Home extends Component {
                                         <div className="col-lg-4 col-md-4" style={{marginTop:20,paddingRight: 5,paddingLeft: 5}}>
                                             
                                             <Card>
-                                                <Card.Img variant="top" src="assets/img/cars/dzire4.png" alt="Car Image" style={{height:200}}/>
+                                                <Card.Img variant="top" src="assets/img/cars/sd1.png" alt="Car Image" style={{height:200}}/>
                                                 <Card.Body>
                                                     <Card.Title><h5>Mumbai To Pune </h5></Card.Title>
                                                     <div style={{color:'red'}}>
@@ -486,7 +512,7 @@ class Home extends Component {
                                         </div> 
                                         <div className="col-lg-4 col-md-4" style={{marginTop:20,paddingRight: 5,paddingLeft: 5}}>                                        
                                             <Card>
-                                                <Card.Img variant="top" src="assets/img/cars/crysta2.png" alt="Car Image" style={{height:200}}/>
+                                                <Card.Img variant="top" src="assets/img/cars/crysta1.png" alt="Car Image" style={{height:200}}/>
                                                 <Card.Body>
                                                     <Card.Title>Pune To Mumbai</Card.Title>
                                                     <div style={{color:'red'}}>
@@ -511,7 +537,7 @@ class Home extends Component {
                                         </div>  
                                         <div className="col-lg-4 col-md-4" style={{marginTop:20,paddingRight: 5,paddingLeft: 5}}>                                        
                                             <Card>
-                                                <Card.Img variant="top" src="assets/img/cars/ertiga1.webp" alt="Car Image" style={{height:200}} />
+                                                <Card.Img variant="top" src="assets/img/cars/ertiga.png" alt="Car Image" style={{height:200}} />
                                                 <Card.Body>
                                                     <Card.Title>Pune To Aurangabad</Card.Title>
                                                     <div style={{color:'red'}}>
@@ -536,7 +562,7 @@ class Home extends Component {
                                         </div>  
                                         <div className="col-lg-4 col-md-4" style={{marginTop:20,paddingRight: 5,paddingLeft: 5}}>                                        
                                             <Card >
-                                                <Card.Img variant="top" src="assets/img/cars/innova2.png" alt="Car Image" style={{height:200}} />
+                                                <Card.Img variant="top" src="assets/img/cars/innova1.png" alt="Car Image" style={{height:200}} />
                                                 <Card.Body>
                                                     <Card.Title>Mumbai To Auragabad</Card.Title>
                                                     <div style={{color:'red'}}>
@@ -561,7 +587,7 @@ class Home extends Component {
                                         </div>  
                                         <div className="col-lg-4 col-md-4" style={{marginTop:20,paddingRight: 5,paddingLeft: 5}}>                                        
                                             <Card >
-                                                <Card.Img variant="top" src="assets/img/cars/dzire1.png" alt="Car Image" style={{height:200}} />
+                                                <Card.Img variant="top" src="assets/img/cars/sd2.png" alt="Car Image" style={{height:200}} />
                                                 <Card.Body>
                                                     <Card.Title>Mumbai To Surat</Card.Title>
                                                     <div style={{color:'red'}}>
@@ -587,7 +613,7 @@ class Home extends Component {
                                         </div>  
                                         <div className="col-lg-4 col-md-4" style={{marginTop:20,paddingRight: 5,paddingLeft: 5}}>                                        
                                             <Card>
-                                                <Card.Img variant="top" src="assets/img/cars/ertiga1.webp" alt="Car Image" style={{height:200}} />
+                                                <Card.Img variant="top" src="assets/img/cars/ertiga1.png" alt="Car Image" style={{height:200}} />
                                                 <Card.Body>
                                                     <Card.Title>Mumbai To Bhopal</Card.Title>
                                                     <div style={{color:'red'}}>

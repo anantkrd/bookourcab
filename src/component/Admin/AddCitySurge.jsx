@@ -24,24 +24,23 @@ class AddCitySurge extends Component {
        this.setState({userId:userId});
                
         //this.setState({item:this.props.match.params.data});
-        this.getCars(userId);
+        this.getSurge(userId);
       }
     
       showPopup(object){
         
         this.prePayment(object);
       }
-    async getCars(userId){
-       
+    async getSurge(userId){       
         //const headers = { 'Content-Type': 'application/json' } 
         let token=localStorage.getItem("token");
         let pageNo=this.state.pageNo+1;
         const headers = {'Authorization':`Bearer ${token}`} ;
           let urlData="&userId="+userId+"&pageId="+pageNo;
-          const response = await fetch(global.config.apiUrl+'agent/get_cars?'+urlData, { headers });
-          //console.log("+++response=="+JSON.stringify(response))
+          const response = await fetch(global.config.apiUrl+'admin/get_surge?'+urlData, { headers });
+          console.log("+++response=="+JSON.stringify(response))
           const dataRes = await response.json();
-          //console.log("Data="+JSON.stringify(dataRes));
+          console.log("Data="+JSON.stringify(dataRes));
           
           if(dataRes.code==200){
               
@@ -107,6 +106,9 @@ class AddCitySurge extends Component {
     setSurge =(surge)=>{
         this.setState({surge:surge.target.value});
     }
+    editSurge(dataObj){
+        console.log("dataObj:"+dataObj);
+    }
     render() { 
         const override =`
         display: block;
@@ -151,15 +153,6 @@ class AddCitySurge extends Component {
                                                 </div>
                                                 <div >
                                                 
-                                                    <Form.Group controlId="formBasicEmail">
-                                                        <Form.Label>Cab Type<spam style={{color:'red'}}>*</spam></Form.Label>
-                                                        <Form.Select aria-label="Default select example">
-      <option>Open this select menu</option>
-      <option value="1">One</option>
-      <option value="2">Two</option>
-      <option value="3">Three</option>
-    </Form.Select>
-                                                    </Form.Group>
                                                 </div>
                                             </div>
                                             
@@ -189,27 +182,34 @@ class AddCitySurge extends Component {
                             <div className="col-lg-12 col-md-12">
                                     
                                     <Card>
-                                            <Card.Title style={{fontSize:16,padding:10,color:'white',backgroundColor:'gray'}}>My Cars </Card.Title>
+                                            <Card.Title style={{fontSize:16,padding:10,color:'white',backgroundColor:'gray'}}>City/District-wise surge </Card.Title>
                                         <Card.Body>
                                             <div style={{color:'red'}}>
                                             <Table striped bordered hover responsive>
                                                 <thead>
                                                     <tr>
-                                                    <th>Car model</th>
-                                                    <th>Number </th>
-                                                    <th>Type</th>
-                                                    <th>Rc</th>
+                                                        <th>#</th>
+                                                        <th>City</th>
+                                                        <th>Surge </th>
+                                                        <th># </th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                     {
                                                         this.state.item.map((object, i)=>{
                                                             return<tr> 
-                                                                <td>{object.carModelName}</td>
-                                                                <td>{object.carNo}</td>
-                                                                <td>{object.carType}</td>
-                                                                <td>{object.rcBook}</td>
-                                                                
+                                                                <td>{object.id}</td>
+                                                                <td>{object.city}</td>
+                                                                <td>{object.surge}</td> 
+                                                                <td>
+                                                                    <Button style={{float:'right',marginRight:5}} variant="primary" type="button" onClick={this.editSurge.bind(this,object)}>
+                                                                        <i className="fa fa-edit" aria-hidden="true"></i>
+                                                                    </Button>&nbsp;&nbsp;
+                                                                     <Button style={{float:'right',marginRight:5}} variant="primary" type="button" onClick={this.editSurge.bind(this,object)}>
+                                                                        <i className="fa fa-remove" aria-hidden="true"></i>
+                                                                    </Button>
+                                                                    
+                                                                </td>                                                               
                                                                 
                                                             </tr>;
                                                         })
